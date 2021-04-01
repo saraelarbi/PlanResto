@@ -6,6 +6,15 @@
 #include<QSqlTableModel>
 #include<QItemSelectionModel>
 #include<QTableWidgetItem>
+#include<QTextDocument>
+#include<QTextStream>
+#include <QGraphicsView>
+#include <QtPrintSupport/QPrintDialog>
+#include<QPdfWriter>
+#include<QSqlQueryModel>
+#include<QSqlQuery>
+#include<QDesktopServices>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -204,9 +213,9 @@ void MainWindow::on_rechercher_matirel_clicked()
 
                           }
                               } else
-                                  QMessageBox::warning(this,"erreur","Champ jour de travail est vide");
+                                  QMessageBox::warning(this,"erreur","Champ vide");
                           } else
-                              QMessageBox::warning(this,"erreur","Champ salaire est vide");
+                              QMessageBox::warning(this,"erreur","Champ vide");
           }
          if ((ui->checkBox_nom->isChecked())&&(ui->checkBox_marque->isChecked()))
           {
@@ -223,7 +232,7 @@ void MainWindow::on_rechercher_matirel_clicked()
                           }
 
                           } else
-                              QMessageBox::warning(this,"erreur","Champ salaire est vide");
+                              QMessageBox::warning(this,"erreur","Champ vide");
           }
           if ((ui->checkBox_type->isChecked())&&(ui->checkBox_marque->isChecked()))
           {
@@ -240,7 +249,7 @@ void MainWindow::on_rechercher_matirel_clicked()
                           }
 
                           } else
-                              QMessageBox::warning(this,"erreur","Champ jour de travail est vide");
+                              QMessageBox::warning(this,"erreur","Champ vide");
           }
 
 
@@ -263,9 +272,9 @@ void MainWindow::on_rechercher_matirel_clicked()
 
                        }
                            } else
-                               QMessageBox::warning(this,"erreur","Champ jour de travail est vide");
+                               QMessageBox::warning(this,"erreur","Champ vide");
                        } else
-                           QMessageBox::warning(this,"erreur","Champ salaire est vide");
+                           QMessageBox::warning(this,"erreur","Champ vide");
 
        }
 }
@@ -335,3 +344,81 @@ void MainWindow::on_reset_Mat_clicked()
         ui->marque->setText("");
         ui->prix->setText("");
 }
+
+
+void MainWindow::on_reset_Fou_clicked()
+{
+    ui->cinf->setText("");
+    ui->nom_2->setText("");
+    ui->prenom->setText("");
+    ui->type_2->setText("");
+    ui->tel->setText("");
+    ui->email->setText("");
+    ui->adresse->setText("");
+
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+
+        //QDateTime datecreation = date.currentDateTime();
+            //QString afficheDC = "Date de Creation PDF : " + datecreation.toString() ;
+                   QPdfWriter pdf("C:/Materiel/sara/Pdf.pdf");
+                   QPainter painter(&pdf);
+                  int i = 4000;
+                       painter.setPen(Qt::red);
+                       painter.setFont(QFont("Comic Sans MS", 30));
+                       painter.drawText(1100,1100,"Liste Des Matériels ");
+                       painter.setPen(Qt::blue);
+                       painter.setFont(QFont("Comic Sans MS", 50));
+                      // painter.drawText(1100,2000,afficheDC);
+                       painter.drawRect(100,100,7300,1900);
+                       painter.drawPixmap(QRect(7600,70,2000,2600),QPixmap("C:/Materiel/logo/PRR"));
+                       painter.setPen(Qt::blue);
+
+                       painter.drawRect(0,3000,9600,500);
+                       painter.setPen(Qt::green);
+
+                       painter.setFont(QFont("Comic Sans MS", 15));
+                       painter.drawText(200,3300,"Identifiant");
+                       painter.drawText(1800,3300,"Nom");
+                       painter.drawText(3300,3300,"Type");
+                       painter.drawText(5300,3300,"Marque");
+                       painter.drawText(6800,3300,"Prix");
+
+                       painter.drawText(8300,3300,"CinF");
+
+
+
+                       QSqlQuery query;
+                       query.prepare("select * from materiel");
+                       query.exec();
+                       while (query.next())
+                       {
+                           painter.setPen(Qt::red);
+                           painter.drawText(200,i,query.value(0).toString());
+                           painter.setPen(Qt::black);
+                           painter.drawText(1800,i,query.value(1).toString());
+                           painter.drawText(3300,i,query.value(2).toString());
+                           painter.drawText(5300,i,query.value(3).toString());
+                           painter.drawText(6800,i,query.value(4).toString());
+                           painter.setPen(Qt::blue);
+
+                           painter.drawText(8300,i,query.value(5).toString());
+
+
+
+                          i = i + 500;
+                       }
+                       int reponse = QMessageBox::question(this, "Génerer PDF", "<PDF Enregistré>...Vous Voulez Affichez Le PDF ?", QMessageBox::Yes |  QMessageBox::No);
+                           if (reponse == QMessageBox::Yes)
+                           {
+                               QDesktopServices::openUrl(QUrl::fromLocalFile("C:/Materiel/sara/Pdf.pdf"));
+                               painter.end();
+                           }
+                           if (reponse == QMessageBox::No)
+                           {
+                                painter.end();
+                           }
+    }
+

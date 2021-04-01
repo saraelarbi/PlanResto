@@ -21,7 +21,7 @@
        <string notr="true">background-color: rgb(227, 227, 227);</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -359,21 +359,30 @@ color: rgb(170, 115, 158);
                 </layout>
                </item>
                <item>
-                <widget class="QTableView" name="tab_mat"/>
+                <widget class="QTableView" name="tab_mat">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 208, 252);
+</string>
+                 </property>
+                </widget>
                </item>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_26">
                  <item>
-                  <widget class="QPushButton" name="pushButton_2">
-                   <property name="styleSheet">
-                    <string notr="true">background-color: rgb(205, 240, 255);
+                  <layout class="QVBoxLayout" name="verticalLayout_9">
+                   <item>
+                    <widget class="QPushButton" name="pushButton_2">
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(205, 240, 255);
 font: 75 11pt &quot;MS Shell Dlg 2&quot;;
 </string>
-                   </property>
-                   <property name="text">
-                    <string>Imprimer</string>
-                   </property>
-                  </widget>
+                     </property>
+                     <property name="text">
+                      <string>Imprimer</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </item>
                  <item>
                   <widget class="QPushButton" name="modifier_M">
@@ -636,7 +645,7 @@ font: 75 11pt &quot;MS Shell Dlg 2&quot;;
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_6">
+                <widget class="QPushButton" name="reset_Fou">
                  <property name="styleSheet">
                   <string notr="true">background-color: rgb(205, 240, 255);
 font: 75 11pt &quot;MS Shell Dlg 2&quot;;

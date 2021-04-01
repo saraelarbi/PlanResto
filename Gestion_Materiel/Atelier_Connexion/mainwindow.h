@@ -41,6 +41,11 @@ private slots:
 
     void on_reset_Mat_clicked();
 
+
+    void on_reset_Fou_clicked();
+
+    void on_pushButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     Materiel M;

@@ -197,3 +197,8 @@ QSqlQueryModel * Materiel::rechercher_tous(QString nom,QString type,QString marq
         return model;
 
 }
+
+
+
+
+
