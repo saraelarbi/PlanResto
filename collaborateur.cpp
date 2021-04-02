@@ -81,6 +81,21 @@ bool Collaborateur::modifier(QString idcollaborateur,QString nom,QString prenom,
      query.bindValue(":email", email);
      return query.exec();
  }
+QSqlQueryModel * Collaborateur::tri()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+
+    model->setQuery("select * from collaborateur ORDER BY nom ");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("prenom"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("telephone"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("adresse"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("email"));
+
+
+        return model;
+}
 /*QSqlQueryModel * Collaborateur::rechercher_nom(QString nom)
  {
      QSqlQuery qry;

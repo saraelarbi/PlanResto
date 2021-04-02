@@ -29,6 +29,8 @@ public:
         QSqlQueryModel * afficher();
         bool supprimer(QString);
         bool modifier(QString,QString,QString,QString,QString,QString);
+        QSqlQueryModel * tri();
+
 
 private:
 
