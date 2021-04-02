@@ -347,7 +347,7 @@ void MainWindow::on_reset_clicked()
     ui->adresse->setText("");
     ui->email->setText("");
 }
-void MainWindow::on_pb_tri_clicked()
+void MainWindow::on_tri_clicked()
 {
     ui->tableView_2->setModel(C.tri());
 }

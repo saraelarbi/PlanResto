@@ -34,7 +34,7 @@ public:
 
 private:
 
-    QString idcollaborateur,nom,prenom,adresse,email,telephone;
+    QString idcollaborateur,nom,prenom,telephone,adresse,email;
 
 
 };

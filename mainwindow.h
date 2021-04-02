@@ -39,7 +39,8 @@ private slots:
     void on_reset_2_clicked();
 
     void on_reset_clicked();
-    void on_pb_tri_clicked();
+
+    void on_tri_clicked();
 
 
 
