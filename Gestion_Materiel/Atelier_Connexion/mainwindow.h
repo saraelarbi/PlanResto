@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include"smtp.h"
 #include"materiel.h"
 #include"fournisseur.h"
 QT_BEGIN_NAMESPACE
@@ -45,6 +46,9 @@ private slots:
     void on_reset_Fou_clicked();
 
     void on_pushButton_2_clicked();
+
+    void sendMail();
+    void mailSent(QString);
 
 private:
     Ui::MainWindow *ui;

@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include"smtp.h"
 #include"materiel.h"
 #include"fournisseur.h"
 #include <QMessageBox>
@@ -21,6 +22,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    connect(ui->sendBtn, SIGNAL(clicked()),this, SLOT(sendMail()));
+    connect(ui->exitBtn, SIGNAL(clicked()),this, SLOT(close()));
     ui->tab_mat->setModel(M.afficher());
     ui->tab_fou->setModel(F.afficher());
     ui->tab_mat->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -37,6 +40,25 @@ MainWindow::MainWindow(QWidget *parent) :
                            ui->cinfet->addItem(cinf);
 }
 }
+
+
+void MainWindow::sendMail()
+{
+    Smtp* smtp = new Smtp(ui->uname->text(), ui->paswd->text(), ui->server->text(), ui->port->text().toInt());
+    connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
+
+
+    smtp->sendMail(ui->uname->text(), ui->rcpt->text() , ui->subject->text(),ui->message->toPlainText());
+}
+
+void MainWindow::mailSent(QString status)
+{
+    if(status == "Message sent")
+        QMessageBox::warning( 0, tr( "Qt Simple SMTP client" ), tr( "Message sent!\n\n" ) );
+}
+
+
+
 
 MainWindow::~MainWindow()
 {
@@ -290,7 +312,7 @@ void MainWindow::on_pb_supp2_clicked()
        {
            ui->tab_fou->setModel(F.afficher());
            QMessageBox::information(nullptr, QObject::tr("OK"),
-                       QObject::tr("Mression effectué.\n"
+                       QObject::tr("Suppression effectué.\n"
                                    "Click ok to exit."), QMessageBox::Cancel);
            int nb=ui->tab_fou->model()->rowCount();
                           ui->cinfet->clear();
@@ -304,7 +326,7 @@ void MainWindow::on_pb_supp2_clicked()
        else
        {
            QMessageBox::critical(nullptr, QObject::tr("NOT OK"),
-                       QObject::tr("Mression non effectue.\n"
+                       QObject::tr("Suppression non effectue.\n"
                                    "Click OK to exit."), QMessageBox::Cancel);
         }
 }
@@ -318,13 +340,13 @@ void MainWindow::on_pb_supp_clicked()
        {
            ui->tab_mat->setModel(M.afficher());
            QMessageBox::information(nullptr, QObject::tr("OK"),
-                       QObject::tr("Mression effectué.\n"
+                       QObject::tr("Suppression effectué.\n"
                                    "Click ok to exit."), QMessageBox::Cancel);
        }
        else
           {
               QMessageBox::critical(nullptr, QObject::tr("NOT OK"),
-                          QObject::tr("Mression non effectue.\n"
+                          QObject::tr("Suppression non effectue.\n"
                                       "Click OK to exit."), QMessageBox::Cancel);
           }
 }
@@ -361,8 +383,7 @@ void MainWindow::on_reset_Fou_clicked()
 void MainWindow::on_pushButton_2_clicked()
 {
 
-        //QDateTime datecreation = date.currentDateTime();
-            //QString afficheDC = "Date de Creation PDF : " + datecreation.toString() ;
+
                    QPdfWriter pdf("C:/Materiel/sara/Pdf.pdf");
                    QPainter painter(&pdf);
                   int i = 4000;
@@ -371,9 +392,8 @@ void MainWindow::on_pushButton_2_clicked()
                        painter.drawText(1100,1100,"Liste Des Matériels ");
                        painter.setPen(Qt::blue);
                        painter.setFont(QFont("Comic Sans MS", 50));
-                      // painter.drawText(1100,2000,afficheDC);
                        painter.drawRect(100,100,7300,1900);
-                       painter.drawPixmap(QRect(7600,70,2000,2600),QPixmap("C:/Materiel/logo/PRR"));
+                       painter.drawPixmap(QRect(7200,70,2600,2200),QPixmap("C:/Materiel/logo/PRR"));
                        painter.setPen(Qt::blue);
 
                        painter.drawRect(0,3000,9600,500);
@@ -410,7 +430,7 @@ void MainWindow::on_pushButton_2_clicked()
 
                           i = i + 500;
                        }
-                       int reponse = QMessageBox::question(this, "Génerer PDF", "<PDF Enregistré>...Vous Voulez Affichez Le PDF ?", QMessageBox::Yes |  QMessageBox::No);
+                       int reponse = QMessageBox::question(this, "Génerer PDF", "PDF Enregistré! -Voulez-Vous Affichez Le PDF ?", QMessageBox::Yes |  QMessageBox::No);
                            if (reponse == QMessageBox::Yes)
                            {
                                QDesktopServices::openUrl(QUrl::fromLocalFile("C:/Materiel/sara/Pdf.pdf"));
