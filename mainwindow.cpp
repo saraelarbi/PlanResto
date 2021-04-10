@@ -7,6 +7,11 @@
 #include<QItemSelectionModel>
 #include<QTableWidgetItem>
 #include<QSqlQueryModel>
+#include<QTextDocument>
+#include<QDesktopServices>
+#include "smtp.h"
+#include<QAbstractSocket>
+
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -14,6 +19,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
         ui->setupUi(this);
+        connect(ui->sendBtn, SIGNAL(clicked()),this, SLOT(sendMail()));
+        connect(ui->exitBtn, SIGNAL(clicked()),this, SLOT(close()));
+
         ui->tab_collab->setModel(C.afficher());
         ui->tableView_2->setModel(T.afficher());
         ui->tab_collab->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -33,6 +41,20 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 
+}
+void MainWindow::sendMail()
+{
+    Smtp* smtp = new Smtp(ui->uname->text(), ui->paswd->text(), ui->server->text(), ui->port->text().toInt());
+    connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
+
+
+    smtp->sendMail(ui->uname->text(), ui->rcpt->text() , ui->subject->text(),ui->msg->toPlainText());
+}
+
+void MainWindow::mailSent(QString status)
+{
+    if(status == "Message sent")
+        QMessageBox::warning( 0, tr( "Qt Simple SMTP client" ), tr( "Message sent!\n\n" ) );
 }
 
 MainWindow::~MainWindow()
@@ -349,5 +371,5 @@ void MainWindow::on_reset_clicked()
 }
 void MainWindow::on_tri_clicked()
 {
-    ui->tableView_2->setModel(C.tri());
+    ui->tab_collab->setModel(C.tri());
 }

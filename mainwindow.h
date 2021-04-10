@@ -4,6 +4,9 @@
 #include <QMainWindow>
 #include "collaborateur.h"
 #include "contrat.h"
+#include "smtp.h"
+
+
 
 namespace Ui {
 class MainWindow;
@@ -41,6 +44,9 @@ private slots:
     void on_reset_clicked();
 
     void on_tri_clicked();
+    void sendMail();
+    void mailSent(QString);
+
 
 
 
