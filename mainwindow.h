@@ -43,12 +43,17 @@ private slots:
 
     void on_reset_clicked();
 
-    void on_tri_clicked();
     void sendMail();
     void mailSent(QString);
 
 
 
+
+    void on_radioButton_clicked();
+
+    void on_radioButton_2_clicked();
+
+    void on_radioButton_3_clicked();
 
 private:
     Ui::MainWindow *ui;

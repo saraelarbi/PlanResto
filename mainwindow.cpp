@@ -137,7 +137,7 @@ void MainWindow::on_ajouter_collab_clicked()
 {
      QString type=ui->type->text();
      QString nom=ui->nom_2->text();
-     QString duree=ui->duree->text();
+     QString duree=ui->duree->currentText();
      QString tarif=ui->tarif->text();
      QString idcollaborateur=ui->idcollaborateur_2->currentText();
 
@@ -355,7 +355,7 @@ void MainWindow::on_reset_2_clicked()
 {
     ui->type->setText("");
     ui->nom_2->setText("");
-    ui->duree->setText("");
+    ui->duree->setCurrentText("");
     ui->tarif->setText("");
     ui->idcollaborateur_2->setCurrentText("");
 }
@@ -369,7 +369,71 @@ void MainWindow::on_reset_clicked()
     ui->adresse->setText("");
     ui->email->setText("");
 }
-void MainWindow::on_tri_clicked()
+void MainWindow::on_radioButton_clicked()
 {
-    ui->tab_collab->setModel(C.tri());
+    {QMessageBox msgBox ;
+            QSqlQueryModel * model= new QSqlQueryModel();
+
+
+               model->setQuery("select * from collaborateur order by id_collaborateur");
+
+               model->setHeaderData(0, Qt::Horizontal, QObject::tr("id_collaborateur"));
+               model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+               model->setHeaderData(2, Qt::Horizontal, QObject::tr("prenom"));
+               model->setHeaderData(3, Qt::Horizontal, QObject::tr("telephone"));
+               model->setHeaderData(4, Qt::Horizontal, QObject::tr("adresse"));
+               model->setHeaderData(5, Qt::Horizontal, QObject::tr("email"));
+
+                        ui->tab_collab->setModel(model);
+                        ui->tab_collab->show();
+                        msgBox.setText("Tri avec succés.");
+                        msgBox.exec();
+
+        }
 }
+
+void MainWindow::on_radioButton_2_clicked()
+{
+    QMessageBox msgBox ;
+        QSqlQueryModel * model= new QSqlQueryModel();
+
+
+
+           model->setQuery("select * from collaborateur order by nom");
+
+           model->setHeaderData(0, Qt::Horizontal, QObject::tr("id_collaborateur"));
+           model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+           model->setHeaderData(2, Qt::Horizontal, QObject::tr("prenom"));
+           model->setHeaderData(3, Qt::Horizontal, QObject::tr("telephone"));
+           model->setHeaderData(4, Qt::Horizontal, QObject::tr("adresse"));
+           model->setHeaderData(5, Qt::Horizontal, QObject::tr("email"));
+
+                    ui->tab_collab->setModel(model);
+                    ui->tab_collab->show();
+                    msgBox.setText("Tri avec succés.");
+                    msgBox.exec();
+}
+
+void MainWindow::on_radioButton_3_clicked()
+{
+    QMessageBox msgBox ;
+        QSqlQueryModel * model= new QSqlQueryModel();
+
+
+
+           model->setQuery("select * from collaborateur order by prenom");
+
+           model->setHeaderData(0, Qt::Horizontal, QObject::tr("id_collaborateur"));
+           model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+           model->setHeaderData(2, Qt::Horizontal, QObject::tr("prenom"));
+           model->setHeaderData(3, Qt::Horizontal, QObject::tr("telephone"));
+           model->setHeaderData(4, Qt::Horizontal, QObject::tr("adresse"));
+           model->setHeaderData(5, Qt::Horizontal, QObject::tr("email"));
+
+                    ui->tab_collab->setModel(model);
+                    ui->tab_collab->show();
+                    msgBox.setText("Tri avec succés.");
+                    msgBox.exec();
+}
+
+
