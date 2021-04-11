@@ -437,3 +437,12 @@ void MainWindow::on_radioButton_3_clicked()
 }
 
 
+void MainWindow::on_re_afficher2_clicked()
+{
+    ui->radioButton_3->setText("");
+        ui->radioButton_2->setText("");
+        ui->tab_collab->setModel(C.afficher());
+}
+
+
+

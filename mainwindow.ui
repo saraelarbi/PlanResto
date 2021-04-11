@@ -229,7 +229,7 @@ background-color: rgb(255, 189, 249);</string>
 background-color: rgb(170, 170, 255);</string>
                  </property>
                  <property name="text">
-                  <string>Trier selon l'ordre alphabetique des noms:</string>
+                  <string>Trier selon l'ordre alphabetique:</string>
                  </property>
                 </widget>
                </item>
@@ -255,22 +255,19 @@ background-color: rgb(170, 170, 255);</string>
                 </widget>
                </item>
                <item>
-                <spacer name="horizontalSpacer_2">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                <widget class="QPushButton" name="re_afficher2">
+                 <property name="text">
+                  <string>affichier</string>
                  </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
+                </widget>
                </item>
                <item>
                 <widget class="QGroupBox" name="groupBox_5">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(139, 170, 255);</string>
+                 </property>
                  <property name="title">
-                  <string>Affichage de tous nos collaborateur</string>
+                  <string>Affichage de tous nos collaborateurs</string>
                  </property>
                 </widget>
                </item>

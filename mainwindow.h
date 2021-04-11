@@ -55,6 +55,8 @@ private slots:
 
     void on_radioButton_3_clicked();
 
+    void on_re_afficher2_clicked();
+
 private:
     Ui::MainWindow *ui;
     Collaborateur C;
