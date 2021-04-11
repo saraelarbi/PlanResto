@@ -57,6 +57,8 @@ private slots:
 
     void on_re_afficher2_clicked();
 
+    void on_sendBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     Collaborateur C;

@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="gestioncollaboration">
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -256,6 +256,10 @@ background-color: rgb(170, 170, 255);</string>
                </item>
                <item>
                 <widget class="QPushButton" name="re_afficher2">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(205, 246, 255);
+</string>
+                 </property>
                  <property name="text">
                   <string>affichier</string>
                  </property>
@@ -356,6 +360,9 @@ background-color: rgb(170, 170, 255);</string>
             <layout class="QVBoxLayout" name="verticalLayout_25">
              <item>
               <widget class="QGroupBox" name="groupBox_6">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(170, 170, 255);</string>
+               </property>
                <property name="title">
                 <string>Bienvenue</string>
                </property>

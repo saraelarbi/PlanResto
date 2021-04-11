@@ -10,8 +10,11 @@
 #include<QTextDocument>
 #include<QDesktopServices>
 #include "smtp.h"
-#include<QAbstractSocket>
 #include<QPainter>
+#include<QPdfWriter>
+#include<QSqlError>
+#include<QtWidgets>
+
 
 
 MainWindow::MainWindow(QWidget *parent) :

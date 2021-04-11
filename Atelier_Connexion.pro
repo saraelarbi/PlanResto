@@ -30,14 +30,16 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     connection.cpp \
-    smtp.cpp
+    smtp.cpp \
+    statis.cpp
 
 HEADERS += \
     collaborateur.h \
     contrat.h \
         mainwindow.h \
     connection.h \
-    smtp.h
+    smtp.h \
+    statis.h
 
 FORMS += \
         mainwindow.ui
