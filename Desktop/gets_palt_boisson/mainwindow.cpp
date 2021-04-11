@@ -1,6 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
+#include <QPainter>
+#include <QPdfWriter>
+#include <QDesktopServices>
+#include <QUrl>
+#include "smtp.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -8,13 +13,15 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+
 }
 
 MainWindow::~MainWindow()
 {
-    delete ui;
     ui->tableView->setModel(tmpPlat.afficher());//refresh
     ui->tableView_B->setModel(tmpBoisson.afficher());//refresh
+
+    delete ui;
 
 }
 
@@ -52,6 +59,13 @@ void MainWindow::on_pushButton_4_clicked()
     if(test)
   {ui->tableView->setModel(tmpPlat.afficher());//refresh
 
+
+            Smtp* smtp = new Smtp("omarnouri9999@gmail.com","selimanouri14","smtp.gmail.com",465);
+            connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
+
+            smtp->sendMail("omarnouri9999@gmail.com","abdelmoomen.medhioub@esprit.tn","add plat"," test");
+
+
   QMessageBox::information(nullptr, QObject::tr("Ajouter un Plat"),
                     QObject::tr("Plat ajouté.\n"
                                 "Click Cancel to exit."), QMessageBox::Cancel);
@@ -66,7 +80,8 @@ void MainWindow::on_pushButton_4_clicked()
                     QObject::tr("Erreur !.\n"
                                 "Click Cancel to exit."), QMessageBox::Cancel);
         }
-}
+    }
+
 
 void MainWindow::on_pushButton_3_clicked()
 {
@@ -270,4 +285,135 @@ void MainWindow::on_tableView_B_activated(const QModelIndex &index)
             ui->lineEdit_typeB->setText(qry.value(3).toString());
         }
     }
+}
+
+void MainWindow::on_pushButton_9_clicked()
+{
+    ui->tableView->setModel(tmpPlat.trier());//refresh
+}
+
+void MainWindow::on_pushButton_10_clicked()
+{
+      ui->tableView->setModel(tmpPlat.trierN());//refresh
+}
+
+void MainWindow::on_pushButton_11_clicked()
+{
+    QString valeur=ui->lineEdit->text();
+    Plat *e=new Plat();
+    ui->tableView->setModel(e->recherche(valeur));
+}
+
+void MainWindow::on_pushButton_12_clicked()
+{
+
+        QPdfWriter pdf("C:/Users/abdelmomen medhioub/Desktop/gets_palt_boisson/PDF.pdf");
+        QPainter painter(&pdf);
+        int i = 4000;
+        painter.setPen(Qt::blue);
+        painter.setFont(QFont("Arial", 30));
+        painter.drawText(1100,1200,"Liste Des Plats ");
+        painter.setPen(Qt::black);
+        painter.setFont(QFont("Arial", 50));
+        painter.drawRect(100,100,7300,2600);
+
+        painter.drawRect(0,3000,9600,500);
+        painter.setFont(QFont("Arial", 9));
+        painter.drawText(200,3300,"ID");
+        painter.drawText(1700,3300,"PRIX");
+        painter.drawText(3200,3300,"NOM");
+        painter.drawText(4900,3300,"TYPE");
+        painter.drawText(6600,3300,"INGREDIENTS");
+
+
+        QSqlQuery query;
+        query.prepare("select * from PLAT");
+        query.exec();
+        while (query.next())
+        {
+            painter.drawText(200,i,query.value(0).toString());
+            painter.drawText(1700,i,query.value(1).toString());
+            painter.drawText(3200,i,query.value(2).toString());
+            painter.drawText(4900,i,query.value(3).toString());
+            painter.drawText(6600,i,query.value(4).toString());
+            painter.drawText(8100,i,query.value(5).toString());
+
+            i = i + 500;
+        }
+        int reponse = QMessageBox::question(this, "Génerer PDF", "<PDF Enregistré>...Vous Voulez Affichez Le PDF ?", QMessageBox::Yes |  QMessageBox::No);
+        if (reponse == QMessageBox::Yes)
+        {
+            QDesktopServices::openUrl(QUrl::fromLocalFile("C:/Users/abdelmomen medhioub/Desktop/gets_palt_boisson/PDF.pdf"));
+            painter.end();
+        }
+        if (reponse == QMessageBox::No)
+        {
+            painter.end();
+        }
+
+}
+
+void MainWindow::on_pushButton_13_clicked()
+{
+    QString valeur=ui->lineEdit_2->text();
+    Boisson *e=new Boisson();
+    ui->tableView_B->setModel(e->recherche(valeur));
+}
+
+void MainWindow::on_pushButton_16_clicked()
+{
+     ui->tableView_B->setModel(tmpBoisson.trier());//refresh
+}
+
+void MainWindow::on_pushButton_15_clicked()
+{
+    ui->tableView_B->setModel(tmpBoisson.trierN());//refresh
+}
+
+void MainWindow::on_pushButton_14_clicked()
+{
+    QPdfWriter pdf("C:/Users/abdelmomen medhioub/Desktop/gets_palt_boisson/PDF.pdf");
+    QPainter painter(&pdf);
+    int i = 4000;
+    painter.setPen(Qt::blue);
+    painter.setFont(QFont("Arial", 30));
+    painter.drawText(1100,1200,"Liste Des Boissons ");
+    painter.setPen(Qt::black);
+    painter.setFont(QFont("Arial", 50));
+    painter.drawRect(100,100,7300,2600);
+
+    painter.drawRect(0,3000,9600,500);
+    painter.setFont(QFont("Arial", 9));
+    painter.drawText(200,3300,"ID");
+    painter.drawText(1700,3300,"PRIX");
+    painter.drawText(3200,3300,"NOM");
+    painter.drawText(4900,3300,"TYPE");
+
+
+
+    QSqlQuery query;
+    query.prepare("select * from BOISSON");
+    query.exec();
+    while (query.next())
+    {
+        painter.drawText(200,i,query.value(0).toString());
+        painter.drawText(1700,i,query.value(1).toString());
+        painter.drawText(3200,i,query.value(2).toString());
+        painter.drawText(4900,i,query.value(3).toString());
+        painter.drawText(6600,i,query.value(4).toString());
+        painter.drawText(8100,i,query.value(5).toString());
+
+        i = i + 500;
+    }
+    int reponse = QMessageBox::question(this, "Génerer PDF", "<PDF Enregistré>...Vous Voulez Affichez Le PDF ?", QMessageBox::Yes |  QMessageBox::No);
+    if (reponse == QMessageBox::Yes)
+    {
+        QDesktopServices::openUrl(QUrl::fromLocalFile("C:/Users/abdelmomen medhioub/Desktop/gets_palt_boisson/PDF.pdf"));
+        painter.end();
+    }
+    if (reponse == QMessageBox::No)
+    {
+        painter.end();
+    }
+
 }

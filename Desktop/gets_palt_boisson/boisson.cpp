@@ -76,3 +76,38 @@ bool Boisson::modifier(int id)
 
 
 }
+
+QSqlQueryModel * Boisson::recherche(QString prix)
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+
+        model->setQuery("SELECT * FROM BOISSON WHERE PRIX LIKE '%"+prix+"%'");
+        model->query().bindValue(":prix",prix);
+        model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
+        model->setHeaderData(1, Qt::Horizontal, QObject::tr("prix"));
+        model->setHeaderData(2, Qt::Horizontal, QObject::tr("nom"));
+        model->setHeaderData(3, Qt::Horizontal, QObject::tr("type"));
+
+
+        return model;
+}
+
+QSqlQueryModel * Boisson::trier()
+{QSqlQueryModel * model= new QSqlQueryModel();
+model->setQuery("select * FROM BOISSON ORDER BY PRIX asc");
+model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
+model->setHeaderData(1, Qt::Horizontal, QObject::tr("prix"));
+model->setHeaderData(2, Qt::Horizontal, QObject::tr("nom"));
+model->setHeaderData(3, Qt::Horizontal, QObject::tr("type"));
+    return model;
+}
+
+QSqlQueryModel * Boisson::trierN()
+{QSqlQueryModel * model= new QSqlQueryModel();
+model->setQuery("select * FROM BOISSON ORDER BY NOM asc");
+model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
+model->setHeaderData(1, Qt::Horizontal, QObject::tr("prix"));
+model->setHeaderData(2, Qt::Horizontal, QObject::tr("nom"));
+model->setHeaderData(3, Qt::Horizontal, QObject::tr("type"));
+    return model;
+}

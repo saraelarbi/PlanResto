@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Gestion des Clients</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
@@ -27,7 +30,7 @@
      <string/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -42,6 +45,10 @@
         <height>471</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">
+font: 75 12pt &quot;8514oem&quot;;</string>
+      </property>
       <property name="title">
        <string>Ajout</string>
       </property>
@@ -50,13 +57,16 @@
         <rect>
          <x>10</x>
          <y>20</y>
-         <width>71</width>
+         <width>124</width>
          <height>231</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <widget class="QLabel" name="label">
+          <property name="styleSheet">
+           <string notr="true">font: 75 italic 9pt &quot;Comic Sans MS&quot;;</string>
+          </property>
           <property name="text">
            <string>Id</string>
           </property>
@@ -64,6 +74,9 @@
         </item>
         <item>
          <widget class="QLabel" name="label_3">
+          <property name="styleSheet">
+           <string notr="true">font: 75 italic 9pt &quot;Comic Sans MS&quot;;</string>
+          </property>
           <property name="text">
            <string>nom</string>
           </property>
@@ -71,6 +84,9 @@
         </item>
         <item>
          <widget class="QLabel" name="label_5">
+          <property name="styleSheet">
+           <string notr="true">font: 75 italic 9pt &quot;Comic Sans MS&quot;;</string>
+          </property>
           <property name="text">
            <string>type</string>
           </property>
@@ -78,6 +94,9 @@
         </item>
         <item>
          <widget class="QLabel" name="label_4">
+          <property name="styleSheet">
+           <string notr="true">font: 75 italic 9pt &quot;Comic Sans MS&quot;;</string>
+          </property>
           <property name="text">
            <string>ingredients</string>
           </property>
@@ -85,6 +104,9 @@
         </item>
         <item>
          <widget class="QLabel" name="label_2">
+          <property name="styleSheet">
+           <string notr="true">font: 75 italic 9pt &quot;Comic Sans MS&quot;;</string>
+          </property>
           <property name="text">
            <string>prix</string>
           </property>
@@ -103,19 +125,44 @@
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QLineEdit" name="lineEdit_id"/>
+         <widget class="QLineEdit" name="lineEdit_id">
+          <property name="styleSheet">
+           <string notr="true">
+background-color: rgb(140, 255, 248);</string>
+          </property>
+         </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_nom"/>
+         <widget class="QLineEdit" name="lineEdit_nom">
+          <property name="styleSheet">
+           <string notr="true">
+background-color: rgb(140, 255, 248);</string>
+          </property>
+         </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_type"/>
+         <widget class="QLineEdit" name="lineEdit_type">
+          <property name="styleSheet">
+           <string notr="true">
+background-color: rgb(140, 255, 248);</string>
+          </property>
+         </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_ing"/>
+         <widget class="QLineEdit" name="lineEdit_ing">
+          <property name="styleSheet">
+           <string notr="true">
+background-color: rgb(140, 255, 248);</string>
+          </property>
+         </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_prix"/>
+         <widget class="QLineEdit" name="lineEdit_prix">
+          <property name="styleSheet">
+           <string notr="true">
+background-color: rgb(140, 255, 248);</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -158,6 +205,32 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="horizontalLayoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>260</y>
+         <width>351</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <widget class="QPushButton" name="pushButton_9">
+          <property name="text">
+           <string>tri prix</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_10">
+          <property name="text">
+           <string>tri nom</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_2">
       <property name="geometry">
@@ -167,6 +240,9 @@
         <width>381</width>
         <height>471</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 12pt &quot;8514oem&quot;;</string>
       </property>
       <property name="title">
        <string>Affichage</string>
@@ -182,14 +258,30 @@
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <widget class="QLabel" name="label_6">
-          <property name="text">
-           <string>Recherche</string>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <item>
+           <widget class="QLineEdit" name="lineEdit">
+            <property name="styleSheet">
+             <string notr="true">
+background-color: rgb(140, 255, 248);</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_11">
+            <property name="text">
+             <string>Rechercher</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
-         <widget class="QTableView" name="tableView"/>
+         <widget class="QTableView" name="tableView">
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(140, 255, 248);</string>
+          </property>
+         </widget>
         </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
@@ -205,6 +297,13 @@
              </size>
             </property>
            </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_12">
+            <property name="text">
+             <string>imprimer PDF</string>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_2">
@@ -239,6 +338,9 @@
         <height>471</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 12pt &quot;8514oem&quot;;</string>
+      </property>
       <property name="title">
        <string>Ajout</string>
       </property>
@@ -248,12 +350,15 @@
          <x>10</x>
          <y>20</y>
          <width>71</width>
-         <height>231</height>
+         <height>241</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
          <widget class="QLabel" name="label_9">
+          <property name="styleSheet">
+           <string notr="true">font: 75 italic 9pt &quot;Comic Sans MS&quot;;</string>
+          </property>
           <property name="text">
            <string>Id</string>
           </property>
@@ -261,6 +366,9 @@
         </item>
         <item>
          <widget class="QLabel" name="label_10">
+          <property name="styleSheet">
+           <string notr="true">font: 75 italic 9pt &quot;Comic Sans MS&quot;;</string>
+          </property>
           <property name="text">
            <string>nom</string>
           </property>
@@ -268,6 +376,9 @@
         </item>
         <item>
          <widget class="QLabel" name="label_11">
+          <property name="styleSheet">
+           <string notr="true">font: 75 italic 9pt &quot;Comic Sans MS&quot;;</string>
+          </property>
           <property name="text">
            <string>type</string>
           </property>
@@ -275,6 +386,9 @@
         </item>
         <item>
          <widget class="QLabel" name="label_13">
+          <property name="styleSheet">
+           <string notr="true">font: 75 italic 9pt &quot;Comic Sans MS&quot;;</string>
+          </property>
           <property name="text">
            <string>prix</string>
           </property>
@@ -293,16 +407,32 @@
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
-         <widget class="QLineEdit" name="lineEdit_idB"/>
+         <widget class="QLineEdit" name="lineEdit_idB">
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(140, 255, 248);</string>
+          </property>
+         </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_nomB"/>
+         <widget class="QLineEdit" name="lineEdit_nomB">
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(140, 255, 248);</string>
+          </property>
+         </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_typeB"/>
+         <widget class="QLineEdit" name="lineEdit_typeB">
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(140, 255, 248);</string>
+          </property>
+         </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_prixB"/>
+         <widget class="QLineEdit" name="lineEdit_prixB">
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(140, 255, 248);</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -345,6 +475,32 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="horizontalLayoutWidget_5">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>270</y>
+         <width>341</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_8">
+        <item>
+         <widget class="QPushButton" name="pushButton_16">
+          <property name="text">
+           <string>tri prix</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_15">
+          <property name="text">
+           <string>tri nom</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_4">
       <property name="geometry">
@@ -354,6 +510,9 @@
         <width>381</width>
         <height>471</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 12pt &quot;8514oem&quot;;</string>
       </property>
       <property name="title">
        <string>Affichage</string>
@@ -369,14 +528,29 @@
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_6">
         <item>
-         <widget class="QLabel" name="label_15">
-          <property name="text">
-           <string>Recherche</string>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="QLineEdit" name="lineEdit_2">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(140, 255, 248);</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_13">
+            <property name="text">
+             <string>Rechercher</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
-         <widget class="QTableView" name="tableView_B"/>
+         <widget class="QTableView" name="tableView_B">
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(140, 255, 248);</string>
+          </property>
+         </widget>
         </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -392,6 +566,13 @@
              </size>
             </property>
            </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_14">
+            <property name="text">
+             <string>imprimer PDF</string>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_7">
