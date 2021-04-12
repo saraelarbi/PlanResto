@@ -30,6 +30,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
         ui->setupUi(this);
+        QPixmap pix("C:/Users/ASUS I7/Desktop/Atelier_Connexion/logo");
+           ui->img->setPixmap(pix);
+           animation = new QPropertyAnimation(ui->img,"geometry");
+           animation->setDuration(10000);
+           animation->setStartValue(ui->img->geometry());
+           animation->setEndValue(QRect(610,0,100,100));
+           animation->start();
         son=new QSound("C:/Users/ASUS I7/Desktop/Atelier_Connexion/ss.wav");
 
 
@@ -506,7 +513,7 @@ QPdfWriter pdf("C:/collaboration/Pdf.pdf");
                        painter.setPen(Qt::blue);
                        painter.setFont(QFont("Comic Sans MS", 50));
                        painter.drawRect(100,100,7300,1900);
-                       //painter.drawPixmap(QRect(7200,70,2600,2200),QPixmap("C:/Materiel/logo/PRR"));
+                       painter.drawPixmap(QRect(7200,70,2600,2200),QPixmap("C:/collaboration/logo"));
                        painter.setPen(Qt::blue);
 
                        painter.drawRect(0,3000,9600,500);

@@ -7,6 +7,7 @@
 #include "statis.h"
 #include <QSound>
 #include<QMediaPlayer>
+#include<QPropertyAnimation>
 
 
 
@@ -65,6 +66,8 @@ private:
     Contrat T;
     QMediaPlayer musicAdd;
     QSound *son;
+    QPropertyAnimation* animation;
+
 
 
 };
