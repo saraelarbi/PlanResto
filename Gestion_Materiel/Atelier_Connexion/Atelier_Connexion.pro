@@ -4,7 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql network
+QT       += core gui sql network multimedia serialport printsupport charts
+
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -26,18 +28,18 @@ CONFIG += c++11
 
 SOURCES += \
     fournisseur.cpp \
+    mailing.cpp \
         main.cpp \
         mainwindow.cpp \
     connection.cpp \
-    materiel.cpp \
-    smtp.cpp
+    materiel.cpp
 
 HEADERS += \
     fournisseur.h \
+    mailing.h \
         mainwindow.h \
     connection.h \
-    materiel.h \
-    smtp.h
+    materiel.h
 
 FORMS += \
         mainwindow.ui
@@ -46,3 +48,5 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES +=

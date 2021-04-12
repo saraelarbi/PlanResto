@@ -28,7 +28,7 @@ public:
     QSqlQueryModel*afficher();
     bool supprimer(QString);
     bool modifier(QString,QString,QString,QString,QString,QString,QString);
-
+    QSqlQueryModel* rechercher(const QString &aux);
 private:
 
     QString cinf,tel,nom,type,prenom,email,adresse;

@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include"smtp.h"
+#include"mailing.h"
 #include"materiel.h"
 #include"fournisseur.h"
 #include <QMessageBox>
@@ -15,17 +15,29 @@
 #include<QSqlQueryModel>
 #include<QSqlQuery>
 #include<QDesktopServices>
-
+#include<QSystemTrayIcon>
+#include <QtPrintSupport/QPrinter>
+#include <QSound>
+#include<QMediaPlayer>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    son=new QSound("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/sound/ss.wav");
     connect(ui->sendBtn, SIGNAL(clicked()),this, SLOT(sendMail()));
     connect(ui->exitBtn, SIGNAL(clicked()),this, SLOT(close()));
     ui->tab_mat->setModel(M.afficher());
     ui->tab_fou->setModel(F.afficher());
+    ui->tab_mail->setModel(F.afficher());
+   QPixmap pix("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/images/PRR");
+   ui->img->setPixmap(pix);
+   animation = new QPropertyAnimation(ui->img,"geometry");
+   animation->setDuration(10000);
+   animation->setStartValue(ui->img->geometry());
+   animation->setEndValue(QRect(610,0,100,100));
+   animation->start();
     ui->tab_mat->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tab_mat->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tab_fou->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -39,22 +51,24 @@ MainWindow::MainWindow(QWidget *parent) :
                            QString cinf = ui->tab_fou->model()->index(i, 0).data().toString();
                            ui->cinfet->addItem(cinf);
 }
+
 }
 
 
 void MainWindow::sendMail()
 {
-    Smtp* smtp = new Smtp(ui->uname->text(), ui->paswd->text(), ui->server->text(), ui->port->text().toInt());
-    connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
+    Mailing* mailing = new Mailing(ui->uname->text(), ui->paswd->text(), ui->server->text(), ui->port->text().toInt());
+    connect(mailing, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
 
+    ui->tab_mail->setModel(F.afficher());
 
-    smtp->sendMail(ui->uname->text(), ui->rcpt->text() , ui->subject->text(),ui->message->toPlainText());
+    mailing->sendMail(ui->uname->text(), ui->rcpt->text() , ui->subject->text(),ui->message->toPlainText());
 }
 
 void MainWindow::mailSent(QString status)
 {
     if(status == "Message sent")
-        QMessageBox::warning( 0, tr( "Qt Simple SMTP client" ), tr( "Message sent!\n\n" ) );
+        QMessageBox::warning( 0, tr( "Qt Simple Mailing fournisseur" ), tr( "Message envoyer!\n\n" ) );
 }
 
 
@@ -69,7 +83,7 @@ MainWindow::~MainWindow()
 
 
 void MainWindow::on_pb_ajouter_clicked()
-{
+{     son->play();
     QString id=ui->id->text();
     QString nom=ui->nom->text();
     QString type=ui->type->text();
@@ -87,17 +101,28 @@ void MainWindow::on_pb_ajouter_clicked()
     if(test2)
     {
         ui->tab_mat->setModel(M.afficher());
-        QMessageBox::information(nullptr, QObject::tr("OK"),
-                    QObject::tr("Ajout effectué.\n"
-                                "Click Cancel to exit."), QMessageBox::Cancel);
+        musicAdd.setMedia(QUrl("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/sound/ajout succe.mp3"));
+                musicAdd.play();
+        QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+                notifyIcon->show();
+                notifyIcon->setIcon(QIcon("icone.png"));
 
-}
-    else
-        QMessageBox::critical(nullptr, QObject::tr("NOT OK"),
-                    QObject::tr("Ajout non effectue.\n"
-                                "Click Cancel to exit."), QMessageBox::Cancel);
+                notifyIcon->showMessage("GESTION MATERIEL ","L'ajout du materiel est effectué",QSystemTrayIcon::Information,15000);
 
-}
+            QMessageBox::information(nullptr, QObject::tr("Ajouter Materiel"),
+                                  QObject::tr("Materiel ajouté"),QMessageBox::Cancel);
+            }
+
+            else
+                QMessageBox::critical(nullptr, QObject::tr("Ajouter Materiel"),
+                                      QObject::tr("Erreur!"),QMessageBox::Cancel);
+
+
+        }
+
+
+
+
 
 
 
@@ -121,6 +146,14 @@ void MainWindow::on_ajout2_clicked()
     if(test2)
     {
         ui->tab_fou->setModel(F.afficher());
+        musicAdd.setMedia(QUrl("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/sound/ajout succe.mp3"));
+                musicAdd.play();
+        QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+                notifyIcon->show();
+                notifyIcon->setIcon(QIcon("icone.png"));
+
+                notifyIcon->showMessage("GESTION FOURNISSEUR ","L'ajout du fournisseur est effectué",QSystemTrayIcon::Information,15000);
+
 
                     QMessageBox::information(nullptr, QObject::tr("OK"),
                                 QObject::tr("Ajout effectué.\n"
@@ -151,11 +184,14 @@ void MainWindow::on_modifier_M_clicked()
             tableModel->setTable("MATERIEL");
             tableModel->select();
             ui->tab_mat->setModel(tableModel);
+
         }
         else
         {
             ui->modifier_M->setText("Modifier");
             ui->tab_mat->setModel(M.afficher());
+            musicAdd.setMedia(QUrl("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/sound/modif succe.mp3"));
+                    musicAdd.play();
             QMessageBox::information(nullptr, QObject::tr("modification materiel"),
                         QObject::tr("Materiel modifié.\n"
 
@@ -178,6 +214,8 @@ void MainWindow::on_modifier_F_clicked()
         {
             ui->modifier_F->setText("Modifier");
             ui->tab_fou->setModel(F.afficher());
+            musicAdd.setMedia(QUrl("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/sound/modif succe.mp3"));
+                    musicAdd.play();
             QMessageBox::information(nullptr, QObject::tr("modification fournisseur"),
                         QObject::tr("Fournisseur modifié.\n"
 
@@ -311,6 +349,14 @@ void MainWindow::on_pb_supp2_clicked()
        if(F.supprimer(cinf))
        {
            ui->tab_fou->setModel(F.afficher());
+           musicAdd.setMedia(QUrl("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/sound/supp succe.mp3"));
+                   musicAdd.play();
+           QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+                   notifyIcon->show();
+                   notifyIcon->setIcon(QIcon("icone.png"));
+
+                   notifyIcon->showMessage("GESTION MATERIEL ","La suppression du fournisseur est effectuée",QSystemTrayIcon::Information,15000);
+
            QMessageBox::information(nullptr, QObject::tr("OK"),
                        QObject::tr("Suppression effectué.\n"
                                    "Click ok to exit."), QMessageBox::Cancel);
@@ -339,6 +385,14 @@ void MainWindow::on_pb_supp_clicked()
        if(M.supprimer(C))
        {
            ui->tab_mat->setModel(M.afficher());
+           musicAdd.setMedia(QUrl("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/sound/supp succe.mp3"));
+                   musicAdd.play();
+           QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+                   notifyIcon->show();
+                   notifyIcon->setIcon(QIcon("icone.png"));
+
+                   notifyIcon->showMessage("GESTION MATERIEL ","La suppression du materiel est effectuée",QSystemTrayIcon::Information,15000);
+
            QMessageBox::information(nullptr, QObject::tr("OK"),
                        QObject::tr("Suppression effectué.\n"
                                    "Click ok to exit."), QMessageBox::Cancel);
@@ -384,7 +438,7 @@ void MainWindow::on_pushButton_2_clicked()
 {
 
 
-                   QPdfWriter pdf("C:/Materiel/sara/Pdf.pdf");
+                   QPdfWriter pdf("C:/PR/Materiel/sara/Pdf.pdf");
                    QPainter painter(&pdf);
                   int i = 4000;
                        painter.setPen(Qt::red);
@@ -393,7 +447,7 @@ void MainWindow::on_pushButton_2_clicked()
                        painter.setPen(Qt::blue);
                        painter.setFont(QFont("Comic Sans MS", 50));
                        painter.drawRect(100,100,7300,1900);
-                       painter.drawPixmap(QRect(7200,70,2600,2200),QPixmap("C:/Materiel/logo/PRR"));
+                       painter.drawPixmap(QRect(7200,70,2600,2200),QPixmap("C:/PR/Materiel/logo/PRR"));
                        painter.setPen(Qt::blue);
 
                        painter.drawRect(0,3000,9600,500);
@@ -433,7 +487,7 @@ void MainWindow::on_pushButton_2_clicked()
                        int reponse = QMessageBox::question(this, "Génerer PDF", "PDF Enregistré! -Voulez-Vous Affichez Le PDF ?", QMessageBox::Yes |  QMessageBox::No);
                            if (reponse == QMessageBox::Yes)
                            {
-                               QDesktopServices::openUrl(QUrl::fromLocalFile("C:/Materiel/sara/Pdf.pdf"));
+                               QDesktopServices::openUrl(QUrl::fromLocalFile("C:/PR/Materiel/sara/Pdf.pdf"));
                                painter.end();
                            }
                            if (reponse == QMessageBox::No)
@@ -442,3 +496,88 @@ void MainWindow::on_pushButton_2_clicked()
                            }
     }
 
+
+
+
+
+
+void MainWindow::on_recherche_textChanged(const QString &arg1)
+{
+    Fournisseur f;
+        if(ui->recherche->text() == "")
+            {
+                ui->tab_fou->setModel(f.afficher());
+            }
+            else
+            {
+                 ui->tab_fou->setModel(f.rechercher(ui->recherche->text()));
+            }
+}
+
+
+void MainWindow::on_imp_F_clicked()
+{
+
+    QPdfWriter pdf("C:/PR/Fournisseur/Pdf2.pdf");
+    QPainter painter(&pdf);
+   int i = 4000;
+      int y =7200;
+        painter.setPen(Qt::red);
+        painter.setFont(QFont("Comic Sans MS", 30));
+        painter.drawText(1100,1100,"Liste Des Matériels ");
+        painter.setPen(Qt::blue);
+        painter.setFont(QFont("Comic Sans MS", 50));
+        painter.drawRect(100,100,7300,1900);
+        painter.drawPixmap(QRect(7200,70,2600,2200),QPixmap("C:/PR/Materiel/logo/PRR"));
+        painter.setPen(Qt::blue);
+
+        painter.drawRect(0,3000,9600,500);
+        painter.drawRect(0,6000,4000,500);
+        painter.setPen(Qt::green);
+
+        painter.setFont(QFont("Comic Sans MS", 15));
+        painter.drawText(200,3300,"CinF");
+        painter.drawText(1700,3300,"Nom");
+        painter.drawText(3200,3300,"Prenom");
+        painter.drawText(5000,3300,"Type");
+        painter.drawText(6500,3300,"Tel");
+        painter.drawText(200,6300,"Email");
+        painter.drawText(8000,3300,"Adresse");
+
+
+
+
+
+        QSqlQuery query;
+        query.prepare("select * from fournisseur");
+        query.exec();
+        while (query.next())
+        {
+            painter.setPen(Qt::red);
+            painter.drawText(200,i,query.value(0).toString());
+            painter.setPen(Qt::black);
+            painter.drawText(1700,i,query.value(1).toString());
+            painter.drawText(3200,i,query.value(2).toString());
+            painter.drawText(5000,i,query.value(3).toString());
+            painter.drawText(6500,i,query.value(4).toString());
+
+            painter.drawText(200,y,query.value(5).toString());
+            painter.drawText(8000,i,query.value(6).toString());
+
+
+
+
+           i = i + 500;
+           y = y + 500;
+        }
+        int reponse = QMessageBox::question(this, "Génerer PDF", "PDF Enregistré! -Voulez-Vous Affichez Le PDF ?", QMessageBox::Yes |  QMessageBox::No);
+            if (reponse == QMessageBox::Yes)
+            {
+                QDesktopServices::openUrl(QUrl::fromLocalFile("C:/PR/Fournisseur/Pdf2.pdf"));
+                painter.end();
+            }
+            if (reponse == QMessageBox::No)
+            {
+                 painter.end();
+            }
+}

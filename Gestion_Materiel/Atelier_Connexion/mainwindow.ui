@@ -17,11 +17,14 @@
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QTabWidget" name="GestionMateriel">
+      <property name="tabletTracking">
+       <bool>false</bool>
+      </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(227, 227, 227);</string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -689,6 +692,23 @@ color: rgb(170, 115, 158);
                 </widget>
                </item>
                <item>
+                <widget class="QLabel" name="label_26">
+                 <property name="text">
+                  <string>Recherche</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="recherche">
+                 <property name="cursor">
+                  <cursorShape>IBeamCursor</cursorShape>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(196, 170, 255);</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QTableView" name="tab_fou">
                  <property name="styleSheet">
                   <string notr="true">background-color: rgb(255, 208, 252);</string>
@@ -741,18 +761,6 @@ font: 75 11pt &quot;MS Shell Dlg 2&quot;;
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="pushButton_11">
-                   <property name="styleSheet">
-                    <string notr="true">background-color: rgb(205, 240, 255);
-font: 75 11pt &quot;MS Shell Dlg 2&quot;;
-</string>
-                   </property>
-                   <property name="text">
-                    <string>Envoyer Mail</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
                   <widget class="QPushButton" name="pb_supp2">
                    <property name="styleSheet">
                     <string notr="true">background-color: rgb(205, 240, 255);
@@ -761,6 +769,17 @@ font: 75 11pt &quot;MS Shell Dlg 2&quot;;
                    </property>
                    <property name="text">
                     <string>Supprimer</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="imp_F">
+                   <property name="styleSheet">
+                    <string notr="true">background-color: rgb(205, 240, 255);
+font: 75 11pt &quot;MS Shell Dlg 2&quot;;</string>
+                   </property>
+                   <property name="text">
+                    <string>Imprimer</string>
                    </property>
                   </widget>
                  </item>
@@ -780,7 +799,7 @@ font: 75 11pt &quot;MS Shell Dlg 2&quot;;
       </widget>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
-        <string>Boite Mail</string>
+        <string>Envoyer Mail</string>
        </attribute>
        <widget class="QWidget" name="formLayoutWidget">
         <property name="geometry">
@@ -799,8 +818,8 @@ font: 75 11pt &quot;MS Shell Dlg 2&quot;;
 
 
 
-color: rgb(170, 115, 158);
 
+color: rgb(255, 148, 255);
 </string>
            </property>
            <property name="text">
@@ -810,6 +829,9 @@ color: rgb(170, 115, 158);
          </item>
          <item row="0" column="1">
           <widget class="QLineEdit" name="server">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(196, 170, 255);</string>
+           </property>
            <property name="text">
             <string>smtp.gmail.com</string>
            </property>
@@ -822,7 +844,8 @@ color: rgb(170, 115, 158);
 
 
 
-color: rgb(170, 115, 158);
+
+color: rgb(255, 148, 255);
 </string>
            </property>
            <property name="text">
@@ -832,6 +855,9 @@ color: rgb(170, 115, 158);
          </item>
          <item row="1" column="1">
           <widget class="QLineEdit" name="port">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(196, 170, 255);</string>
+           </property>
            <property name="text">
             <string>465</string>
            </property>
@@ -844,7 +870,8 @@ color: rgb(170, 115, 158);
 
 
 
-color: rgb(170, 115, 158);
+
+color: rgb(255, 148, 255);
 </string>
            </property>
            <property name="text">
@@ -853,7 +880,11 @@ color: rgb(170, 115, 158);
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QLineEdit" name="uname"/>
+          <widget class="QLineEdit" name="uname">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(196, 170, 255);</string>
+           </property>
+          </widget>
          </item>
          <item row="3" column="0">
           <widget class="QLabel" name="label_23">
@@ -862,7 +893,9 @@ color: rgb(170, 115, 158);
 
 
 
-color: rgb(170, 115, 158);
+
+color: rgb(255, 148, 255);
+
 </string>
            </property>
            <property name="text">
@@ -872,6 +905,9 @@ color: rgb(170, 115, 158);
          </item>
          <item row="3" column="1">
           <widget class="QLineEdit" name="paswd">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(196, 170, 255);</string>
+           </property>
            <property name="inputMethodHints">
             <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
            </property>
@@ -890,7 +926,8 @@ color: rgb(170, 115, 158);
 
 
 
-color: rgb(170, 115, 158);
+
+color: rgb(255, 148, 255);
 </string>
            </property>
            <property name="text">
@@ -899,7 +936,11 @@ color: rgb(170, 115, 158);
           </widget>
          </item>
          <item row="4" column="1">
-          <widget class="QLineEdit" name="rcpt"/>
+          <widget class="QLineEdit" name="rcpt">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(196, 170, 255);</string>
+           </property>
+          </widget>
          </item>
          <item row="5" column="0">
           <widget class="QLabel" name="label_21">
@@ -908,7 +949,8 @@ color: rgb(170, 115, 158);
 
 
 
-color: rgb(170, 115, 158);
+
+color: rgb(255, 148, 255);
 </string>
            </property>
            <property name="text">
@@ -917,7 +959,11 @@ color: rgb(170, 115, 158);
           </widget>
          </item>
          <item row="5" column="1">
-          <widget class="QLineEdit" name="subject"/>
+          <widget class="QLineEdit" name="subject">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(196, 170, 255);</string>
+           </property>
+          </widget>
          </item>
          <item row="6" column="0">
           <widget class="QLabel" name="label_20">
@@ -926,7 +972,8 @@ color: rgb(170, 115, 158);
 
 
 
-color: rgb(170, 115, 158);
+
+color: rgb(255, 148, 255);
 </string>
            </property>
            <property name="text">
@@ -935,7 +982,11 @@ color: rgb(170, 115, 158);
           </widget>
          </item>
          <item row="6" column="1">
-          <widget class="QPlainTextEdit" name="message"/>
+          <widget class="QPlainTextEdit" name="message">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(196, 170, 255);</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -945,7 +996,7 @@ color: rgb(170, 115, 158);
           <x>10</x>
           <y>350</y>
           <width>291</width>
-          <height>25</height>
+          <height>29</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -964,6 +1015,13 @@ color: rgb(170, 115, 158);
          </item>
          <item>
           <widget class="QPushButton" name="sendBtn">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(205, 240, 255);
+font: 75 11pt &quot;MS Shell Dlg 2&quot;;
+
+
+</string>
+           </property>
            <property name="text">
             <string>Envoyer</string>
            </property>
@@ -971,12 +1029,55 @@ color: rgb(170, 115, 158);
          </item>
          <item>
           <widget class="QPushButton" name="exitBtn">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(205, 240, 255);
+font: 75 11pt &quot;MS Shell Dlg 2&quot;;
+
+</string>
+           </property>
            <property name="text">
             <string>Annuler</string>
            </property>
           </widget>
          </item>
         </layout>
+       </widget>
+       <widget class="QTableView" name="tab_mail">
+        <property name="geometry">
+         <rect>
+          <x>310</x>
+          <y>130</y>
+          <width>385</width>
+          <height>251</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 208, 252);</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="img">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>10</y>
+          <width>151</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../../../PRR.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
        </widget>
       </widget>
      </widget>

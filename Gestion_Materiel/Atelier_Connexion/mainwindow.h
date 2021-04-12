@@ -2,9 +2,13 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include"smtp.h"
+#include"mailing.h"
 #include"materiel.h"
 #include"fournisseur.h"
+#include<QPropertyAnimation>
+#include<QMediaPlayer>
+#include<QSound>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -17,42 +21,32 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 private slots:
-
-
-
     void on_pb_ajouter_clicked();
-
-
-
     void on_ajout2_clicked();
-
     void on_modifier_M_clicked();
-
     void on_modifier_F_clicked();
-
-
-
     void on_rechercher_matirel_clicked();
-
     void on_pb_supp2_clicked();
-
     void on_pb_supp_clicked();
-
     void on_reaficher_rech_clicked();
-
     void on_reset_Mat_clicked();
-
-
     void on_reset_Fou_clicked();
-
     void on_pushButton_2_clicked();
-
     void sendMail();
     void mailSent(QString);
+    void on_recherche_textChanged(const QString &arg1);
+
+
+
+    void on_imp_F_clicked();
 
 private:
+
     Ui::MainWindow *ui;
     Materiel M;
     Fournisseur F;
+    QPropertyAnimation* animation;
+    QMediaPlayer musicAdd;
+    QSound *son;
 };
 #endif // MAINWINDOW_H

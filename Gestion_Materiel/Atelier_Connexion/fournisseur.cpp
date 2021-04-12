@@ -94,7 +94,21 @@ bool Fournisseur::modifier(QString,QString,QString,QString,QString,QString,QStri
 
 
 
+QSqlQueryModel* Fournisseur::rechercher (const QString &aux)
 
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+
+    model->setQuery("select * from FOURNISSEUR where ((cinf || nom || prenom || type || tel || email || adresse) LIKE '%"+aux+"%')");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("cinf"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("prenom"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("type"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("tel"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("email"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("adresse"));
+    return model;
+}
 
 
 
