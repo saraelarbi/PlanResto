@@ -30,7 +30,6 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     connection.cpp \
-    smtp.cpp \
     statis.cpp
 
 HEADERS += \
@@ -38,7 +37,6 @@ HEADERS += \
     contrat.h \
         mainwindow.h \
     connection.h \
-    smtp.h \
     statis.h
 
 FORMS += \

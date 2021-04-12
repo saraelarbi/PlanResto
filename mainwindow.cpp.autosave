@@ -9,11 +9,15 @@
 #include<QSqlQueryModel>
 #include<QTextDocument>
 #include<QDesktopServices>
-#include "smtp.h"
+#include<QtPrintSupport/QPrintDialog>
 #include<QPainter>
 #include<QPdfWriter>
 #include<QSqlError>
 #include<QtWidgets>
+#include<QTextStream>
+#include<QGraphicsView>
+#include<QSystemTrayIcon>
+#include<QSqlQuery>
 
 
 
@@ -45,20 +49,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 }
-void MainWindow::sendMail()
-{
-    Smtp* smtp = new Smtp(ui->uname->text(), ui->paswd->text(), ui->server->text(), ui->port->text().toInt());
-    connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
 
-
-    smtp->sendMail(ui->uname->text(), ui->rcpt->text() , ui->subject->text(),ui->msg->toPlainText());
-}
-
-void MainWindow::mailSent(QString status)
-{
-    if(status == "Message sent")
-        QMessageBox::warning( 0, tr( "Qt Simple SMTP client" ), tr( "Message sent!\n\n" ) );
-}
 
 MainWindow::~MainWindow()
 {
@@ -448,54 +439,61 @@ void MainWindow::on_re_afficher2_clicked()
 }
 
 
-
-
-
-//QDateTime datecreation = date.currentDateTime();
-            //QString afficheDC = "Date de Creation PDF : " + datecreation.toString() ;
-                   QPdfWriter pdf("C:/Users/msi/OneDrive/Bureau/livraison.pdf");
+void MainWindow::on_imprimer_clicked()
+{
+QPdfWriter pdf("C:/collaboration/Pdf.pdf");
                    QPainter painter(&pdf);
                   int i = 4000;
+                       painter.setPen(Qt::red);
+                       painter.setFont(QFont("Comic Sans MS", 30));
+                       painter.drawText(1100,1100,"Liste Des Matériels ");
                        painter.setPen(Qt::blue);
-                       painter.setFont(QFont("Arial", 30));
-                       painter.drawText(1100,1200,"Liste Des contrats");
-                       painter.setPen(Qt::black);
-                       painter.setFont(QFont("Arial", 15));
-                      // painter.drawText(1100,2000,afficheDC);
-                       painter.drawRect(100,100,7300,2600);
-                       //painter.drawPixmap(QRect(7600,70,2000,2600),QPixmap("C:/Users/RH/Desktop/projecpp/image/logopdf.png"));
+                       painter.setFont(QFont("Comic Sans MS", 50));
+                       painter.drawRect(100,100,7300,1900);
+                       //painter.drawPixmap(QRect(7200,70,2600,2200),QPixmap("C:/Materiel/logo/PRR"));
+                       painter.setPen(Qt::blue);
+
                        painter.drawRect(0,3000,9600,500);
-                       painter.setFont(QFont("Arial", 9));
-                       painter.drawText(200,3300,"ID");
-                       painter.drawText(1300,3300,"DATE");
-                       painter.drawText(2100,3300,"LIEU");
-                       painter.drawText(3200,3300,"ETAT");
+                       painter.setPen(Qt::green);
+
+                       painter.setFont(QFont("Comic Sans MS", 15));
+                       painter.drawText(200,3300,"Type");
+                       painter.drawText(1800,3300,"Nom");
+                       painter.drawText(3300,3300,"duree");
+                       painter.drawText(5300,3300,"Tarif");
+                       painter.drawText(6800,3300,"Idcollaborateur");
+
+
+
 
                        QSqlQuery query;
-                       query.prepare("select * from CONTRAT");
+                       query.prepare("select * from contrat");
                        query.exec();
                        while (query.next())
                        {
+                           painter.setPen(Qt::blue);
                            painter.drawText(200,i,query.value(0).toString());
-                           painter.drawText(1300,i,query.value(1).toString());
-                           painter.drawText(2200,i,query.value(2).toString());
-                           painter.drawText(3200,i,query.value(3).toString());
+                           painter.setPen(Qt::black);
+                           painter.drawText(1800,i,query.value(1).toString());
+                           painter.drawText(3300,i,query.value(2).toString());
+                           painter.drawText(5300,i,query.value(3).toString());
+                           painter.drawText(6800,i,query.value(4).toString());
+                           painter.setPen(Qt::red);
+
+                           painter.drawText(8300,i,query.value(5).toString());
+
+
 
                           i = i + 500;
                        }
-                       int reponse = QMessageBox::question(this, "Génerer PDF", "<PDF Enregistré>...Vous Voulez Affichez Le PDF ?", QMessageBox::Yes |  QMessageBox::No);
+                       int reponse = QMessageBox::question(this, "Génerer PDF", "PDF Enregistré! -Voulez-Vous Affichez Le PDF ?",QMessageBox::Yes |  QMessageBox::No);
                            if (reponse == QMessageBox::Yes)
                            {
-                               QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
-                               notifyIcon->show();
-                               notifyIcon->setIcon(QIcon("icone.png"));
-
-                               notifyIcon->showMessage("GESTION  COLLABORATIONS ","Liste CONTRATS prete à imprimer",QSystemTrayIcon::Information,15000);
-
+                               QDesktopServices::openUrl(QUrl::fromLocalFile("C:/collaboration/Pdf.pdf"));
                                painter.end();
                            }
                            if (reponse == QMessageBox::No)
                            {
                                 painter.end();
                            }
-}
+    }

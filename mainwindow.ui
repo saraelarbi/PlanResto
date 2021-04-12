@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="gestioncollaboration">
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -433,12 +433,7 @@ background-color: rgb(255, 255, 127);</string>
                 <widget class="QComboBox" name="duree">
                  <item>
                   <property name="text">
-                   <string>+1an</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>-1an</string>
+                   <string>une_anneé</string>
                   </property>
                  </item>
                 </widget>
@@ -687,6 +682,13 @@ background-color: rgb(255, 252, 146);</string>
              </item>
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_13">
+               <item>
+                <widget class="QPushButton" name="imprimer">
+                 <property name="text">
+                  <string>imprimer</string>
+                 </property>
+                </widget>
+               </item>
                <item>
                 <spacer name="horizontalSpacer_8">
                  <property name="orientation">

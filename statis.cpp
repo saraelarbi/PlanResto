@@ -1,8 +1,10 @@
-#include "statis.h"
-#include "ui_statis.h"
+/*#include "statis.h"
+#include "ui_mainwindow.h"
 #include <QString>
 #include"contrat.h"
 #include<qsqlquery.h>
+
+#include<QtCharts/chartsnamespace.h>
 
 
 statis::statis(QWidget *parent) :
@@ -18,37 +20,36 @@ statis::~statis()
 }
 void statis::make()
 {
-        int male;
-        int femelle;
+        int une_anneé;
+        int plus;
         int total;
-        QString Male;
-        QString Femelle;
+
 
         QSqlQuery q;
 
-        q.prepare("SELECT COUNT(type) FROM contrat where duree ='-1an' ");
+        q.prepare("SELECT COUNT(type) FROM contrat where duree =' une_anneé' ");
         q.exec();
         q.first() ;
-        -1an=(q.value(0).toInt());
+         une_anneé=(q.value(0).toInt());
 
-        q.prepare("SELECT COUNT(type) FROM contrat where etat ='+1an' ");
+        q.prepare("SELECT COUNT(type) FROM contrat where etat ='plus' ");
         q.exec();
         q.first() ;
-        Femelle=(q.value(0).toInt());
-        q.prepare("SELECT COUNT(type) FROM etudiant ");
+        plus=(q.value(0).toInt());
+        q.prepare("SELECT COUNT(type) FROM contrat ");
         q.exec();
         q.first() ;
         total=(q.value(0).toInt());
 
-        +1an=((double)+1an/(double)total)*100;
-        -1an=100-+1an;
+        plus=((double)+plus/(double)total)*100;
+         une_anneé=100-plus;
 
-        -1an= QString::number(-1an);
-        +1an=QString::number(+1an);
+         une_anneé= int::number(une_anneé);
+        plus=QString::number(plus);
         QPieSeries *series;
          series= new  QPieSeries();
-         series->append("MALE"+Male+"%",male);
-         series->append("+1an"+Femelle+"%",femelle);
+         series->append("une_anneé"+une_anneé+"%",une_anneé);
+         series->append("plus+plus+"%",plus);
          QPieSlice *slice0 = series->slices().at(0);
           slice0->setLabelVisible();
 
@@ -67,3 +68,4 @@ void statis::make()
               ui->verticalLayout->addWidget(chartView);
 
 }
+*/

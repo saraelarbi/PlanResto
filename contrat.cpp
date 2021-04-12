@@ -42,7 +42,7 @@ bool Contrat::ajouter()
 bool Contrat::supprimer(QString type)
 {
     QSqlQuery query;
-
+    QString C=type;
           query.prepare("Delete from contrat where type=:type");
           query.bindValue(":type", type);
          return  query.exec();

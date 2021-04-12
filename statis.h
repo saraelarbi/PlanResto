@@ -1,4 +1,4 @@
-#ifndef STATIS_H
+/*#ifndef STATIS_H
 #define STATIS_H
 
 
@@ -27,3 +27,4 @@ private:
 };
 
 #endif // STATIS_H
+*/

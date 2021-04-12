@@ -43,8 +43,7 @@ private slots:
 
     void on_reset_clicked();
 
-    void sendMail();
-    void mailSent(QString);
+
 
 
 
@@ -57,7 +56,8 @@ private slots:
 
     void on_re_afficher2_clicked();
 
-    void on_sendBtn_clicked();
+
+    void on_imprimer_clicked();
 
 private:
     Ui::MainWindow *ui;
