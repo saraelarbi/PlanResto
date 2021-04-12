@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql network
+QT       += core gui sql network multimedia charts
+QT       += core gui sql multimedia printsupport charts network serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -40,7 +41,8 @@ HEADERS += \
     statis.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+        statis.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

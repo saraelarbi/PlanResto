@@ -1,12 +1,9 @@
-/*#ifndef STATIS_H
+#ifndef STATIS_H
 #define STATIS_H
-
-
 #include<QtCharts>
 #include<QChartView>
 #include<QPieSeries>
 #include<QPieSlice>
-
 #include <QWidget>
 
 namespace Ui {
@@ -19,12 +16,12 @@ class statis : public QWidget
 
 public:
     explicit statis(QWidget *parent = nullptr);
-     void make();
+    void make();
     ~statis();
+
 
 private:
     Ui::statis *ui;
 };
 
 #endif // STATIS_H
-*/

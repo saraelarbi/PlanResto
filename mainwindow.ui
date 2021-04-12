@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="gestioncollaboration">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -324,17 +324,6 @@ background-color: rgb(170, 170, 255);</string>
                </item>
               </layout>
              </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_2">
-               <property name="styleSheet">
-                <string notr="true">background-color: rgb(205, 246, 255);
-</string>
-               </property>
-               <property name="text">
-                <string>envoyer mail</string>
-               </property>
-              </widget>
-             </item>
             </layout>
            </widget>
           </item>
@@ -434,6 +423,11 @@ background-color: rgb(255, 255, 127);</string>
                  <item>
                   <property name="text">
                    <string>une_anneé</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>plus</string>
                   </property>
                  </item>
                 </widget>
@@ -728,7 +722,7 @@ background-color: rgb(255, 252, 146);</string>
               </layout>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_11">
+              <widget class="QPushButton" name="le_stat">
                <property name="styleSheet">
                 <string notr="true">background-color: rgb(255, 237, 133);</string>
                </property>
@@ -748,158 +742,16 @@ background-color: rgb(255, 252, 146);</string>
        <attribute name="title">
         <string>Page</string>
        </attribute>
-       <widget class="QWidget" name="formLayoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>371</width>
-          <height>351</height>
-         </rect>
-        </property>
-        <layout class="QFormLayout" name="formLayout">
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_18">
-           <property name="text">
-            <string>TextLabel</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="label_19">
-           <property name="text">
-            <string>TextLabel</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="0">
-          <widget class="QLabel" name="label_20">
-           <property name="text">
-            <string>TextLabel</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="label_21">
-           <property name="text">
-            <string>TextLabel</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_22">
-           <property name="text">
-            <string>TextLabel</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_23">
-           <property name="text">
-            <string>TextLabel</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_24">
-           <property name="text">
-            <string>TextLabel</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="server">
-           <property name="text">
-            <string>smtp.gmail.com</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLineEdit" name="port">
-           <property name="text">
-            <string>465</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QLineEdit" name="uname"/>
-         </item>
-         <item row="3" column="1">
-          <widget class="QLineEdit" name="paswd">
-           <property name="tabletTracking">
-            <bool>true</bool>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QLineEdit" name="rcpt"/>
-         </item>
-         <item row="5" column="1">
-          <widget class="QLineEdit" name="subject"/>
-         </item>
-         <item row="6" column="1">
-          <widget class="QPlainTextEdit" name="msg"/>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="horizontalLayoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>350</y>
-          <width>371</width>
-          <height>25</height>
-         </rect>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_6">
-         <item>
-          <spacer name="horizontalSpacer_9">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="sendBtn">
-           <property name="text">
-            <string>Envoyer</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="exitBtn">
-           <property name="text">
-            <string>Annuler</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>Page</string>
+       </attribute>
       </widget>
      </widget>
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

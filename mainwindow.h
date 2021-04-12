@@ -4,7 +4,10 @@
 #include <QMainWindow>
 #include "collaborateur.h"
 #include "contrat.h"
-#include "smtp.h"
+#include "statis.h"
+#include <QSound>
+#include<QMediaPlayer>
+
 
 
 
@@ -43,11 +46,6 @@ private slots:
 
     void on_reset_clicked();
 
-
-
-
-
-
     void on_radioButton_clicked();
 
     void on_radioButton_2_clicked();
@@ -59,10 +57,15 @@ private slots:
 
     void on_imprimer_clicked();
 
+    void on_le_stat_clicked();
+
 private:
     Ui::MainWindow *ui;
     Collaborateur C;
     Contrat T;
+    QMediaPlayer musicAdd;
+    QSound *son;
+
 
 };
 

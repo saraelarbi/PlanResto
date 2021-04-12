@@ -18,6 +18,10 @@
 #include<QGraphicsView>
 #include<QSystemTrayIcon>
 #include<QSqlQuery>
+#include <QSound>
+#include<QMediaPlayer>
+#include<statis.h>
+
 
 
 
@@ -26,8 +30,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
         ui->setupUi(this);
-        connect(ui->sendBtn, SIGNAL(clicked()),this, SLOT(sendMail()));
-        connect(ui->exitBtn, SIGNAL(clicked()),this, SLOT(close()));
+        son=new QSound("C:/Users/ASUS I7/Desktop/Atelier_Connexion/ss.wav");
+
 
         ui->tab_collab->setModel(C.afficher());
         ui->tableView_2->setModel(T.afficher());
@@ -57,6 +61,7 @@ MainWindow::~MainWindow()
 }
 
 
+
 void MainWindow::on_ajouter_collab_2_clicked()
 {
    QString idcollaborateur=ui->idcollaborateur->text();
@@ -77,6 +82,13 @@ void MainWindow::on_ajouter_collab_2_clicked()
      if(test2)
      {
          ui->tab_collab->setModel(C.afficher());
+         musicAdd.setMedia(QUrl("C:/Users/ASUS I7/Desktop/Atelier_Connexion/ajout succe.mp3"));
+                 musicAdd.play();
+                 QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+                         notifyIcon->show();
+                         notifyIcon->setIcon(QIcon("icone.png"));
+
+                         notifyIcon->showMessage("GESTION COLLABORATEURS  COLLABORATEUR ","collaborateur Ajouté",QSystemTrayIcon::Information,15000);
          QMessageBox::information(nullptr, QObject::tr("OK"),
                      QObject::tr("Ajout effectué.\n"
                                  "Click Cancel to exit."), QMessageBox::Cancel);
@@ -106,7 +118,14 @@ void MainWindow::on_supprimer_collab_clicked()
        if(C.supprimer(idcollaborateur))
        {
            ui->tab_collab->setModel(C.afficher());
-           QMessageBox::information(nullptr, QObject::tr("OK"),
+           musicAdd.setMedia(QUrl("C:/Users/ASUS I7/Desktop/Atelier_Connexion/supp succe.mp3"));
+                   musicAdd.play();
+                   QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+                           notifyIcon->show();
+                           notifyIcon->setIcon(QIcon("icone.png"));
+
+                           notifyIcon->showMessage("GESTION COLLABORATEURS  COLLABORATEUR ","collaborateur Supprimé",QSystemTrayIcon::Information,15000);
+                   QMessageBox::information(nullptr, QObject::tr("OK"),
                        QObject::tr("suppression effectué.\n"
                                    "Click ok to exit."), QMessageBox::Cancel);
            int nb=ui->tab_collab->model()->rowCount();
@@ -145,6 +164,13 @@ void MainWindow::on_ajouter_collab_clicked()
      if(test2)
      {
          ui->tableView_2->setModel(T.afficher());
+         musicAdd.setMedia(QUrl("C:/Users/ASUS I7/Desktop/Atelier_Connexion/ajout succe.mp3"));
+                 musicAdd.play();
+                 QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+                         notifyIcon->show();
+                         notifyIcon->setIcon(QIcon("icone.png"));
+
+                         notifyIcon->showMessage("GESTION COLLABORATEURS  CONTRAT ","contrat Ajouté",QSystemTrayIcon::Information,15000);
          QMessageBox::information(nullptr, QObject::tr("OK"),
                      QObject::tr("Ajout effectué.\n"
                                  "Click Cancel to exit."), QMessageBox::Cancel);
@@ -161,6 +187,9 @@ void MainWindow::on_modifier_collab_clicked()
     if (ui->modifier_collab->isChecked())
     {
         ui->modifier_collab->setText("Modifiable");
+
+
+
         QSqlTableModel *tableModel= new QSqlTableModel();
         tableModel->setTable("COLLABORATEUR");
         tableModel->select();
@@ -169,7 +198,15 @@ void MainWindow::on_modifier_collab_clicked()
     else
     {
         ui->modifier_collab->setText("Modifier");
+        musicAdd.setMedia(QUrl("C:/Users/ASUS I7/Desktop/Atelier_Connexion/modif succe.mp3"));
+                musicAdd.play();
         ui->tab_collab->setModel(C.afficher());
+        QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+                notifyIcon->show();
+                notifyIcon->setIcon(QIcon("icone.png"));
+
+                notifyIcon->showMessage("GESTION COLLABORATEURS  COLLABPRATEUR ","collaborateur Modifié",QSystemTrayIcon::Information,15000);
+
         QMessageBox::information(nullptr, QObject::tr("modification Fonction"),
                     QObject::tr("Fonction modifié.\n"
                                 "Click OK to exit."), QMessageBox::Cancel);
@@ -186,6 +223,13 @@ void MainWindow::on_supprimer_collab_2_clicked()
            if(T.supprimer(C))
            {
                ui->tableView_2->setModel(T.afficher());
+               musicAdd.setMedia(QUrl("C:/Users/ASUS I7/Desktop/Atelier_Connexion/supp succe.mp3"));
+                       musicAdd.play();
+                       QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+                               notifyIcon->show();
+                               notifyIcon->setIcon(QIcon("icone.png"));
+
+                               notifyIcon->showMessage("GESTION COLLABORATEURS  CONTRAT ","Contrat Supprimé",QSystemTrayIcon::Information,15000);
                QMessageBox::information(nullptr, QObject::tr("OK"),
                            QObject::tr("suppression effectué.\n"
                                        "Click ok to exit."), QMessageBox::Cancel);
@@ -204,6 +248,7 @@ void MainWindow::on_modifier_collab_2_clicked()
     if (ui->modifier_collab_2->isChecked())
     {
         ui->modifier_collab_2->setText("Modifiable");
+
         QSqlTableModel *tableModel= new QSqlTableModel();
         tableModel->setTable("contrat");
         tableModel->select();
@@ -212,7 +257,15 @@ void MainWindow::on_modifier_collab_2_clicked()
     else
     {
         ui->modifier_collab_2->setText("Modifier");
+        musicAdd.setMedia(QUrl("C:/Users/ASUS I7/Desktop/Atelier_Connexion/modif succe.mp3"));
+                musicAdd.play();
         ui->tableView_2->setModel(T.afficher());
+
+                QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+                        notifyIcon->show();
+                        notifyIcon->setIcon(QIcon("icone.png"));
+
+                        notifyIcon->showMessage("GESTION COLLABORATEURS  CONTRAT ","contrat Modifié",QSystemTrayIcon::Information,15000);
         QMessageBox::information(nullptr, QObject::tr("modification Fonction"),
                     QObject::tr("Fonction modifié.\n"
                                 "Click OK to exit."), QMessageBox::Cancel);
@@ -434,9 +487,12 @@ void MainWindow::on_radioButton_3_clicked()
 void MainWindow::on_re_afficher2_clicked()
 {
     ui->radioButton_3->setText("");
+
         ui->radioButton_2->setText("");
         ui->tab_collab->setModel(C.afficher());
 }
+
+
 
 
 void MainWindow::on_imprimer_clicked()
@@ -446,7 +502,7 @@ QPdfWriter pdf("C:/collaboration/Pdf.pdf");
                   int i = 4000;
                        painter.setPen(Qt::red);
                        painter.setFont(QFont("Comic Sans MS", 30));
-                       painter.drawText(1100,1100,"Liste Des Matériels ");
+                       painter.drawText(1100,1100,"Liste Des Contrats ");
                        painter.setPen(Qt::blue);
                        painter.setFont(QFont("Comic Sans MS", 50));
                        painter.drawRect(100,100,7300,1900);
@@ -471,14 +527,14 @@ QPdfWriter pdf("C:/collaboration/Pdf.pdf");
                        query.exec();
                        while (query.next())
                        {
-                           painter.setPen(Qt::red);
+                           painter.setPen(Qt::blue);
                            painter.drawText(200,i,query.value(0).toString());
                            painter.setPen(Qt::black);
                            painter.drawText(1800,i,query.value(1).toString());
                            painter.drawText(3300,i,query.value(2).toString());
                            painter.drawText(5300,i,query.value(3).toString());
                            painter.drawText(6800,i,query.value(4).toString());
-                           painter.setPen(Qt::blue);
+                           painter.setPen(Qt::red);
 
                            painter.drawText(8300,i,query.value(5).toString());
 
@@ -497,3 +553,12 @@ QPdfWriter pdf("C:/collaboration/Pdf.pdf");
                                 painter.end();
                            }
     }
+
+void MainWindow::on_le_stat_clicked()
+{
+
+        statis *w=new statis();
+        w->make();
+        w->show();
+
+}
