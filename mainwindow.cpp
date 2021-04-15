@@ -517,9 +517,9 @@ QPdfWriter pdf("C:/collaboration/Pdf.pdf");
                        painter.setPen(Qt::blue);
 
                        painter.drawRect(0,3000,9600,500);
-                       painter.setPen(Qt::green);
+                       painter.setPen(Qt::darkGreen);
 
-                       painter.setFont(QFont("Comic Sans MS", 15));
+                       painter.setFont(QFont("Calibri", 15));
                        painter.drawText(200,3300,"Type");
                        painter.drawText(1800,3300,"Nom");
                        painter.drawText(3300,3300,"duree");

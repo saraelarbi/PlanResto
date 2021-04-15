@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="gestioncollaboration">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -493,7 +493,7 @@ background-color: rgb(255, 252, 146);</string>
              <item>
               <widget class="QLabel" name="label_18">
                <property name="text">
-                <string>TextLabel</string>
+                <string/>
                </property>
               </widget>
              </item>
