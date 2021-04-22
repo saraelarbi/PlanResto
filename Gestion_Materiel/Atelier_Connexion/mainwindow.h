@@ -4,10 +4,12 @@
 #include <QMainWindow>
 #include"mailing.h"
 #include"materiel.h"
+#include"remise.h"
 #include"fournisseur.h"
 #include<QPropertyAnimation>
 #include<QMediaPlayer>
 #include<QSound>
+#include"excel.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -40,11 +42,22 @@ private slots:
 
     void on_imp_F_clicked();
 
+
+
+    void on_ajout_remise_clicked();
+
+    void on_supp_remise_clicked();
+
+    void on_modifier_remise_clicked();
+
+    void on_excel_remise_clicked();
+
 private:
 
     Ui::MainWindow *ui;
     Materiel M;
     Fournisseur F;
+    Remise R;
     QPropertyAnimation* animation;
     QMediaPlayer musicAdd;
     QSound *son;

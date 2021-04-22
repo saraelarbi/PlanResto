@@ -24,7 +24,7 @@
        <string notr="true">background-color: rgb(227, 227, 227);</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -1079,6 +1079,161 @@ font: 75 11pt &quot;MS Shell Dlg 2&quot;;
          <bool>true</bool>
         </property>
        </widget>
+      </widget>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>Les remises</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_11">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_21">
+          <item>
+           <widget class="QGroupBox" name="groupBox_5">
+            <property name="styleSheet">
+             <string notr="true">font: 75 11pt &quot;Poplar Std&quot;;
+
+
+
+color: rgb(170, 115, 158);
+</string>
+            </property>
+            <property name="title">
+             <string>Ajout</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_11">
+             <item>
+              <layout class="QFormLayout" name="formLayout_8">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_27">
+                 <property name="styleSheet">
+                  <string notr="true">font: 75 11pt &quot;Poplar Std&quot;;
+color: rgb(255, 148, 255);</string>
+                 </property>
+                 <property name="text">
+                  <string>ID materiel</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_28">
+                 <property name="styleSheet">
+                  <string notr="true">font: 75 11pt &quot;Poplar Std&quot;;
+color: rgb(255, 148, 255);</string>
+                 </property>
+                 <property name="text">
+                  <string>Remise</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLineEdit" name="remise">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(196, 170, 255);</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="id_materiel"/>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QPushButton" name="ajout_remise">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(205, 240, 255);
+
+
+font: 75 11pt &quot;MS Shell Dlg 2&quot;;</string>
+               </property>
+               <property name="text">
+                <string>Ajouter</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_22">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_12">
+            <item>
+             <widget class="QGroupBox" name="groupBox_6">
+              <property name="styleSheet">
+               <string notr="true">font: 75 11pt &quot;Poplar Std&quot;;
+
+
+
+color: rgb(170, 115, 158);
+</string>
+              </property>
+              <property name="title">
+               <string>Affichage</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_14">
+               <item>
+                <layout class="QFormLayout" name="formLayout_19">
+                 <item row="0" column="0">
+                  <widget class="QTableView" name="tab_rem">
+                   <property name="styleSheet">
+                    <string notr="true">background-color: rgb(255, 208, 252);</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QPushButton" name="excel_remise">
+                   <property name="styleSheet">
+                    <string notr="true">background-color: rgb(205, 240, 255);
+
+
+font: 75 11pt &quot;MS Shell Dlg 2&quot;;</string>
+                   </property>
+                   <property name="text">
+                    <string>Excel</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QPushButton" name="supp_remise">
+                   <property name="styleSheet">
+                    <string notr="true">background-color: rgb(205, 240, 255);
+
+
+font: 75 11pt &quot;MS Shell Dlg 2&quot;;</string>
+                   </property>
+                   <property name="text">
+                    <string>Supprimer</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QPushButton" name="modifier_remise">
+                   <property name="styleSheet">
+                    <string notr="true">background-color: rgb(205, 240, 255);
+
+
+font: 75 11pt &quot;MS Shell Dlg 2&quot;;</string>
+                   </property>
+                   <property name="text">
+                    <string>Modifier</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>

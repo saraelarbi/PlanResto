@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include"mailing.h"
 #include"materiel.h"
+#include<QFileDialog>
+
 #include"fournisseur.h"
 #include <QMessageBox>
 #include<QSqlTableModel>
@@ -31,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tab_mat->setModel(M.afficher());
     ui->tab_fou->setModel(F.afficher());
     ui->tab_mail->setModel(F.afficher());
+    ui->tab_rem->setModel(R.afficher());
    QPixmap pix("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/images/PRR");
    ui->img->setPixmap(pix);
    animation = new QPropertyAnimation(ui->img,"geometry");
@@ -43,6 +46,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tab_fou->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tab_fou->setSelectionMode(QAbstractItemView::SingleSelection);
 
+    int cleR=ui->tab_mat->model()->rowCount();
+    ui->id_materiel->clear();
+    for (int i=0;i<cleR;i++)
+    {QString id = ui->tab_mat->model()->index(i, 0).data().toString();
+        ui->id_materiel->addItem(id);
+}
+
     int nb=ui->tab_fou->model()->rowCount();
                        ui->cinfet->clear();
 
@@ -50,6 +60,9 @@ MainWindow::MainWindow(QWidget *parent) :
                        {
                            QString cinf = ui->tab_fou->model()->index(i, 0).data().toString();
                            ui->cinfet->addItem(cinf);
+
+
+
 }
 
 }
@@ -94,11 +107,44 @@ void MainWindow::on_pb_ajouter_clicked()
 
 
     Materiel M(id,nom,type,marque,prix,cinf);
+        bool test2=M.ajouter();
+ if((id=="")&&(nom=="")&&(type=="")&&(marque=="")&&(prix=="")&&(cinf==""))
+    {
+     QMessageBox::critical(nullptr, QObject::tr("WARNING"),
+                           QObject::tr("Tous les champs sont vides"),QMessageBox::Ok);
+ }
 
-
-    bool test2=M.ajouter();
-
-    if(test2)
+ else if((id==""))
+{
+ QMessageBox::critical(nullptr, QObject::tr("WARNING"),
+                       QObject::tr("Le champ ID est vide"),QMessageBox::Ok);
+}
+ else if((type==""))
+{
+ QMessageBox::critical(nullptr, QObject::tr("WARNING"),
+                       QObject::tr("Le champ Type est vide"),QMessageBox::Ok);
+}
+ else if((nom==""))
+{
+ QMessageBox::critical(nullptr, QObject::tr("WARNING"),
+                       QObject::tr("Le champ Nom est vide"),QMessageBox::Ok);
+}
+ else if((marque==""))
+{
+ QMessageBox::critical(nullptr, QObject::tr("WARNING"),
+                       QObject::tr("Le champ Marque est vide"),QMessageBox::Ok);
+}
+ else if((prix==""))
+{
+ QMessageBox::critical(nullptr, QObject::tr("WARNING"),
+                       QObject::tr("Le champ Prix est vide"),QMessageBox::Ok);
+}
+ else if((cinf==""))
+{
+ QMessageBox::critical(nullptr, QObject::tr("WARNING"),
+                       QObject::tr("Le champ CINF est vide"),QMessageBox::Ok);
+}
+  else if(test2)
     {
         ui->tab_mat->setModel(M.afficher());
         musicAdd.setMedia(QUrl("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/sound/ajout succe.mp3"));
@@ -111,6 +157,16 @@ void MainWindow::on_pb_ajouter_clicked()
 
             QMessageBox::information(nullptr, QObject::tr("Ajouter Materiel"),
                                   QObject::tr("Materiel ajouté"),QMessageBox::Cancel);
+
+
+            int cleR=ui->tab_mat->model()->rowCount();
+                           ui->id_materiel->clear();
+
+                           for (int i=0;i<cleR;i++)
+                           {
+                               QString id = ui->tab_mat->model()->index(i, 0).data().toString();
+                               ui->id_materiel->addItem(id);
+          }
             }
 
             else
@@ -139,11 +195,50 @@ void MainWindow::on_ajout2_clicked()
 
 
     Fournisseur F(cinf,nom,prenom,type,tel,email,adresse);
-
-
     bool test2=F.ajouter();
 
-    if(test2)
+    if((cinf=="")&&(nom=="")&&(prenom=="")&&(type=="")&&(tel=="")&&(email=="")&&(adresse==""))
+       {
+        QMessageBox::critical(nullptr, QObject::tr("WARNING"),
+                              QObject::tr("Tous les champs sont vides"),QMessageBox::Ok);
+
+}
+    else if((cinf==""))
+   {
+    QMessageBox::critical(nullptr, QObject::tr("WARNING"),
+                          QObject::tr("Le champ CINF est vide"),QMessageBox::Ok);
+}
+    else if((nom==""))
+   {
+    QMessageBox::critical(nullptr, QObject::tr("WARNING"),
+                          QObject::tr("Le champ Nom est vide"),QMessageBox::Ok);
+}
+    else if((prenom==""))
+   {
+    QMessageBox::critical(nullptr, QObject::tr("WARNING"),
+                          QObject::tr("Le champ Prenom est vide"),QMessageBox::Ok);
+}
+    else if((type==""))
+   {
+    QMessageBox::critical(nullptr, QObject::tr("WARNING"),
+                          QObject::tr("Le champ Type est vide"),QMessageBox::Ok);
+}
+    else if((tel==""))
+   {
+    QMessageBox::critical(nullptr, QObject::tr("WARNING"),
+                          QObject::tr("Le champ Telephone est vide"),QMessageBox::Ok);
+}
+    else if((email==""))
+   {
+    QMessageBox::critical(nullptr, QObject::tr("WARNING"),
+                          QObject::tr("Le champ Email est vide"),QMessageBox::Ok);
+}
+    else if((adresse==""))
+   {
+    QMessageBox::critical(nullptr, QObject::tr("WARNING"),
+                          QObject::tr("Le champ Adresse est vide"),QMessageBox::Ok);
+}
+   else if(test2)
     {
         ui->tab_fou->setModel(F.afficher());
         musicAdd.setMedia(QUrl("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/sound/ajout succe.mp3"));
@@ -163,8 +258,8 @@ void MainWindow::on_ajout2_clicked()
 
                                    for (int i=0;i<nb;i++)
                                    {
-                                       QString type_fonction = ui->tab_fou->model()->index(i, 0).data().toString();
-                                       ui->cinfet->addItem(type_fonction);
+                                       QString cinf = ui->tab_fou->model()->index(i, 0).data().toString();
+                                       ui->cinfet->addItem(cinf);
                   }
 }
     else
@@ -580,4 +675,134 @@ void MainWindow::on_imp_F_clicked()
             {
                  painter.end();
             }
+}
+
+
+void MainWindow::on_ajout_remise_clicked()
+{
+    QString idmateriel=ui->id_materiel->currentText();
+    QString remise=ui->remise->text();
+
+
+    Remise R(idmateriel,remise);
+
+
+    bool test2=R.ajouter();
+    if((idmateriel=="")&&(remise==""))
+       {
+        QMessageBox::critical(nullptr, QObject::tr("WARNING"),
+                              QObject::tr("Tous les champs sont vides"),QMessageBox::Ok);
+    }
+     else if((idmateriel==""))
+    {
+     QMessageBox::critical(nullptr, QObject::tr("WARNING"),
+                           QObject::tr("Le champ ID Materiel est vide"),QMessageBox::Ok);
+ }
+    else if((remise==""))
+   {
+    QMessageBox::critical(nullptr, QObject::tr("WARNING"),
+                          QObject::tr("Le champ Remise est vide"),QMessageBox::Ok);
+}
+
+
+    else if(test2)
+    {
+        ui->tab_rem->setModel(R.afficher());
+        musicAdd.setMedia(QUrl("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/sound/ajout succe.mp3"));
+                musicAdd.play();
+        QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+                notifyIcon->show();
+                notifyIcon->setIcon(QIcon("icone.png"));
+
+                notifyIcon->showMessage("GESTION REMISE ","L'ajout de la remise est effectué",QSystemTrayIcon::Information,15000);
+
+            QMessageBox::information(nullptr, QObject::tr("Ajouter Remise"),
+                                  QObject::tr("Remise ajouté"),QMessageBox::Cancel);
+            }
+
+            else
+                QMessageBox::critical(nullptr, QObject::tr("Ajouter Remise"),
+                                      QObject::tr("Erreur!"),QMessageBox::Cancel);
+
+
+        }
+
+
+
+void MainWindow::on_supp_remise_clicked()
+{
+    QItemSelectionModel *select = ui->tab_rem->selectionModel();
+        QString idmateriel = select->selectedRows(0).value(0).data().toString();
+
+       if(R.supprimer(idmateriel))
+       {
+           ui->tab_rem->setModel(R.afficher());
+           musicAdd.setMedia(QUrl("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/sound/supp succe.mp3"));
+                   musicAdd.play();
+           QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+                   notifyIcon->show();
+                   notifyIcon->setIcon(QIcon("icone.png"));
+
+                   notifyIcon->showMessage("GESTION MATERIEL ","La suppression du materiel est effectuée",QSystemTrayIcon::Information,15000);
+
+           QMessageBox::information(nullptr, QObject::tr("OK"),
+                       QObject::tr("Suppression effectué.\n"
+                                   "Click ok to exit."), QMessageBox::Cancel);
+       }
+       else
+          {
+              QMessageBox::critical(nullptr, QObject::tr("NOT OK"),
+                          QObject::tr("Suppression non effectue.\n"
+                                      "Click OK to exit."), QMessageBox::Cancel);
+          }
+
+}
+
+void MainWindow::on_modifier_remise_clicked()
+{
+    if (ui->modifier_remise->isChecked())
+        {
+            ui->modifier_remise->setText("Modifiable");
+            QSqlTableModel *tableModel= new QSqlTableModel();
+            tableModel->setTable("REMISE");
+            tableModel->select();
+            ui->tab_rem->setModel(tableModel);
+        }
+        else
+        {
+            ui->modifier_remise->setText("Modifier");
+            ui->tab_rem->setModel(R.afficher());
+            musicAdd.setMedia(QUrl("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/sound/modif succe.mp3"));
+                    musicAdd.play();
+            QMessageBox::information(nullptr, QObject::tr("modification remise"),
+                        QObject::tr("Remise modifié.\n"
+
+    "Click OK to exit."), QMessageBox::Cancel);
+
+        }
+}
+
+void MainWindow::on_excel_remise_clicked()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Excel file"), qApp->applicationDirPath (),
+                                                           tr("Excel Files (*.xls)"));
+           if (fileName.isEmpty())
+               return;
+
+           ExportExcelObject obj(fileName, "mydata", ui->tab_rem);
+
+           //colums to export
+           obj.addField(0, "IDMATERIEL", "char(20)");
+           obj.addField(1, "REMISE", "char(20)");
+
+
+
+
+           int retVal = obj.export2Excel();
+           if( retVal > 0)
+           {
+               QMessageBox::information(this, tr("Done"),
+                                        QString(tr("%1 records exported!")).arg(retVal)
+                                        );
+           }
 }

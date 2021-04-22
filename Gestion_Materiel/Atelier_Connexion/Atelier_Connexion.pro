@@ -27,19 +27,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    excel.cpp \
     fournisseur.cpp \
     mailing.cpp \
         main.cpp \
         mainwindow.cpp \
     connection.cpp \
-    materiel.cpp
+    materiel.cpp \
+    remise.cpp
 
 HEADERS += \
+    excel.h \
     fournisseur.h \
     mailing.h \
         mainwindow.h \
     connection.h \
-    materiel.h
+    materiel.h \
+    remise.h
 
 FORMS += \
         mainwindow.ui
