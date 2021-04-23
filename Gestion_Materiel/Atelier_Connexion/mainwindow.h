@@ -5,6 +5,7 @@
 #include"mailing.h"
 #include"materiel.h"
 #include"remise.h"
+#include"arduino.h"
 #include"fournisseur.h"
 #include<QPropertyAnimation>
 #include<QMediaPlayer>
@@ -39,7 +40,6 @@ private slots:
     void on_recherche_textChanged(const QString &arg1);
 
 
-
     void on_imp_F_clicked();
 
 
@@ -52,6 +52,14 @@ private slots:
 
     void on_excel_remise_clicked();
 
+
+    void on_recherche2_textChanged(const QString &arg1);
+
+    void on_refresh_clicked();
+
+    void on_textEdit_copyAvailable(bool b);
+
+
 private:
 
     Ui::MainWindow *ui;
@@ -61,5 +69,7 @@ private:
     QPropertyAnimation* animation;
     QMediaPlayer musicAdd;
     QSound *son;
+    QByteArray data;
+    arduino A;
 };
 #endif // MAINWINDOW_H

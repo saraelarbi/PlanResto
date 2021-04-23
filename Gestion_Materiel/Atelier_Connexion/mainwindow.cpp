@@ -3,7 +3,6 @@
 #include"mailing.h"
 #include"materiel.h"
 #include<QFileDialog>
-
 #include"fournisseur.h"
 #include <QMessageBox>
 #include<QSqlTableModel>
@@ -26,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+
+
     ui->setupUi(this);
     son=new QSound("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/sound/ss.wav");
     connect(ui->sendBtn, SIGNAL(clicked()),this, SLOT(sendMail()));
@@ -34,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tab_fou->setModel(F.afficher());
     ui->tab_mail->setModel(F.afficher());
     ui->tab_rem->setModel(R.afficher());
+
    QPixmap pix("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/images/PRR");
    ui->img->setPixmap(pix);
    animation = new QPropertyAnimation(ui->img,"geometry");
@@ -64,6 +66,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 }
+                       //arduino
+ int ret=A.connect_arduino();
+ switch(ret){
+ case(0):qDebug()<< "arduino is availble and connected to :"<< A.getarduino_port_name();
+     break;
+ case(1):qDebug()<< "arduino is availble but not connected to :"<< A.getarduino_port_name();
+     break;
+ case(-1):qDebug()<< "arduino is not availble";
+ }
+ QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_label()));
+
 
 }
 
@@ -682,9 +695,9 @@ void MainWindow::on_ajout_remise_clicked()
 {
     QString idmateriel=ui->id_materiel->currentText();
     QString remise=ui->remise->text();
+    QString dates=ui->date->text();
 
-
-    Remise R(idmateriel,remise);
+    Remise R(idmateriel,remise,dates);
 
 
     bool test2=R.ajouter();
@@ -702,6 +715,11 @@ void MainWindow::on_ajout_remise_clicked()
    {
     QMessageBox::critical(nullptr, QObject::tr("WARNING"),
                           QObject::tr("Le champ Remise est vide"),QMessageBox::Ok);
+}
+    else if((dates==""))
+   {
+    QMessageBox::critical(nullptr, QObject::tr("WARNING"),
+                          QObject::tr("Le champ Dates est vide"),QMessageBox::Ok);
 }
 
 
@@ -775,7 +793,7 @@ void MainWindow::on_modifier_remise_clicked()
             musicAdd.setMedia(QUrl("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/sound/modif succe.mp3"));
                     musicAdd.play();
             QMessageBox::information(nullptr, QObject::tr("modification remise"),
-                        QObject::tr("Remise modifié.\n"
+                        QObject::tr("Remise modifiée.\n"
 
     "Click OK to exit."), QMessageBox::Cancel);
 
@@ -794,7 +812,7 @@ void MainWindow::on_excel_remise_clicked()
            //colums to export
            obj.addField(0, "IDMATERIEL", "char(20)");
            obj.addField(1, "REMISE", "char(20)");
-
+           obj.addField(2, "DATES", "char(20)");
 
 
 
@@ -806,3 +824,29 @@ void MainWindow::on_excel_remise_clicked()
                                         );
            }
 }
+
+
+void MainWindow::on_recherche2_textChanged(const QString &arg1)
+{
+    Remise R;
+        if(ui->recherche2->text() == "")
+            {
+                ui->tab_rem->setModel(R.afficher());
+            }
+            else
+            {
+                 ui->tab_rem->setModel(R.rechercher2(ui->recherche2->text()));
+            }
+}
+
+void MainWindow::on_refresh_clicked()
+{
+    QByteArray data=A.read_from_arduino();
+      if(data.size()>10){
+      QString temp =QString::fromStdString(data.toStdString());
+      ui->textEdit->setText(temp);
+}
+}
+
+
+
