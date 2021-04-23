@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 #include "plat.h"
 #include "boisson.h"
+#include "arduino.h"
 
 #include <QMainWindow>
 
@@ -55,6 +56,24 @@ private slots:
     void on_pushButton_15_clicked();
 
     void on_pushButton_14_clicked();
+
+    void on_pushButton_17_clicked();
+
+    void on_lineEdit_textChanged(const QString &arg1);
+
+    void on_pushButton_18_clicked();
+
+    void on_lineEdit_2_textChanged(const QString &arg1);
+
+    bool verifID();
+    bool verifNOM();
+    bool verifTYPE();
+    bool verifPRIX();
+
+    bool verifIDb();
+    bool verifNOMb();
+    bool verifTYPEb();
+    bool verifPRIXb();
 
 private:
     Ui::MainWindow *ui;

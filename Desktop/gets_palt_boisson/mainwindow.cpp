@@ -6,6 +6,7 @@
 #include <QDesktopServices>
 #include <QUrl>
 #include "smtp.h"
+#include "arduino.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -50,12 +51,15 @@ void MainWindow::on_pushButton_4_clicked()
     QString type=ui->lineEdit_type->text();
     QString ingredients=ui->lineEdit_ing->text();
     Plat P(Id,prix,nom,type,ingredients);
-    bool test=P.ajouter();
-    ui->lineEdit_id->clear();
-    ui->lineEdit_type->clear();
-    ui->lineEdit_ing->clear();
-    ui->lineEdit_nom->clear();
-    ui->lineEdit_prix->clear();
+
+     if(verifID()&&verifNOM()&&verifTYPE()&&verifPRIX())
+     {
+         bool test=P.ajouter();
+         ui->lineEdit_id->clear();
+         ui->lineEdit_type->clear();
+         ui->lineEdit_ing->clear();
+         ui->lineEdit_nom->clear();
+         ui->lineEdit_prix->clear();
     if(test)
   {ui->tableView->setModel(tmpPlat.afficher());//refresh
 
@@ -63,7 +67,7 @@ void MainWindow::on_pushButton_4_clicked()
             Smtp* smtp = new Smtp("omarnouri9999@gmail.com","selimanouri14","smtp.gmail.com",465);
             connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
 
-            smtp->sendMail("omarnouri9999@gmail.com","abdelmoomen.medhioub@esprit.tn","add plat"," test");
+            smtp->sendMail("omarnouri9999@gmail.com","abdelmoomen.medhioub@esprit.tn","add plat"," plat ajouté avec succès");
 
 
   QMessageBox::information(nullptr, QObject::tr("Ajouter un Plat"),
@@ -80,6 +84,12 @@ void MainWindow::on_pushButton_4_clicked()
                     QObject::tr("Erreur !.\n"
                                 "Click Cancel to exit."), QMessageBox::Cancel);
         }
+     } else
+     {
+         QMessageBox msgBox ;
+         msgBox.setText("fournisseur non ajouté ");
+     }
+
     }
 
 
@@ -179,12 +189,13 @@ void MainWindow::on_pushButton_5_clicked()
     int prix=ui->lineEdit_prixB->text().toInt();
     QString nom=ui->lineEdit_nomB->text();
     QString type=ui->lineEdit_typeB->text();
-
     Boisson B(Id,prix,nom,type);
+
+    if(verifIDb()&&verifNOMb()&&verifTYPEb()&&verifPRIXb())
+    {
     bool test=B.ajouter();
     ui->lineEdit_idB->clear();
     ui->lineEdit_typeB->clear();
-
     ui->lineEdit_nomB->clear();
     ui->lineEdit_prixB->clear();
     if(test)
@@ -196,7 +207,14 @@ void MainWindow::on_pushButton_5_clicked()
                     QObject::tr("boisson ajouté.\n"
                                 "Click Cancel to exit."), QMessageBox::Cancel);
 
-}
+  }
+
+    else {
+        QMessageBox msgBox ;
+        msgBox.setText("fournisseur non ajouté ");
+         }
+
+    }
 
 }
 
@@ -302,6 +320,7 @@ void MainWindow::on_pushButton_11_clicked()
     QString valeur=ui->lineEdit->text();
     Plat *e=new Plat();
     ui->tableView->setModel(e->recherche(valeur));
+
 }
 
 void MainWindow::on_pushButton_12_clicked()
@@ -358,6 +377,7 @@ void MainWindow::on_pushButton_13_clicked()
     QString valeur=ui->lineEdit_2->text();
     Boisson *e=new Boisson();
     ui->tableView_B->setModel(e->recherche(valeur));
+
 }
 
 void MainWindow::on_pushButton_16_clicked()
@@ -414,6 +434,153 @@ void MainWindow::on_pushButton_14_clicked()
     if (reponse == QMessageBox::No)
     {
         painter.end();
+    }
+
+}
+
+void MainWindow::on_pushButton_17_clicked()
+{
+
+    ui->tableView->setModel(tmpPlat.trierI());//refresh
+}
+
+void MainWindow::on_lineEdit_textChanged(const QString &arg1)
+{
+    ui->tableView->setModel(tmpPlat.recherche(ui->lineEdit->text()));
+}
+
+void MainWindow::on_pushButton_18_clicked()
+{
+
+    ui->tableView_B->setModel(tmpBoisson.trierI());//refresh
+}
+
+void MainWindow::on_lineEdit_2_textChanged(const QString &arg1)
+{
+   ui->tableView_B->setModel(tmpBoisson.recherche(ui->lineEdit_2->text()));
+}
+
+bool MainWindow::verifID()
+{
+    if (ui->lineEdit_id->text().contains(QRegExp("[^0-9 ]") ) || ui->lineEdit_id->text().isEmpty())
+    {
+        ui->lineEdit_id->clear();
+
+        ui->lineEdit_id->setPlaceholderText("contient que des chiffres") ;
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+
+}
+
+bool MainWindow::verifNOM()
+{
+    if (ui->lineEdit_nom->text().contains(QRegExp("[^a-zA-Z ]") ) || ui->lineEdit_nom->text().isEmpty())
+    {
+        ui->lineEdit_nom->clear();
+        ui->lineEdit_nom->setPlaceholderText("contient que des caracteres") ;
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+
+}
+
+bool MainWindow::verifTYPE()
+{
+    if (ui->lineEdit_type->text().contains(QRegExp("[^a-zA-Z ]") ) || ui->lineEdit_type->text().isEmpty())
+    {
+        ui->lineEdit_type->clear();
+        ui->lineEdit_type->setPlaceholderText("contient que des caracteres") ;
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+bool MainWindow::verifPRIX()
+{
+    if (ui->lineEdit_prix->text().contains(QRegExp("[^0-9 ]") ) || ui->lineEdit_prix->text().isEmpty())
+    {
+        ui->lineEdit_prix->clear();
+
+        ui->lineEdit_prix->setPlaceholderText("contient que des chiffres") ;
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+
+}
+
+
+
+
+bool MainWindow::verifIDb()
+{
+    if (ui->lineEdit_idB->text().contains(QRegExp("[^0-9 ]") ) || ui->lineEdit_idB->text().isEmpty())
+    {
+        ui->lineEdit_idB->clear();
+
+        ui->lineEdit_idB->setPlaceholderText("contient que des chiffres") ;
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+
+}
+
+bool MainWindow::verifNOMb()
+{
+    if (ui->lineEdit_nomB->text().contains(QRegExp("[^a-zA-Z ]") ) || ui->lineEdit_nomB->text().isEmpty())
+    {
+        ui->lineEdit_nomB->clear();
+        ui->lineEdit_nomB->setPlaceholderText("contient que des caracteres") ;
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+
+}
+
+bool MainWindow::verifTYPEb()
+{
+    if (ui->lineEdit_typeB->text().contains(QRegExp("[^a-zA-Z ]") ) || ui->lineEdit_typeB->text().isEmpty())
+    {
+        ui->lineEdit_typeB->clear();
+        ui->lineEdit_typeB->setPlaceholderText("contient que des caracteres") ;
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+bool MainWindow::verifPRIXb()
+{
+    if (ui->lineEdit_prixB->text().contains(QRegExp("[^0-9 ]") ) || ui->lineEdit_prixB->text().isEmpty())
+    {
+        ui->lineEdit_prixB->clear();
+
+        ui->lineEdit_prixB->setPlaceholderText("contient que des chiffres") ;
+        return false;
+    }
+    else
+    {
+        return true;
     }
 
 }

@@ -30,7 +30,7 @@
      <string/>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -229,6 +229,13 @@ background-color: rgb(140, 255, 248);</string>
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_17">
+          <property name="text">
+           <string>tri Id</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
      </widget>
@@ -264,13 +271,6 @@ background-color: rgb(140, 255, 248);</string>
             <property name="styleSheet">
              <string notr="true">
 background-color: rgb(140, 255, 248);</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_11">
-            <property name="text">
-             <string>Rechercher</string>
             </property>
            </widget>
           </item>
@@ -499,6 +499,13 @@ background-color: rgb(140, 255, 248);</string>
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_18">
+          <property name="text">
+           <string>tri Id</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
      </widget>
@@ -533,13 +540,6 @@ background-color: rgb(140, 255, 248);</string>
            <widget class="QLineEdit" name="lineEdit_2">
             <property name="styleSheet">
              <string notr="true">background-color: rgb(140, 255, 248);</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_13">
-            <property name="text">
-             <string>Rechercher</string>
             </property>
            </widget>
           </item>

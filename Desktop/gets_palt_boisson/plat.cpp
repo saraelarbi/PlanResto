@@ -82,12 +82,11 @@ bool Plat::modifier(int id)
 
 
 }
-QSqlQueryModel * Plat::recherche(QString prix)
+QSqlQueryModel * Plat::recherche(QString nom)
 {
     QSqlQueryModel * model= new QSqlQueryModel();
 
-        model->setQuery("SELECT * FROM PLAT WHERE PRIX LIKE '%"+prix+"%'");
-        model->query().bindValue(":prix",prix);
+        model->setQuery("SELECT * FROM PLAT WHERE NOM LIKE '%"+nom+"%'");
         model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
         model->setHeaderData(1, Qt::Horizontal, QObject::tr("prix"));
         model->setHeaderData(2, Qt::Horizontal, QObject::tr("nom"));
@@ -110,6 +109,17 @@ model->setHeaderData(4, Qt::Horizontal, QObject::tr("ingredients"));
 QSqlQueryModel * Plat::trierN()
 {QSqlQueryModel * model= new QSqlQueryModel();
 model->setQuery("select * FROM PLAT ORDER BY NOM asc");
+model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
+model->setHeaderData(1, Qt::Horizontal, QObject::tr("prix"));
+model->setHeaderData(2, Qt::Horizontal, QObject::tr("nom"));
+model->setHeaderData(3, Qt::Horizontal, QObject::tr("type"));
+model->setHeaderData(4, Qt::Horizontal, QObject::tr("ingredients"));
+    return model;
+}
+
+QSqlQueryModel * Plat::trierI()
+{QSqlQueryModel * model= new QSqlQueryModel();
+model->setQuery("select * FROM PLAT ORDER BY ID asc");
 model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
 model->setHeaderData(1, Qt::Horizontal, QObject::tr("prix"));
 model->setHeaderData(2, Qt::Horizontal, QObject::tr("nom"));

@@ -24,9 +24,10 @@ public:
     QSqlQueryModel * afficher();
     bool supprimer(int);
     bool modifier(int);
-    QSqlQueryModel * recherche(QString prix);
+    QSqlQueryModel * recherche(QString nom);
      QSqlQueryModel * trier();
      QSqlQueryModel * trierN();
+     QSqlQueryModel * trierI();
 
 
 
