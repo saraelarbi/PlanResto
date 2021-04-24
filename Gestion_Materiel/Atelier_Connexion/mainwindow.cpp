@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include"ui_dialog.h"
 #include"mailing.h"
+#include"dialog.h"
 #include"materiel.h"
 #include<QFileDialog>
 #include"fournisseur.h"
@@ -696,8 +698,10 @@ void MainWindow::on_ajout_remise_clicked()
     QString idmateriel=ui->id_materiel->currentText();
     QString remise=ui->remise->text();
     QString dates=ui->date->text();
+     QString ancienprix=ui->ancien_prix->text();
+      QString nouveauprix=ui->nouveau_prix->text();
 
-    Remise R(idmateriel,remise,dates);
+    Remise R(idmateriel,remise,dates,ancienprix,nouveauprix);
 
 
     bool test2=R.ajouter();
@@ -720,6 +724,16 @@ void MainWindow::on_ajout_remise_clicked()
    {
     QMessageBox::critical(nullptr, QObject::tr("WARNING"),
                           QObject::tr("Le champ Dates est vide"),QMessageBox::Ok);
+}
+    else if((ancienprix==""))
+   {
+    QMessageBox::critical(nullptr, QObject::tr("WARNING"),
+                          QObject::tr("Le champ Ancien prix est vide"),QMessageBox::Ok);
+}
+    else if((nouveauprix==""))
+   {
+    QMessageBox::critical(nullptr, QObject::tr("WARNING"),
+                          QObject::tr("Le champ Nouveau prix est vide"),QMessageBox::Ok);
 }
 
 
@@ -813,6 +827,9 @@ void MainWindow::on_excel_remise_clicked()
            obj.addField(0, "IDMATERIEL", "char(20)");
            obj.addField(1, "REMISE", "char(20)");
            obj.addField(2, "DATES", "char(20)");
+           obj.addField(2, "ANCIENPRIX", "char(20)");
+           obj.addField(2, "NOUVEAUPRIX", "char(20)");
+
 
 
 
@@ -850,3 +867,12 @@ void MainWindow::on_refresh_clicked()
 
 
 
+
+
+
+void MainWindow::on_calculatrice_clicked()
+{
+    Dialog dialog;
+    dialog.setModal(true);
+    dialog.exec();
+}

@@ -57,8 +57,12 @@ private slots:
 
     void on_refresh_clicked();
 
-    void on_textEdit_copyAvailable(bool b);
 
+
+
+
+
+    void on_calculatrice_clicked();
 
 private:
 

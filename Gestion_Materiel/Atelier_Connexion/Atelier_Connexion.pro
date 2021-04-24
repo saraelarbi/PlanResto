@@ -28,6 +28,7 @@ CONFIG += c++11
 
 SOURCES += \
     arduino.cpp \
+    dialog.cpp \
     excel.cpp \
     fournisseur.cpp \
     mailing.cpp \
@@ -39,6 +40,7 @@ SOURCES += \
 
 HEADERS += \
     arduino.h \
+    dialog.h \
     excel.h \
     fournisseur.h \
     mailing.h \
@@ -48,6 +50,7 @@ HEADERS += \
     remise.h
 
 FORMS += \
+        dialog.ui \
         mainwindow.ui
 
 # Default rules for deployment.
