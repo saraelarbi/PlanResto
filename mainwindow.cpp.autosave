@@ -99,6 +99,7 @@ void MainWindow::on_ajouter_collab_2_clicked()
 
 
      bool test2=C.ajouter();
+     
      if((idcollaborateur=="")&&(nom=="")&&(prenom=="")&&(telephone=="")&&(adresse=="")&&(email==""))
         {
          QMessageBox::critical(nullptr, QObject::tr("WARNING"),

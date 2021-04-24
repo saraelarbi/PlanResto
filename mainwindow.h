@@ -8,6 +8,8 @@
 #include <QSound>
 #include<QMediaPlayer>
 #include<QPropertyAnimation>
+#include "arduino.h"
+
 
 
 
@@ -67,6 +69,7 @@ private:
     QMediaPlayer musicAdd;
     QSound *son;
     QPropertyAnimation* animation;
+    Arduino A;
 
 
 

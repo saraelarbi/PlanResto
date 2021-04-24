@@ -26,6 +26,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    arduino.cpp \
     collaborateur.cpp \
     contrat.cpp \
         main.cpp \
@@ -34,6 +35,7 @@ SOURCES += \
     statis.cpp
 
 HEADERS += \
+    arduino.h \
     collaborateur.h \
     contrat.h \
         mainwindow.h \
