@@ -9,7 +9,13 @@
 #include<QMediaPlayer>
 #include<QPropertyAnimation>
 #include "arduino.h"
-
+#include <QNetworkAccessManager>
+#include <QUrlQuery>
+#include <QtCore>
+#include <QtGui>
+#include <QDialog>
+#include <QMouseEvent>
+#include <QtWidgets/QMessageBox>
 
 
 
@@ -62,6 +68,18 @@ private slots:
 
     void on_le_stat_clicked();
 
+    void on_pb_ajouter_clicked();
+
+    void on_pushButton_6_clicked();
+
+    void on_pushButton10_clicked();
+    bool verifID();
+
+
+    void on_pushButton_2_clicked();
+    void replyFinished(QNetworkReply* reply);
+
+
 private:
     Ui::MainWindow *ui;
     Collaborateur C;
@@ -69,7 +87,7 @@ private:
     QMediaPlayer musicAdd;
     QSound *son;
     QPropertyAnimation* animation;
-    Arduino A;
+    projeth tmph;
 
 
 

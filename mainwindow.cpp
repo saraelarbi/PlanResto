@@ -22,10 +22,51 @@
 #include<statis.h>
 #include "ui_mainwindow.h"
 #include "arduino.h"
+#include<QComboBox>
 
+#include <iostream>
 
+#include<QDate>
 
+#include <QNetworkAccessManager>
 
+#include <QUrlQuery>
+
+#include <QNetworkReply>
+
+#include <QJsonValue>
+
+#include <QJsonValueRef>
+
+#include <QJsonDocument>
+
+#include <QJsonObject>
+
+#include <QJsonArray>
+
+#include <QString>
+
+#include <QDebug>
+
+#include <QtCore>
+
+#include <QtGui>
+
+#include <QDialog>
+
+#include <QModelIndex>
+
+#include <QGridLayout>
+
+#include <QApplication>
+
+#include <QIntValidator>
+
+#include <QDateTime>
+
+#include <QMediaPlayer>
+
+#include <QRadioButton>
 
 
 
@@ -34,19 +75,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
         ui->setupUi(this);
-        int ret=A.connect_arduino();
-         switch(ret){
-         case(0):qDebug()<< "arduino is availble and connected to :"<< A.getarduino_port_name();
-             break;
-         case(1):qDebug()<< "arduino is availble but not connected to :"<< A.getarduino_port_name();
-             break;
-         case(-1):qDebug()<< "arduino is not availble";
-         }
-         QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_label()));
-
-
-        }
-
         QPixmap pix("C:/Users/ASUS I7/Desktop/Atelier_Connexion/logo");
            ui->img->setPixmap(pix);
            animation = new QPropertyAnimation(ui->img,"geometry");
@@ -54,6 +82,7 @@ MainWindow::MainWindow(QWidget *parent) :
            animation->setStartValue(ui->img->geometry());
            animation->setEndValue(QRect(610,0,100,100));
            animation->start();
+        son=new QSound("C:/Users/ASUS I7/Desktop/Atelier_Connexion/ss.wav");
 
 
         ui->tab_collab->setModel(C.afficher());
@@ -73,10 +102,12 @@ MainWindow::MainWindow(QWidget *parent) :
                                ui->idcollaborateur_2->addItem(idcollaborateur);
                            }
 
+
+
 }
 
 
-MainWindow::~MainWindow();
+MainWindow::~MainWindow()
 {
     delete ui;
 }
@@ -91,6 +122,13 @@ void MainWindow::on_ajouter_collab_2_clicked()
      QString telephone=ui->telephone->text();
     QString adresse=ui->adresse->text();
     QString email=ui->email->text();
+    srand (time(NULL));
+    QDate d = QDate::currentDate() ;
+     QString datee =d.toString("dd / MM / yyyy ") ;
+     QString fn="ajouter" ;
+    QString nom1 = ui->nom->text();
+  projeth pp(nom1,datee,fn) ;
+  bool test1=pp.ajoutehis() ;
 
 
 
@@ -99,6 +137,8 @@ void MainWindow::on_ajouter_collab_2_clicked()
 
 
      bool test2=C.ajouter();
+
+
      if((idcollaborateur=="")&&(nom=="")&&(prenom=="")&&(telephone=="")&&(adresse=="")&&(email==""))
         {
          QMessageBox::critical(nullptr, QObject::tr("WARNING"),
@@ -135,6 +175,7 @@ void MainWindow::on_ajouter_collab_2_clicked()
      QMessageBox::critical(nullptr, QObject::tr("WARNING"),
                            QObject::tr("Le champ email est vide"),QMessageBox::Ok);
     }
+
  else  if(test2)
      {
          ui->tab_collab->setModel(C.afficher());
@@ -171,6 +212,7 @@ void MainWindow::on_supprimer_collab_clicked()
         QItemSelectionModel *select = ui->tab_collab->selectionModel();
         QString idcollaborateur = select->selectedRows(0).value(0).data().toString();
 
+
        if(C.supprimer(idcollaborateur))
        {
            ui->tab_collab->setModel(C.afficher());
@@ -192,7 +234,15 @@ void MainWindow::on_supprimer_collab_clicked()
                               QString idcollaborateur = ui->tab_collab->model()->index(i, 0).data().toString();
                               ui->idcollaborateur_2->addItem(idcollaborateur);
                           }
+                          srand (time(NULL));
+                          QDate d = QDate::currentDate() ;
+                           QString datee =d.toString("dd / MM / yyyy ") ;
+                           QString fn="supprimer" ;
+                          QString nom1 = ui->nom->text();
+                        projeth pp(nom1,datee,fn) ;
+                        bool test1=pp.modifierhis() ;
        }
+
        else
        {
            QMessageBox::critical(nullptr, QObject::tr("NOT OK"),
@@ -250,6 +300,7 @@ void MainWindow::on_modifier_collab_clicked()
         tableModel->setTable("COLLABORATEUR");
         tableModel->select();
         ui->tab_collab->setModel(tableModel);
+
     }
     else
     {
@@ -618,3 +669,52 @@ void MainWindow::on_le_stat_clicked()
         w->show();
 
 }
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    ui->tabhis->setModel(tmph.afficherhis()) ;
+    ui->tabhis->setModel(tmph.afficherhis());//refresh
+}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+
+    QNetworkAccessManager * manager = new QNetworkAccessManager(this);
+
+        QUrl url("https://ACfdf6442c496b28eda58ab1a0470c3873:131b59ad2d99808f7d6cf598488cb5ae@api.twilio.com/2010-04-01/Accounts/ACfdf6442c496b28eda58ab1a0470c3873/Messages.json");
+        QNetworkRequest request(url);
+
+        request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+
+        QUrlQuery params;
+        params.addQueryItem("From", "+17179253091");
+        params.addQueryItem("To",ui->lineEdit->text() );//"+21627198506"
+        params.addQueryItem("Body", ui->textEdit->toPlainText());
+       // params.addQueryItem("Body", "test");
+
+        // etc
+
+        connect(manager, SIGNAL(finished(QNetworkReply *)), this, SLOT(replyFinished(QNetworkReply*)));
+
+        manager->post(request, params.query().toUtf8());
+
+    }
+    void MainWindow::replyFinished(QNetworkReply* reply)
+    {
+        //QByteArray bts = rep->readAll();
+
+
+        QByteArray buffer = reply->readAll();
+        qDebug() << buffer;
+        QJsonDocument jsonDoc(QJsonDocument::fromJson(buffer));
+        QJsonObject jsonReply = jsonDoc.object();
+
+        QJsonObject response = jsonReply["response"].toObject();
+        QJsonArray  data     = jsonReply["data"].toArray();
+        qDebug() << data;
+        qDebug() << response;
+
+
+    }
