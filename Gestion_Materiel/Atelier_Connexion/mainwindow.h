@@ -46,6 +46,15 @@ private slots:
     void sendMail();
     void mailSent(QString);
     void on_recherche_textChanged(const QString &arg1);
+    bool verifNOM();
+    bool verifTYPE();
+    bool verifMARQUE();
+    bool verifNOMF();
+    bool verifPRENOM();
+    bool verifTYPE2();
+    bool verifADRESSE();
+    bool verifCHAMPVIDE();
+
 
 
     void on_imp_F_clicked();

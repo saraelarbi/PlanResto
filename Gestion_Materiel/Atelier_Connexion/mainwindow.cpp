@@ -42,6 +42,21 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tab_fou->setModel(F.afficher());
     ui->tab_mail->setModel(F.afficher());
     ui->tab_rem->setModel(R.afficher());
+    ui->tel->setMaxLength(8);
+    ui->id->setMaxLength(10);
+    ui->cinf->setMaxLength(8);
+    ui->prix->setValidator(new QIntValidator(0, 999999999, this));
+    ui->tel->setValidator(new QIntValidator(0, 99999999, this));
+    ui->ancien_prix->setValidator(new QIntValidator(0, 999999999, this));
+    ui->nouveau_prix->setValidator(new QIntValidator(0, 999999999, this));
+    ui->cinf->setValidator(new QIntValidator(0, 99999999, this));
+
+
+
+
+
+
+
 
    QPixmap pix("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/images/PRR");
    ui->img->setPixmap(pix);
@@ -105,6 +120,133 @@ void MainWindow::mailSent(QString status)
 }
 
 
+bool MainWindow::verifCHAMPVIDE()
+{
+
+    if(ui->nom->text().isEmpty() || ui->id->text().isEmpty() || ui->type->text().isEmpty() || ui->marque->text().isEmpty() ||  ui->prix->text().isEmpty())
+    {
+         ui->nom->clear();
+         ui->id->clear();
+         ui->type->clear();
+         ui->marque->clear();
+         ui->cinfet->clear();
+         ui->prix->clear();
+
+         ui->nom->setPlaceholderText("VIDE") ;
+         ui->id->setPlaceholderText("VIDE") ;
+         ui->type->setPlaceholderText("VIDE") ;
+         ui->marque->setPlaceholderText("VIDE") ;
+         ui->prix->setPlaceholderText("VIDE") ;
+
+         return false;
+
+
+    }
+    else
+    {
+        return true;
+    }
+}
+
+
+bool MainWindow::verifNOM()
+{
+    if (ui->nom->text().contains(QRegExp("[^a-zA-Z ]") ) || ui->nom->text().isEmpty())
+    {
+        ui->nom->clear();
+        ui->nom->setPlaceholderText("contient que des caracteres") ;
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+bool MainWindow::verifTYPE()
+{
+    if (ui->type->text().contains(QRegExp("[^a-zA-Z ]") ) || ui->type->text().isEmpty())
+    {
+        ui->type->clear();
+        ui->type->setPlaceholderText("contient que des caracteres") ;
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+bool MainWindow::verifMARQUE()
+{
+    if (ui->marque->text().contains(QRegExp("[^a-zA-Z ]") ) || ui->marque->text().isEmpty())
+    {
+        ui->marque->clear();
+        ui->marque->setPlaceholderText("contient que des caracteres") ;
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+bool MainWindow::verifNOMF()
+{
+    if (ui->nom_2->text().contains(QRegExp("[^a-zA-Z ]") ) || ui->nom_2->text().isEmpty())
+    {
+        ui->nom_2->clear();
+        ui->nom_2->setPlaceholderText("contient que des caracteres") ;
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+bool MainWindow::verifPRENOM()
+{
+    if (ui->prenom->text().contains(QRegExp("[^a-zA-Z ]") ) || ui->prenom->text().isEmpty())
+    {
+        ui->prenom->clear();
+        ui->prenom->setPlaceholderText("contient que des caracteres") ;
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+bool MainWindow::verifTYPE2()
+{
+    if (ui->type_2->text().contains(QRegExp("[^a-zA-Z ]") ) || ui->type_2->text().isEmpty())
+    {
+        ui->type_2->clear();
+        ui->type_2->setPlaceholderText("contient que des caracteres") ;
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+bool MainWindow::verifADRESSE()
+{
+    if (ui->adresse->text().contains(QRegExp("[^a-zA-Z ]") ) || ui->adresse->text().isEmpty())
+    {
+        ui->adresse->clear();
+        ui->adresse->setPlaceholderText("contient que des caracteres") ;
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
 
 
 MainWindow::~MainWindow()
@@ -128,43 +270,10 @@ void MainWindow::on_pb_ajouter_clicked()
 
     Materiel M(id,nom,type,marque,prix,cinf);
         bool test2=M.ajouter();
- if((id=="")&&(nom=="")&&(type=="")&&(marque=="")&&(prix=="")&&(cinf==""))
-    {
-     QMessageBox::critical(nullptr, QObject::tr("WARNING"),
-                           QObject::tr("Tous les champs sont vides"),QMessageBox::Ok);
- }
 
- else if((id==""))
-{
- QMessageBox::critical(nullptr, QObject::tr("WARNING"),
-                       QObject::tr("Le champ ID est vide"),QMessageBox::Ok);
-}
- else if((type==""))
-{
- QMessageBox::critical(nullptr, QObject::tr("WARNING"),
-                       QObject::tr("Le champ Type est vide"),QMessageBox::Ok);
-}
- else if((nom==""))
-{
- QMessageBox::critical(nullptr, QObject::tr("WARNING"),
-                       QObject::tr("Le champ Nom est vide"),QMessageBox::Ok);
-}
- else if((marque==""))
-{
- QMessageBox::critical(nullptr, QObject::tr("WARNING"),
-                       QObject::tr("Le champ Marque est vide"),QMessageBox::Ok);
-}
- else if((prix==""))
-{
- QMessageBox::critical(nullptr, QObject::tr("WARNING"),
-                       QObject::tr("Le champ Prix est vide"),QMessageBox::Ok);
-}
- else if((cinf==""))
-{
- QMessageBox::critical(nullptr, QObject::tr("WARNING"),
-                       QObject::tr("Le champ CINF est vide"),QMessageBox::Ok);
-}
-  else if(test2)
+
+
+          if( test2&&verifCHAMPVIDE() && verifNOM() && verifTYPE() && verifMARQUE())
     {
         ui->tab_mat->setModel(M.afficher());
         musicAdd.setMedia(QUrl("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/sound/ajout succe.mp3"));
@@ -217,48 +326,8 @@ void MainWindow::on_ajout2_clicked()
     Fournisseur F(cinf,nom,prenom,type,tel,email,adresse);
     bool test2=F.ajouter();
 
-    if((cinf=="")&&(nom=="")&&(prenom=="")&&(type=="")&&(tel=="")&&(email=="")&&(adresse==""))
-       {
-        QMessageBox::critical(nullptr, QObject::tr("WARNING"),
-                              QObject::tr("Tous les champs sont vides"),QMessageBox::Ok);
 
-}
-    else if((cinf==""))
-   {
-    QMessageBox::critical(nullptr, QObject::tr("WARNING"),
-                          QObject::tr("Le champ CINF est vide"),QMessageBox::Ok);
-}
-    else if((nom==""))
-   {
-    QMessageBox::critical(nullptr, QObject::tr("WARNING"),
-                          QObject::tr("Le champ Nom est vide"),QMessageBox::Ok);
-}
-    else if((prenom==""))
-   {
-    QMessageBox::critical(nullptr, QObject::tr("WARNING"),
-                          QObject::tr("Le champ Prenom est vide"),QMessageBox::Ok);
-}
-    else if((type==""))
-   {
-    QMessageBox::critical(nullptr, QObject::tr("WARNING"),
-                          QObject::tr("Le champ Type est vide"),QMessageBox::Ok);
-}
-    else if((tel==""))
-   {
-    QMessageBox::critical(nullptr, QObject::tr("WARNING"),
-                          QObject::tr("Le champ Telephone est vide"),QMessageBox::Ok);
-}
-    else if((email==""))
-   {
-    QMessageBox::critical(nullptr, QObject::tr("WARNING"),
-                          QObject::tr("Le champ Email est vide"),QMessageBox::Ok);
-}
-    else if((adresse==""))
-   {
-    QMessageBox::critical(nullptr, QObject::tr("WARNING"),
-                          QObject::tr("Le champ Adresse est vide"),QMessageBox::Ok);
-}
-   else if(test2)
+    if(test2 && verifNOMF()&&verifTYPE2()&&verifPRENOM()&&verifADRESSE())
     {
         ui->tab_fou->setModel(F.afficher());
         musicAdd.setMedia(QUrl("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/sound/ajout succe.mp3"));
