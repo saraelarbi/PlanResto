@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include"ui_dialog.h"
 #include"mailing.h"
+#include"music.h"
 #include"dialog.h"
 #include"materiel.h"
 #include<QFileDialog>
@@ -22,6 +23,10 @@
 #include <QtPrintSupport/QPrinter>
 #include <QSound>
 #include<QMediaPlayer>
+#include<QUrlQuery>
+#include<QJsonDocument>
+#include<QJsonObject>
+#include<QJsonArray>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -693,7 +698,103 @@ void MainWindow::on_imp_F_clicked()
 }
 
 
-void MainWindow::on_ajout_remise_clicked()
+
+
+
+
+
+
+void MainWindow::on_refresh_clicked()
+{
+    QByteArray data=A.read_from_arduino();
+      if(data.size()>10){
+      QString temp =QString::fromStdString(data.toStdString());
+      ui->textEdit->setText(temp);
+}
+}
+
+
+
+
+
+
+
+
+
+void MainWindow::on_envoyer_sms_clicked()
+{
+
+   QNetworkAccessManager * manager = new QNetworkAccessManager(this);
+
+        QUrl url("https://ACd77b28e4e747e4f825b5d0ce7b49bbb7:0a99356c8cef90a2a7c1b68b4880a1d3@api.twilio.com/2010-04-01/Accounts/ACd77b28e4e747e4f825b5d0ce7b49bbb7/Messages.json");
+        QNetworkRequest request(url);
+
+        request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+
+        QUrlQuery params;
+        params.addQueryItem("From", "+13305945433");
+        params.addQueryItem("To",ui->num_sms->text() );//"+21690101450"
+        params.addQueryItem("Body", ui->message_sms->toPlainText());
+       // params.addQueryItem("Body", "test");
+
+        // etc
+
+        connect(manager, SIGNAL(finished(QNetworkReply *)), this, SLOT(replyFinished(QNetworkReply*)));
+
+        manager->post(request, params.query().toUtf8());
+
+    }
+    void MainWindow::replyFinished(QNetworkReply* reply)
+    {
+        //QByteArray bts = rep->readAll();
+
+
+        QByteArray buffer = reply->readAll();
+        qDebug() << buffer;
+        QJsonDocument jsonDoc(QJsonDocument::fromJson(buffer));
+        QJsonObject jsonReply = jsonDoc.object();
+
+        QJsonObject response = jsonReply["response"].toObject();
+        QJsonArray  data     = jsonReply["data"].toArray();
+        qDebug() << data;
+        qDebug() << response;
+
+
+    }
+
+void MainWindow::on_musique_materiel_clicked()
+{
+    music music;
+    music.setModal(true);
+    music.exec();
+}
+
+void MainWindow::on_musique_fournisseur_clicked()
+{
+    music music;
+    music.setModal(true);
+    music.exec();
+}
+
+void MainWindow::on_musique_mail_clicked()
+{
+    music music;
+    music.setModal(true);
+    music.exec();
+}
+
+
+
+void MainWindow::on_musique_temp_clicked()
+{
+    music music;
+    music.setModal(true);
+    music.exec();
+}
+
+
+void MainWindow::on_Ajout_remise_clicked()
 {
     QString idmateriel=ui->id_materiel->currentText();
     QString remise=ui->remise->text();
@@ -757,11 +858,76 @@ void MainWindow::on_ajout_remise_clicked()
                                       QObject::tr("Erreur!"),QMessageBox::Cancel);
 
 
+}
+
+
+void MainWindow::on_Calculatrice_clicked()
+{
+    Dialog dialog;
+    dialog.setModal(true);
+    dialog.exec();
+}
+
+void MainWindow::on_Musique_rem_clicked()
+{
+    music music;
+    music.setModal(true);
+    music.exec();
+}
+
+void MainWindow::on_Modif_rem_clicked()
+{
+    if (ui->Modif_rem->isChecked())
+        {
+            ui->Modif_rem->setText("Modifiable");
+            QSqlTableModel *tableModel= new QSqlTableModel();
+            tableModel->setTable("REMISE");
+            tableModel->select();
+            ui->tab_rem->setModel(tableModel);
         }
+        else
+        {
+            ui->Modif_rem->setText("Modifier");
+            ui->tab_rem->setModel(R.afficher());
+            musicAdd.setMedia(QUrl("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/sound/modif succe.mp3"));
+                    musicAdd.play();
+            QMessageBox::information(nullptr, QObject::tr("modification remise"),
+                        QObject::tr("Remise modifiée.\n"
+
+    "Click OK to exit."), QMessageBox::Cancel);
+
+        }
+}
+
+void MainWindow::on_exel_rem_clicked()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Excel file"), qApp->applicationDirPath (),
+                                                           tr("Excel Files (*.xls)"));
+           if (fileName.isEmpty())
+               return;
+
+           ExportExcelObject obj(fileName, "mydata", ui->tab_rem);
+
+           //colums to export
+           obj.addField(0, "IDMATERIEL", "char(20)");
+           obj.addField(1, "REMISE", "char(20)");
+           obj.addField(2, "DATES", "char(20)");
+           obj.addField(2, "ANCIENPRIX", "char(20)");
+           obj.addField(2, "NOUVEAUPRIX", "char(20)");
 
 
 
-void MainWindow::on_supp_remise_clicked()
+
+           int retVal = obj.export2Excel();
+           if( retVal > 0)
+           {
+               QMessageBox::information(this, tr("Done"),
+                                        QString(tr("%1 records exported!")).arg(retVal)
+                                        );
+           }
+}
+
+void MainWindow::on_supp_rem_clicked()
 {
     QItemSelectionModel *select = ui->tab_rem->selectionModel();
         QString idmateriel = select->selectedRows(0).value(0).data().toString();
@@ -790,89 +956,16 @@ void MainWindow::on_supp_remise_clicked()
 
 }
 
-void MainWindow::on_modifier_remise_clicked()
-{
-    if (ui->modifier_remise->isChecked())
-        {
-            ui->modifier_remise->setText("Modifiable");
-            QSqlTableModel *tableModel= new QSqlTableModel();
-            tableModel->setTable("REMISE");
-            tableModel->select();
-            ui->tab_rem->setModel(tableModel);
-        }
-        else
-        {
-            ui->modifier_remise->setText("Modifier");
-            ui->tab_rem->setModel(R.afficher());
-            musicAdd.setMedia(QUrl("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/sound/modif succe.mp3"));
-                    musicAdd.play();
-            QMessageBox::information(nullptr, QObject::tr("modification remise"),
-                        QObject::tr("Remise modifiée.\n"
 
-    "Click OK to exit."), QMessageBox::Cancel);
-
-        }
-}
-
-void MainWindow::on_excel_remise_clicked()
-{
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Excel file"), qApp->applicationDirPath (),
-                                                           tr("Excel Files (*.xls)"));
-           if (fileName.isEmpty())
-               return;
-
-           ExportExcelObject obj(fileName, "mydata", ui->tab_rem);
-
-           //colums to export
-           obj.addField(0, "IDMATERIEL", "char(20)");
-           obj.addField(1, "REMISE", "char(20)");
-           obj.addField(2, "DATES", "char(20)");
-           obj.addField(2, "ANCIENPRIX", "char(20)");
-           obj.addField(2, "NOUVEAUPRIX", "char(20)");
-
-
-
-
-           int retVal = obj.export2Excel();
-           if( retVal > 0)
-           {
-               QMessageBox::information(this, tr("Done"),
-                                        QString(tr("%1 records exported!")).arg(retVal)
-                                        );
-           }
-}
-
-
-void MainWindow::on_recherche2_textChanged(const QString &arg1)
+void MainWindow::on_rech_rem_textChanged(const QString &arg1)
 {
     Remise R;
-        if(ui->recherche2->text() == "")
+        if(ui->rech_rem->text() == "")
             {
                 ui->tab_rem->setModel(R.afficher());
             }
             else
             {
-                 ui->tab_rem->setModel(R.rechercher2(ui->recherche2->text()));
+                 ui->tab_rem->setModel(R.rechercher2(ui->rech_rem->text()));
             }
-}
-
-void MainWindow::on_refresh_clicked()
-{
-    QByteArray data=A.read_from_arduino();
-      if(data.size()>10){
-      QString temp =QString::fromStdString(data.toStdString());
-      ui->textEdit->setText(temp);
-}
-}
-
-
-
-
-
-
-void MainWindow::on_calculatrice_clicked()
-{
-    Dialog dialog;
-    dialog.setModal(true);
-    dialog.exec();
 }

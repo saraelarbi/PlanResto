@@ -36,6 +36,7 @@ SOURCES += \
         mainwindow.cpp \
     connection.cpp \
     materiel.cpp \
+    music.cpp \
     remise.cpp
 
 HEADERS += \
@@ -47,12 +48,14 @@ HEADERS += \
         mainwindow.h \
     connection.h \
     materiel.h \
+    music.h \
     remise.h
 
 FORMS += \
         dialog.ui \
-        mainwindow.ui
-
+        mainwindow.ui \
+        music.ui
+QMAKE_CXXFLAGS += -std=gnu++11
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

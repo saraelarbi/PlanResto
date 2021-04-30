@@ -11,6 +11,14 @@
 #include<QMediaPlayer>
 #include<QSound>
 #include"excel.h"
+#include<QNetworkReply>
+#include <QNetworkAccessManager>
+#include <QUrlQuery>
+#include <QtCore>
+#include <QtGui>
+#include <QDialog>
+#include <QMouseEvent>
+#include <QtWidgets/QMessageBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -44,25 +52,45 @@ private slots:
 
 
 
-    void on_ajout_remise_clicked();
-
-    void on_supp_remise_clicked();
-
-    void on_modifier_remise_clicked();
-
-    void on_excel_remise_clicked();
 
 
-    void on_recherche2_textChanged(const QString &arg1);
 
     void on_refresh_clicked();
 
 
 
+void replyFinished(QNetworkReply* reply);
 
 
 
-    void on_calculatrice_clicked();
+
+    void on_envoyer_sms_clicked();
+
+    void on_musique_materiel_clicked();
+
+    void on_musique_fournisseur_clicked();
+
+    void on_musique_mail_clicked();
+
+
+    void on_musique_temp_clicked();
+
+
+    void on_Ajout_remise_clicked();
+
+
+    void on_Calculatrice_clicked();
+
+    void on_Musique_rem_clicked();
+
+    void on_Modif_rem_clicked();
+
+    void on_exel_rem_clicked();
+
+    void on_supp_rem_clicked();
+
+
+    void on_rech_rem_textChanged(const QString &arg1);
 
 private:
 
