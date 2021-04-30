@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/config">
+        <file>configuration.png</file>
+    </qresource>
+</RCC>
