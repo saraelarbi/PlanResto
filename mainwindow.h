@@ -5,6 +5,10 @@
 #include "fonction.h"
 #include "emplyer.h"
 #include <QPrinter>
+#include <QSound>
+#include <QMediaPlayer>
+#include <QUrl>
+#include <QSystemTrayIcon>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -13,7 +17,6 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -49,10 +52,15 @@ private slots:
 
     void on_web_clicked();
 
+    void on_envoyer_mail_employe_clicked();
+
 private:
     Ui::MainWindow *ui;
     fonction supp;
     Employes sup;
+    QSound *son;
+    QMediaPlayer musicAdd;
+    QSystemTrayIcon *mSystemTrayIcon;
 
 
 

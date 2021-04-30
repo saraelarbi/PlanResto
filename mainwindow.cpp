@@ -3,6 +3,7 @@
 #include "fonction.h"
 #include "emplyer.h"
 #include "emplyer.h"
+#include "dialog.h"
 #include <QDate>
 #include <QTime>
 #include<QMessageBox>
@@ -12,6 +13,7 @@
 #include <QTextDocument>
 #include <QtPrintSupport/QPrinter>
 #include <QDesktopServices>
+#include <QSound>
 
 
 
@@ -21,6 +23,12 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    son=new QSound("C:/Users/ASUS/Desktop/qt/SmartResto/ss.wav");
+
+    mSystemTrayIcon = new QSystemTrayIcon(this);
+
+    mSystemTrayIcon->setVisible(true);
+
     ui->affichage->setModel(supp.afficher());
     ui->tableView->setModel(sup.afficher());
     ui->affichage->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -62,6 +70,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_ajouter_fonction_clicked()
 {
+    son->play();
         QString typefonction=ui->TypeFonction->text();
         QString salaire=ui->Salaire->text();
         QString jourdetravail=ui->Jourdetravail->text();
@@ -79,10 +88,16 @@ void MainWindow::on_ajouter_fonction_clicked()
         if(test)
         {
             ui->affichage->setModel(supp.afficher());
+            musicAdd.setMedia(QUrl("C:/Users/ASUS/Desktop/qt/SmartResto/ajout succe.mp3"));
+            musicAdd.play();
 
-            QMessageBox::information(nullptr, QObject::tr("OK"),
+            mSystemTrayIcon->showMessage(tr("Notification"),
+                                                tr("Ajout effectué"));
+
+           /* QMessageBox::information(nullptr, QObject::tr("OK"),
                         QObject::tr("Ajout effectué.\n"
-                                    "Click ok to exit."), QMessageBox::Cancel);
+                                    "Click ok to exit."), QMessageBox::Cancel);*/
+
             int nb=ui->affichage->model()->rowCount();
                            ui->TypeFonction_2->clear();
 
@@ -95,22 +110,34 @@ void MainWindow::on_ajouter_fonction_clicked()
 
     }
         else
-            QMessageBox::critical(nullptr, QObject::tr("NOT OK"),
+
+            mSystemTrayIcon->showMessage(tr("Notification"),
+                                                tr("Ajout non effectué"));
+
+           /* QMessageBox::critical(nullptr, QObject::tr("NOT OK"),
                         QObject::tr("Ajout non effectue.\n"
-                                    "Click OK to exit."), QMessageBox::Cancel);
+                                    "Click OK to exit."), QMessageBox::Cancel);*/
 }
 
 void MainWindow::on_supprimer_fonction_clicked()
 {
+    son->play();
     QItemSelectionModel *select = ui->affichage->selectionModel();
     QString typefonction = select->selectedRows(0).value(0).data().toString();
 
    if(supp.supprimer(typefonction))
    {
        ui->affichage->setModel(supp.afficher());
-       QMessageBox::information(nullptr, QObject::tr("OK"),
+       musicAdd.setMedia(QUrl("C:/Users/ASUS/Desktop/qt/SmartResto/supp succe.mp3"));
+       musicAdd.play();
+
+       mSystemTrayIcon->showMessage(tr("Notification"),
+                                           tr("Suppression effectué"));
+
+       /*QMessageBox::information(nullptr, QObject::tr("OK"),
                    QObject::tr("suppression effectué.\n"
-                               "Click ok to exit."), QMessageBox::Cancel);
+                               "Click ok to exit."), QMessageBox::Cancel);*/
+
        int nb=ui->affichage->model()->rowCount();
                       ui->TypeFonction_2->clear();
 
@@ -122,15 +149,19 @@ void MainWindow::on_supprimer_fonction_clicked()
    }
    else
    {
-       QMessageBox::critical(nullptr, QObject::tr("NOT OK"),
+       mSystemTrayIcon->showMessage(tr("Notification"),
+                                           tr("Suppression non effectué"));
+
+       /*QMessageBox::critical(nullptr, QObject::tr("NOT OK"),
                    QObject::tr("suppression non effectue.\n"
-                               "Click OK to exit."), QMessageBox::Cancel);
+                               "Click OK to exit."), QMessageBox::Cancel);*/
     }
 }
 
 
 void MainWindow::on_ajouter_emplye_clicked()
 {
+    son->play();
 
     QString CIN=ui->CIN->text();
     QString nom=ui->nom->text();
@@ -150,41 +181,59 @@ void MainWindow::on_ajouter_emplye_clicked()
     {
         ui->tableView->setModel(sup.afficher());
 
-        QMessageBox::information(nullptr, QObject::tr("OK"),
+        musicAdd.setMedia(QUrl("C:/Users/ASUS/Desktop/qt/SmartResto/ajout succe.mp3"));
+        musicAdd.play();
+        mSystemTrayIcon->showMessage(tr("Notification"),
+                                            tr("Ajout effectué"));
+
+        /*QMessageBox::information(nullptr, QObject::tr("OK"),
                     QObject::tr("Ajout effectué.\n"
-                                "Click ok to exit."), QMessageBox::Cancel);
+                                "Click ok to exit."), QMessageBox::Cancel);*/
 
 }
     else
-        QMessageBox::critical(nullptr, QObject::tr("NOT OK"),
+        mSystemTrayIcon->showMessage(tr("Notification"),
+                                            tr("Ajout non effectué"));
+        /*QMessageBox::critical(nullptr, QObject::tr("NOT OK"),
                     QObject::tr("Ajout non effectue.\n"
-                                "Click OK to exit."), QMessageBox::Cancel);
+                                "Click OK to exit."), QMessageBox::Cancel);*/
 
 
 }
 
 void MainWindow::on_supprimer_emplye_clicked()
 {
+    son->play();
     QItemSelectionModel *select = ui->tableView->selectionModel();
     QString C = select->selectedRows(0).value(0).data().toString();
 
    if(sup.supprimer(C))
    {
        ui->tableView->setModel(sup.afficher());
-       QMessageBox::information(nullptr, QObject::tr("OK"),
+       musicAdd.setMedia(QUrl("C:/Users/ASUS/Desktop/qt/SmartResto/supp succe.mp3"));
+       musicAdd.play();
+
+       mSystemTrayIcon->showMessage(tr("Notification"),
+                                           tr("Suppression effectué"));
+
+       /*QMessageBox::information(nullptr, QObject::tr("OK"),
                    QObject::tr("suppression effectué.\n"
-                               "Click ok to exit."), QMessageBox::Cancel);
+                               "Click ok to exit."), QMessageBox::Cancel);*/
    }
    else
    {
-       QMessageBox::critical(nullptr, QObject::tr("NOT OK"),
+       mSystemTrayIcon->showMessage(tr("Notification"),
+                                           tr("Suppression non effectué"));
+
+       /*QMessageBox::critical(nullptr, QObject::tr("NOT OK"),
                    QObject::tr("suppression non effectue.\n"
-                               "Click OK to exit."), QMessageBox::Cancel);
+                               "Click OK to exit."), QMessageBox::Cancel);*/
    }
 }
 
 void MainWindow::on_MFonction_clicked()
 {
+    son->play();
 
 if (ui->MFonction->isChecked())
 {
@@ -198,15 +247,22 @@ else
 {
     ui->MFonction->setText("Modifier");
     ui->affichage->setModel(supp.afficher());
-    QMessageBox::information(nullptr, QObject::tr("modification Fonction"),
+    musicAdd.setMedia(QUrl("C:/Users/ASUS/Desktop/qt/SmartResto/modif succe.mp3"));
+    musicAdd.play();
+
+    mSystemTrayIcon->showMessage(tr("Notification"),
+                                        tr("Modification effectué"));
+
+    /*QMessageBox::information(nullptr, QObject::tr("modification Fonction"),
                 QObject::tr("Fonction modifié.\n"
-                            "Click OK to exit."), QMessageBox::Cancel);
+                            "Click OK to exit."), QMessageBox::Cancel);*/
 
 }
 }
 
 void MainWindow::on_MEmploye_clicked()
 {
+    son->play();
     if (ui->MEmploye->isChecked())
     {
         ui->MEmploye->setText("Modifiable");
@@ -219,15 +275,22 @@ void MainWindow::on_MEmploye_clicked()
     {
         ui->MEmploye->setText("Modifier");
         ui->tableView->setModel(sup.afficher());
-        QMessageBox::information(nullptr, QObject::tr("modification employe"),
+        musicAdd.setMedia(QUrl("C:/Users/ASUS/Desktop/qt/SmartResto/modif succe.mp3"));
+        musicAdd.play();
+
+        mSystemTrayIcon->showMessage(tr("Notification"),
+                                            tr("Modification non effectué"));
+
+        /*QMessageBox::information(nullptr, QObject::tr("modification employe"),
                     QObject::tr("Employe modifié.\n"
-                                "Click OK to exit."), QMessageBox::Cancel);
+                                "Click OK to exit."), QMessageBox::Cancel);*/
 
     }
 }
 
 void MainWindow::on_resetf_clicked()
 {
+    son->play();
     ui->TypeFonction->setText("");
     ui->Salaire->setText("");
     ui->Jourdetravail->setText("");
@@ -238,6 +301,7 @@ void MainWindow::on_resetf_clicked()
 
 void MainWindow::on_resetP_clicked()
 {
+    son->play();
     ui->CIN->setText("");
     ui->nom->setText("");
     ui->prenom->setText("");
@@ -363,6 +427,7 @@ void MainWindow::on_rechercherf_clicked()
 
 void MainWindow::on_reafficherf_clicked()
 {
+    son->play();
 
     ui->rech_salaire->setText("");
     ui->rech_jourdetravail->setText("");
@@ -444,6 +509,7 @@ void MainWindow::on_radioButton_triTelephone_clicked()
 
 void MainWindow::on_exporter_employer_clicked()
 {
+    son->play();
     QString fileName = QFileDialog::getSaveFileName((QWidget* )0, "Export PDF", QString(), "*.pdf");
            if (QFileInfo(fileName).suffix().isEmpty()) { fileName.append("liste_employers.pdf"); }
 
@@ -471,6 +537,21 @@ void MainWindow::on_exporter_employer_clicked()
 
 void MainWindow::on_web_clicked()
 {
+    son->play();
     QString link="http://www.expat.com/fr/emploi/hotel-bar-restaurant-tourisme.html";
     QDesktopServices::openUrl(QUrl(link));
+}
+
+void MainWindow::on_envoyer_mail_employe_clicked()
+{
+    son->play();
+    QItemSelectionModel *select = ui->tableView->selectionModel();
+
+    QString email_recipient = select->selectedRows(5).value(0).data().toString();
+    QString nom_recipient = select->selectedRows(1).value(0).data().toString();
+    QString prenom_recipient = select->selectedRows(2).value(0).data().toString();
+
+    QDialog *d=new Dialog(email_recipient,nom_recipient,prenom_recipient,this);
+    d->show();
+    d->exec();
 }

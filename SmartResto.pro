@@ -1,4 +1,4 @@
-QT       += core gui sql printsupport
+QT       += core gui sql serialport printsupport network charts multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,18 +17,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     connexion.cpp \
+    dialog.cpp \
     emplyer.cpp \
     fonction.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    smtp.cpp
 
 HEADERS += \
     connexion.h \
+    dialog.h \
     emplyer.h \
     fonction.h \
-    mainwindow.h
+    mainwindow.h \
+    smtp.h
 
 FORMS += \
+    dialog.ui \
     mainwindow.ui
 
 # Default rules for deployment.
