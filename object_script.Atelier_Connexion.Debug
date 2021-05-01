@@ -1,0 +1,14 @@
+INPUT(
+./debug\arduino.o
+./debug\collaborateur.o
+./debug\contrat.o
+./debug\main.o
+./debug\mainwindow.o
+./debug\connection.o
+./debug\music.o
+./debug\reservation.o
+./debug\statis.o
+./debug\moc_mainwindow.o
+./debug\moc_music.o
+./debug\moc_statis.o
+);

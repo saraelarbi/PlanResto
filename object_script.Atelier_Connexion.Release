@@ -1,0 +1,14 @@
+INPUT(
+./release\arduino.o
+./release\collaborateur.o
+./release\contrat.o
+./release\main.o
+./release\mainwindow.o
+./release\connection.o
+./release\music.o
+./release\reservation.o
+./release\statis.o
+./release\moc_mainwindow.o
+./release\moc_music.o
+./release\moc_statis.o
+);

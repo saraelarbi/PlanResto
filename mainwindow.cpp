@@ -23,6 +23,7 @@
 #include "ui_mainwindow.h"
 #include "arduino.h"
 #include<QComboBox>
+#include "reservation.h"
 
 #include <iostream>
 
@@ -33,39 +34,22 @@
 #include <QUrlQuery>
 
 #include <QNetworkReply>
-
 #include <QJsonValue>
-
 #include <QJsonValueRef>
-
 #include <QJsonDocument>
-
 #include <QJsonObject>
-
 #include <QJsonArray>
-
 #include <QString>
-
 #include <QDebug>
-
 #include <QtCore>
-
 #include <QtGui>
-
 #include <QDialog>
-
 #include <QModelIndex>
-
 #include <QGridLayout>
-
 #include <QApplication>
-
 #include <QIntValidator>
-
 #include <QDateTime>
-
 #include <QMediaPlayer>
-
 #include <QRadioButton>
 
 
@@ -101,6 +85,24 @@ MainWindow::MainWindow(QWidget *parent) :
                                QString idcollaborateur = ui->tab_collab->model()->index(i, 0).data().toString();
                                ui->idcollaborateur_2->addItem(idcollaborateur);
                            }
+
+ui->telephone->setValidator(new QIntValidator(100, 99999999, this));
+ui->nbtable->setValidator(new QIntValidator(100, 999, this));
+ui->nbchaise->setValidator(new QIntValidator(100, 999, this));
+ui->numres->setValidator(new QIntValidator(100, 9999, this));
+
+ui->tarif->setMaxLength(5);
+ui->tarif->setValidator(new QIntValidator(100, 99999, this));
+
+ui->telephone->setMaxLength(8);
+ui->numres->setMaxLength(4);
+ui->idcollaborateur->setMaxLength(4);
+ui->lineEdit->setMaxLength(12);
+ui->adresse->setMaxLength(50);
+
+
+
+
 
 
 
@@ -139,8 +141,9 @@ void MainWindow::on_ajouter_collab_2_clicked()
      bool test2=C.ajouter();
 
 
-     if((idcollaborateur=="")&&(nom=="")&&(prenom=="")&&(telephone=="")&&(adresse=="")&&(email==""))
+     /*if((idcollaborateur=="")&&(nom=="")&&(prenom=="")&&(telephone=="")&&(adresse=="")&&(email==""))
         {
+
          QMessageBox::critical(nullptr, QObject::tr("WARNING"),
                                QObject::tr("Tous les champs sont vides"),QMessageBox::Ok);
      }
@@ -150,7 +153,7 @@ void MainWindow::on_ajouter_collab_2_clicked()
      QMessageBox::critical(nullptr, QObject::tr("WARNING"),
                            QObject::tr("Le champ ID est vide"),QMessageBox::Ok);
     }
-     else if((nom==""))
+     else if((nom=="")and (verifNOM()))
     {
      QMessageBox::critical(nullptr, QObject::tr("WARNING"),
                            QObject::tr("Le champ nom est vide"),QMessageBox::Ok);
@@ -176,7 +179,7 @@ void MainWindow::on_ajouter_collab_2_clicked()
                            QObject::tr("Le champ email est vide"),QMessageBox::Ok);
     }
 
- else  if(test2)
+ else*/  if((test2)&&(verifNOM())&&(verifPRENOM()))
      {
          ui->tab_collab->setModel(C.afficher());
          musicAdd.setMedia(QUrl("C:/Users/ASUS I7/Desktop/Atelier_Connexion/ajout succe.mp3"));
@@ -259,15 +262,10 @@ void MainWindow::on_ajouter_collab_clicked()
      QString duree=ui->duree->currentText();
      QString tarif=ui->tarif->text();
      QString idcollaborateur=ui->idcollaborateur_2->currentText();
-
-
-
     Contrat C(type,nom,duree,tarif,idcollaborateur);
+ bool test2=C.ajouter();
 
-
-     bool test2=C.ajouter();
-
-     if(test2)
+     if((test2)&&(verifNOM1()))
      {
          ui->tableView_2->setModel(T.afficher());
          musicAdd.setMedia(QUrl("C:/Users/ASUS I7/Desktop/Atelier_Connexion/ajout succe.mp3"));
@@ -308,11 +306,19 @@ void MainWindow::on_modifier_collab_clicked()
         musicAdd.setMedia(QUrl("C:/Users/ASUS I7/Desktop/Atelier_Connexion/modif succe.mp3"));
                 musicAdd.play();
         ui->tab_collab->setModel(C.afficher());
+        srand (time(NULL));
+        QDate d = QDate::currentDate() ;
+         QString datee =d.toString("dd / MM / yyyy ") ;
+         QString fn="modifier" ;
+        QString nom1 = ui->nom->text();
+      projeth pp(nom1,datee,fn) ;
+      bool test1=pp.modifierhis() ;
+
         QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
                 notifyIcon->show();
                 notifyIcon->setIcon(QIcon("icone.png"));
 
-                notifyIcon->showMessage("GESTION COLLABORATEURS  COLLABPRATEUR ","collaborateur Modifié",QSystemTrayIcon::Information,15000);
+                notifyIcon->showMessage("GESTION COLLABORATEURS  COLLABORATEUR ","collaborateur Modifié",QSystemTrayIcon::Information,15000);
 
         QMessageBox::information(nullptr, QObject::tr("modification Fonction"),
                     QObject::tr("Fonction modifié.\n"
@@ -718,3 +724,320 @@ void MainWindow::on_pushButton_2_clicked()
 
 
     }
+  /*  bool MainWindow::verifID()
+    {
+        if (ui->idcollaborateur->text().contains(QRegExp("[^0-9 ]") ) || ui->idcollaborateur->text().isEmpty())
+        {
+            ui->idcollaborateur->clear();
+
+            ui->idcollaborateur->setPlaceholderText("contient que des chiffres") ;
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
+    }
+
+    bool MainWindow::verifNOM()
+    {
+        if (ui->nom->text().contains(QRegExp("[^a-zA-Z ]") ) || ui->nom->text().isEmpty())
+        {
+            ui->nom->clear();
+            ui->nom->setPlaceholderText("contient que des caracteres") ;
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
+    }
+    bool MainWindow::verifPRENOM()
+    {
+        if (ui->prenom->text().contains(QRegExp("[^a-zA-Z ]") ) || ui->prenom->text().isEmpty())
+        {
+            ui->prenom->clear();
+            ui->prenom->setPlaceholderText("contient que des caracteres") ;
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
+    }
+
+    bool MainWindow::verifTYPE()
+    {
+        if (ui->lineEdit_type->text().contains(QRegExp("[^a-zA-Z ]") ) || ui->lineEdit_type->text().isEmpty())
+        {
+            ui->lineEdit_type->clear();
+            ui->lineEdit_type->setPlaceholderText("contient que des caracteres") ;
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    bool MainWindow::verifPRIX()
+    {
+        if (ui->lineEdit_prix->text().contains(QRegExp("[^0-9 ]") ) || ui->lineEdit_prix->text().isEmpty())
+        {
+            ui->lineEdit_prix->clear();
+
+            ui->lineEdit_prix->setPlaceholderText("contient que des chiffres") ;
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
+    }
+
+
+
+
+    bool MainWindow::verifIDb()
+    {
+        if (ui->lineEdit_idB->text().contains(QRegExp("[^0-9 ]") ) || ui->lineEdit_idB->text().isEmpty())
+        {
+            ui->lineEdit_idB->clear();
+
+            ui->lineEdit_idB->setPlaceholderText("contient que des chiffres") ;
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
+    }
+
+    bool MainWindow::verifNOMb()
+    {
+        if (ui->lineEdit_nomB->text().contains(QRegExp("[^a-zA-Z ]") ) || ui->lineEdit_nomB->text().isEmpty())
+        {
+            ui->lineEdit_nomB->clear();
+            ui->lineEdit_nomB->setPlaceholderText("contient que des caracteres") ;
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
+    }
+
+    bool MainWindow::verifTYPEb()
+    {
+        if (ui->lineEdit_typeB->text().contains(QRegExp("[^a-zA-Z ]") ) || ui->lineEdit_typeB->text().isEmpty())
+        {
+            ui->lineEdit_typeB->clear();
+            ui->lineEdit_typeB->setPlaceholderText("contient que des caracteres") ;
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    bool MainWindow::verifPRIXb()
+    {
+        if (ui->lineEdit_prixB->text().contains(QRegExp("[^0-9 ]") ) || ui->lineEdit_prixB->text().isEmpty())
+        {
+            ui->lineEdit_prixB->clear();
+
+            ui->lineEdit_prixB->setPlaceholderText("contient que des chiffres") ;
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
+    }*/
+
+
+
+void MainWindow::on_ajouter_3_clicked()
+{
+       QString numres=ui->numres->text();
+       QString nom=ui->nom_3->text();
+       QString prenom=ui->prenom1->text();
+       QString dateres=ui->dateres->text();
+       QString typeres=ui->typeres->currentText();
+       QString nbtable=ui->nbtable->text();
+       QString nbchaise=ui->nbchaise->text();
+ Reservation R(numres,nom,prenom,dateres,typeres,nbtable,nbchaise);
+       bool test2=R.ajouter();
+
+       if((test2)&&(verifNOM2())&&(verifPRENOM1()))
+       {
+           ui->tableView->setModel(R.afficher());
+           musicAdd.setMedia(QUrl("C:/Users/ASUS I7/Desktop/Atelier_Connexion/ajout succe.mp3"));
+                   musicAdd.play();
+                   QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+                           notifyIcon->show();
+                           notifyIcon->setIcon(QIcon("icone.png"));
+
+                           notifyIcon->showMessage("GESTION COLLABORATEURS  RESERVATION","reservation Ajoutée",QSystemTrayIcon::Information,15000);
+           QMessageBox::information(nullptr, QObject::tr("OK"),
+                       QObject::tr("Ajout effectué.\n"
+                                   "Click Cancel to exit."), QMessageBox::Cancel);
+
+   }
+       else
+           QMessageBox::critical(nullptr, QObject::tr("NOT OK"),
+                       QObject::tr("Ajout non effectue.\n"
+                                   "Click Cancel to exit."), QMessageBox::Cancel);
+}
+
+void MainWindow::on_supprimer3_clicked()
+{
+QItemSelectionModel *select = ui->tableView->selectionModel();
+        QString numres = select->selectedRows(0).value(0).data().toString();
+
+       if(R.supprimer(numres))
+       {
+           ui->tableView->setModel(R.afficher());
+           musicAdd.setMedia(QUrl("C:/Users/ASUS CELERON/Desktop/gestion_materiel1/Gestion_Materiel/Atelier_Connexion/sound/supp succe.mp3"));
+                   musicAdd.play();
+           QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+                   notifyIcon->show();
+                   notifyIcon->setIcon(QIcon("icone.png"));
+
+                   notifyIcon->showMessage("GESTION COLLABORATION ","La suppression du reservation est effectuée",QSystemTrayIcon::Information,15000);
+
+           QMessageBox::information(nullptr, QObject::tr("OK"),
+                       QObject::tr("Suppression effectué.\n"
+                                   "Click ok to exit."), QMessageBox::Cancel);
+           int nb=ui->tableView->model()->rowCount();
+                          ui->numres->clear();
+
+                          for (int i=0;i<nb;i++)
+                          {
+                              QString cinf = ui->tableView->model()->index(i, 0).data().toString();
+                             // ui->numres->addItem();
+                          }
+       }
+       else
+       {
+           QMessageBox::critical(nullptr, QObject::tr("NOT OK"),
+                       QObject::tr("Suppression non effectue.\n"
+                                   "Click OK to exit."), QMessageBox::Cancel);}
+}
+
+void MainWindow::on_modif3_clicked()
+{
+    if (ui->modif3->isChecked())
+        {
+            ui->modif3->setText("Modifiable");
+
+            QSqlTableModel *tableModel= new QSqlTableModel();
+            tableModel->setTable("reservation");
+            tableModel->select();
+            ui->tableView->setModel(tableModel);
+        }
+        else
+        {
+            ui->modif3->setText("Modifier");
+            musicAdd.setMedia(QUrl("C:/Users/ASUS I7/Desktop/Atelier_Connexion/modif succe.mp3"));
+                    musicAdd.play();
+            ui->tableView->setModel(R.afficher());
+
+                    QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+                            notifyIcon->show();
+                            notifyIcon->setIcon(QIcon("icone.png"));
+
+                            notifyIcon->showMessage("GESTION COLLABORATEURS  RESERVATION ","reservation Modifié",QSystemTrayIcon::Information,15000);
+            QMessageBox::information(nullptr, QObject::tr("modification Fonction"),
+                        QObject::tr("Fonction modifié.\n"
+                                    "Click OK to exit."), QMessageBox::Cancel);
+
+        }
+}
+
+void MainWindow::on_reset3_clicked()
+{
+    ui->numres->setText("");
+    ui->nom_3->setText("");
+    ui->prenom1->setText("");
+    ui->dateres->setText("");
+    ui->typeres->setCurrentText("");
+    ui->nbtable->setText("");
+    ui->nbchaise->setText("");
+}
+bool MainWindow::verifNOM()
+{
+    if (ui->nom->text().contains(QRegExp("[^a-zA-Z ]") ) || ui->nom->text().isEmpty())
+    {
+        ui->nom->clear();
+        ui->nom->setPlaceholderText("contient que des caracteres") ;
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+
+}
+bool MainWindow::verifPRENOM()
+{
+    if (ui->prenom->text().contains(QRegExp("[^a-zA-Z ]") ) || ui->prenom->text().isEmpty())
+    {
+        ui->prenom->clear();
+        ui->prenom->setPlaceholderText("contient que des caracteres") ;
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+
+}
+bool MainWindow::verifNOM1()
+{
+    if (ui->nom_2->text().contains(QRegExp("[^a-zA-Z ]") ) || ui->nom_2->text().isEmpty())
+    {
+        ui->nom_2->clear();
+        ui->nom_2->setPlaceholderText("contient que des caracteres") ;
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+bool MainWindow::verifNOM2()
+{
+    if (ui->nom_3->text().contains(QRegExp("[^a-zA-Z ]") ) || ui->nom_3->text().isEmpty())
+    {
+        ui->nom_3->clear();
+        ui->nom_3->setPlaceholderText("contient que des caracteres") ;
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+bool MainWindow::verifPRENOM1()
+{
+    if (ui->prenom1->text().contains(QRegExp("[^a-zA-Z ]") ) || ui->prenom1->text().isEmpty())
+    {
+        ui->prenom1->clear();
+        ui->prenom1->setPlaceholderText("contient que des caracteres") ;
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+

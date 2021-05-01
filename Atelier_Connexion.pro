@@ -26,22 +26,29 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    arduino.cpp \
     collaborateur.cpp \
     contrat.cpp \
         main.cpp \
         mainwindow.cpp \
     connection.cpp \
+    music.cpp \
+    reservation.cpp \
     statis.cpp
 
 HEADERS += \
+    arduino.h \
     collaborateur.h \
     contrat.h \
         mainwindow.h \
     connection.h \
+    music.h \
+    reservation.h \
     statis.h
 
 FORMS += \
         mainwindow.ui \
+        music.ui \
         statis.ui
 
 # Default rules for deployment.

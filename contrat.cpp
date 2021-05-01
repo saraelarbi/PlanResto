@@ -172,9 +172,6 @@ QSqlQueryModel * Contrat::rechercher_nom(QString nom)
  }
 
 
-
-
-
 QSqlQueryModel * Contrat::rechercher_tous(QString nom,QString type,QString tarif)
 {
     QSqlQuery *qry= new QSqlQuery();
