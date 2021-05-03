@@ -1,0 +1,4 @@
+CIN:16002133
+Nom :abidos
+CIN:12345678
+Nom :azz

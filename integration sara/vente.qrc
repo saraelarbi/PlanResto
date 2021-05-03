@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/vente">
+        <file>vente.png</file>
+    </qresource>
+</RCC>

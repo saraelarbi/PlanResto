@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/collab">
+        <file>collaboration.png</file>
+    </qresource>
+</RCC>
