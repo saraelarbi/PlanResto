@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plat">
+        <file>plat.png</file>
+    </qresource>
+</RCC>
