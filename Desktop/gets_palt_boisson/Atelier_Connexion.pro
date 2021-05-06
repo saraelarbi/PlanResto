@@ -8,7 +8,12 @@ QT       += core gui sql
 QT += core gui printsupport
 QT += multimedia
 QT += core gui network
+QT+= serialport
 CONFIG += console
+QT       += core gui
+QT += multimedia multimediawidgets
+
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -34,14 +39,18 @@ SOURCES += \
     connection.cpp \
     plat.cpp \
     boisson.cpp \
-    smtp.cpp
+    smtp.cpp \
+    arduino.cpp \
+    notifications.cpp
 
 HEADERS += \
         mainwindow.h \
     connection.h \
     plat.h \
     boisson.h \
-    smtp.h
+    smtp.h \
+    arduino.h \
+    notifications.h
 
 FORMS += \
         mainwindow.ui
