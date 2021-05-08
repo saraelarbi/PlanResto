@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[35];
-    char stringdata0[683];
+    QByteArrayData data[34];
+    char stringdata0[653];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -49,23 +49,22 @@ QT_MOC_LITERAL(14, 311, 24), // "on_radioButton_3_clicked"
 QT_MOC_LITERAL(15, 336, 23), // "on_re_afficher2_clicked"
 QT_MOC_LITERAL(16, 360, 19), // "on_imprimer_clicked"
 QT_MOC_LITERAL(17, 380, 18), // "on_le_stat_clicked"
-QT_MOC_LITERAL(18, 399, 21), // "on_pb_ajouter_clicked"
-QT_MOC_LITERAL(19, 421, 23), // "on_pushButton_6_clicked"
-QT_MOC_LITERAL(20, 445, 23), // "on_pushButton10_clicked"
-QT_MOC_LITERAL(21, 469, 23), // "on_pushButton_2_clicked"
-QT_MOC_LITERAL(22, 493, 13), // "replyFinished"
-QT_MOC_LITERAL(23, 507, 14), // "QNetworkReply*"
-QT_MOC_LITERAL(24, 522, 5), // "reply"
-QT_MOC_LITERAL(25, 528, 20), // "on_ajouter_3_clicked"
-QT_MOC_LITERAL(26, 549, 21), // "on_supprimer3_clicked"
-QT_MOC_LITERAL(27, 571, 17), // "on_modif3_clicked"
-QT_MOC_LITERAL(28, 589, 17), // "on_reset3_clicked"
-QT_MOC_LITERAL(29, 607, 21), // "on_pushButton_clicked"
-QT_MOC_LITERAL(30, 629, 12), // "verifPRENOM1"
-QT_MOC_LITERAL(31, 642, 11), // "verifPRENOM"
-QT_MOC_LITERAL(32, 654, 8), // "verifNOM"
-QT_MOC_LITERAL(33, 663, 9), // "verifNOM1"
-QT_MOC_LITERAL(34, 673, 9) // "verifNOM2"
+QT_MOC_LITERAL(18, 399, 23), // "on_pushButton_6_clicked"
+QT_MOC_LITERAL(19, 423, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(20, 447, 13), // "replyFinished"
+QT_MOC_LITERAL(21, 461, 14), // "QNetworkReply*"
+QT_MOC_LITERAL(22, 476, 5), // "reply"
+QT_MOC_LITERAL(23, 482, 20), // "on_ajouter_3_clicked"
+QT_MOC_LITERAL(24, 503, 21), // "on_supprimer3_clicked"
+QT_MOC_LITERAL(25, 525, 17), // "on_modif3_clicked"
+QT_MOC_LITERAL(26, 543, 17), // "on_reset3_clicked"
+QT_MOC_LITERAL(27, 561, 8), // "verifNOM"
+QT_MOC_LITERAL(28, 570, 11), // "verifPRENOM"
+QT_MOC_LITERAL(29, 582, 9), // "verifNOM1"
+QT_MOC_LITERAL(30, 592, 9), // "verifNOM2"
+QT_MOC_LITERAL(31, 602, 12), // "verifPRENOM1"
+QT_MOC_LITERAL(32, 615, 15), // "on_buzz_clicked"
+QT_MOC_LITERAL(33, 631, 21) // "on_pushButton_clicked"
 
     },
     "MainWindow\0on_ajouter_collab_2_clicked\0"
@@ -79,14 +78,13 @@ QT_MOC_LITERAL(34, 673, 9) // "verifNOM2"
     "on_radioButton_clicked\0on_radioButton_2_clicked\0"
     "on_radioButton_3_clicked\0"
     "on_re_afficher2_clicked\0on_imprimer_clicked\0"
-    "on_le_stat_clicked\0on_pb_ajouter_clicked\0"
-    "on_pushButton_6_clicked\0on_pushButton10_clicked\0"
+    "on_le_stat_clicked\0on_pushButton_6_clicked\0"
     "on_pushButton_2_clicked\0replyFinished\0"
     "QNetworkReply*\0reply\0on_ajouter_3_clicked\0"
     "on_supprimer3_clicked\0on_modif3_clicked\0"
-    "on_reset3_clicked\0on_pushButton_clicked\0"
-    "verifPRENOM1\0verifPRENOM\0verifNOM\0"
-    "verifNOM1\0verifNOM2"
+    "on_reset3_clicked\0verifNOM\0verifPRENOM\0"
+    "verifNOM1\0verifNOM2\0verifPRENOM1\0"
+    "on_buzz_clicked\0on_pushButton_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -96,7 +94,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      31,   14, // methods
+      30,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -104,37 +102,36 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  169,    2, 0x08 /* Private */,
-       3,    0,  170,    2, 0x08 /* Private */,
-       4,    0,  171,    2, 0x08 /* Private */,
-       5,    0,  172,    2, 0x08 /* Private */,
-       6,    0,  173,    2, 0x08 /* Private */,
-       7,    0,  174,    2, 0x08 /* Private */,
-       8,    0,  175,    2, 0x08 /* Private */,
-       9,    0,  176,    2, 0x08 /* Private */,
-      10,    0,  177,    2, 0x08 /* Private */,
-      11,    0,  178,    2, 0x08 /* Private */,
-      12,    0,  179,    2, 0x08 /* Private */,
-      13,    0,  180,    2, 0x08 /* Private */,
-      14,    0,  181,    2, 0x08 /* Private */,
-      15,    0,  182,    2, 0x08 /* Private */,
-      16,    0,  183,    2, 0x08 /* Private */,
-      17,    0,  184,    2, 0x08 /* Private */,
-      18,    0,  185,    2, 0x08 /* Private */,
-      19,    0,  186,    2, 0x08 /* Private */,
-      20,    0,  187,    2, 0x08 /* Private */,
-      21,    0,  188,    2, 0x08 /* Private */,
-      22,    1,  189,    2, 0x08 /* Private */,
-      25,    0,  192,    2, 0x08 /* Private */,
-      26,    0,  193,    2, 0x08 /* Private */,
-      27,    0,  194,    2, 0x08 /* Private */,
-      28,    0,  195,    2, 0x08 /* Private */,
-      29,    0,  196,    2, 0x08 /* Private */,
-      30,    0,  197,    2, 0x08 /* Private */,
-      31,    0,  198,    2, 0x08 /* Private */,
-      32,    0,  199,    2, 0x08 /* Private */,
-      33,    0,  200,    2, 0x08 /* Private */,
-      34,    0,  201,    2, 0x08 /* Private */,
+       1,    0,  164,    2, 0x08 /* Private */,
+       3,    0,  165,    2, 0x08 /* Private */,
+       4,    0,  166,    2, 0x08 /* Private */,
+       5,    0,  167,    2, 0x08 /* Private */,
+       6,    0,  168,    2, 0x08 /* Private */,
+       7,    0,  169,    2, 0x08 /* Private */,
+       8,    0,  170,    2, 0x08 /* Private */,
+       9,    0,  171,    2, 0x08 /* Private */,
+      10,    0,  172,    2, 0x08 /* Private */,
+      11,    0,  173,    2, 0x08 /* Private */,
+      12,    0,  174,    2, 0x08 /* Private */,
+      13,    0,  175,    2, 0x08 /* Private */,
+      14,    0,  176,    2, 0x08 /* Private */,
+      15,    0,  177,    2, 0x08 /* Private */,
+      16,    0,  178,    2, 0x08 /* Private */,
+      17,    0,  179,    2, 0x08 /* Private */,
+      18,    0,  180,    2, 0x08 /* Private */,
+      19,    0,  181,    2, 0x08 /* Private */,
+      20,    1,  182,    2, 0x08 /* Private */,
+      23,    0,  185,    2, 0x08 /* Private */,
+      24,    0,  186,    2, 0x08 /* Private */,
+      25,    0,  187,    2, 0x08 /* Private */,
+      26,    0,  188,    2, 0x08 /* Private */,
+      27,    0,  189,    2, 0x08 /* Private */,
+      28,    0,  190,    2, 0x08 /* Private */,
+      29,    0,  191,    2, 0x08 /* Private */,
+      30,    0,  192,    2, 0x08 /* Private */,
+      31,    0,  193,    2, 0x08 /* Private */,
+      32,    0,  194,    2, 0x08 /* Private */,
+      33,    0,  195,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -155,10 +152,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 23,   24,
-    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 21,   22,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -168,6 +162,8 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Bool,
     QMetaType::Bool,
     QMetaType::Bool,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -194,26 +190,25 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 13: _t->on_re_afficher2_clicked(); break;
         case 14: _t->on_imprimer_clicked(); break;
         case 15: _t->on_le_stat_clicked(); break;
-        //case 16: _t->on_pb_ajouter_clicked(); break;
-        case 17: _t->on_pushButton_6_clicked(); break;
-        //case 18: _t->on_pushButton10_clicked(); break;
-        case 19: _t->on_pushButton_2_clicked(); break;
-        case 20: _t->replyFinished((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
-        case 21: _t->on_ajouter_3_clicked(); break;
-        case 22: _t->on_supprimer3_clicked(); break;
-        case 23: _t->on_modif3_clicked(); break;
-        case 24: _t->on_reset3_clicked(); break;
-        case 25: _t->on_pushButton_clicked(); break;
-        case 26: { bool _r = _t->verifPRENOM1();
+        case 16: _t->on_pushButton_6_clicked(); break;
+        case 17: _t->on_pushButton_2_clicked(); break;
+        case 18: _t->replyFinished((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
+        case 19: _t->on_ajouter_3_clicked(); break;
+        case 20: _t->on_supprimer3_clicked(); break;
+        case 21: _t->on_modif3_clicked(); break;
+        case 22: _t->on_reset3_clicked(); break;
+        case 23: { bool _r = _t->verifNOM();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
-        case 27: { bool _r = _t->verifPRENOM();
+        case 24: { bool _r = _t->verifPRENOM();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
-        case 28: { bool _r = _t->verifNOM();
+        case 25: { bool _r = _t->verifNOM1();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
-        case 29: { bool _r = _t->verifNOM1();
+        case 26: { bool _r = _t->verifNOM2();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
-        case 30: { bool _r = _t->verifNOM2();
+        case 27: { bool _r = _t->verifPRENOM1();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
+        case 28: _t->on_buzz_clicked(); break;
+        case 29: _t->on_pushButton_clicked(); break;
         default: ;
         }
     }
@@ -244,13 +239,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 31)
+        if (_id < 30)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 31;
+        _id -= 30;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 31)
+        if (_id < 30)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 31;
+        _id -= 30;
     }
     return _id;
 }

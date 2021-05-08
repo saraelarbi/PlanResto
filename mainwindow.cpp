@@ -5,6 +5,7 @@
 #include<QSqlTableModel>
 #include<QItemSelectionModel>
 #include<QTableWidgetItem>
+#include"music.h"
 #include<QSqlQueryModel>
 #include<QTextDocument>
 #include<QDesktopServices>
@@ -24,15 +25,10 @@
 #include "arduino.h"
 #include<QComboBox>
 #include "reservation.h"
-
 #include <iostream>
-
 #include<QDate>
-
 #include <QNetworkAccessManager>
-
 #include <QUrlQuery>
-
 #include <QNetworkReply>
 #include <QJsonValue>
 #include <QJsonValueRef>
@@ -41,6 +37,7 @@
 #include <QJsonArray>
 #include <QString>
 #include <QDebug>
+#include<arduino.h>
 #include <QtCore>
 #include <QtGui>
 #include <QDialog>
@@ -51,6 +48,7 @@
 #include <QDateTime>
 #include <QMediaPlayer>
 #include <QRadioButton>
+#include<QGraphicsPixmapItem>
 
 
 
@@ -59,13 +57,19 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
         ui->setupUi(this);
+
+        if(ar.connect_arduino())
+             qDebug()<<"succes";
+             else
+        qDebug()<<"not very success";
+        QObject::connect(ar.getserial(),SIGNAL(readyRead()),this,SLOT(update_label()));
         QPixmap pix("C:/Users/ASUS I7/Desktop/Atelier_Connexion/logo");
-           ui->img->setPixmap(pix);
+           /*ui->img->setPixmap(pix);
            animation = new QPropertyAnimation(ui->img,"geometry");
            animation->setDuration(10000);
            animation->setStartValue(ui->img->geometry());
            animation->setEndValue(QRect(610,0,100,100));
-           animation->start();
+           animation->start();*/
         son=new QSound("C:/Users/ASUS I7/Desktop/Atelier_Connexion/ss.wav");
 
 
@@ -90,6 +94,7 @@ ui->telephone->setValidator(new QIntValidator(100, 99999999, this));
 ui->nbtable->setValidator(new QIntValidator(100, 999, this));
 ui->nbchaise->setValidator(new QIntValidator(100, 999, this));
 ui->numres->setValidator(new QIntValidator(100, 9999, this));
+ui->idcollaborateur->setValidator(new QIntValidator(100, 9999, this));
 
 ui->tarif->setMaxLength(5);
 ui->tarif->setValidator(new QIntValidator(100, 99999, this));
@@ -99,6 +104,13 @@ ui->numres->setMaxLength(4);
 ui->idcollaborateur->setMaxLength(4);
 ui->lineEdit->setMaxLength(12);
 ui->adresse->setMaxLength(50);
+ui->telephone->setMaxLength(8);
+ui->nom->setMaxLength(15);
+ui->prenom->setMaxLength(15);
+ui->prenom1->setMaxLength(15);
+ui->nom_2->setMaxLength(15);
+ui->nom_3->setMaxLength(15);
+
 
 
 
@@ -1041,3 +1053,15 @@ bool MainWindow::verifPRENOM1()
     }
 }
 
+
+void MainWindow::on_buzz_clicked()
+{
+    (ar.write_to_arduino("0"));
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+        music musicc;
+        musicc.setModal(true);
+        musicc.exec();
+}

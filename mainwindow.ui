@@ -23,6 +23,9 @@
       <property name="whatsThis">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 170, 255);</string>
+      </property>
       <property name="currentIndex">
        <number>3</number>
       </property>
@@ -33,8 +36,8 @@
        <widget class="QLineEdit" name="lineEdit">
         <property name="geometry">
          <rect>
-          <x>140</x>
-          <y>30</y>
+          <x>190</x>
+          <y>80</y>
           <width>113</width>
           <height>20</height>
          </rect>
@@ -43,8 +46,8 @@
        <widget class="QTextEdit" name="textEdit">
         <property name="geometry">
          <rect>
-          <x>140</x>
-          <y>60</y>
+          <x>170</x>
+          <y>120</y>
           <width>111</width>
           <height>61</height>
          </rect>
@@ -53,11 +56,16 @@
        <widget class="QPushButton" name="pushButton_2">
         <property name="geometry">
          <rect>
-          <x>270</x>
-          <y>50</y>
+          <x>290</x>
+          <y>140</y>
           <width>75</width>
           <height>23</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 0, 255);
+font: 87 9pt &quot;Arial Black&quot;;</string>
         </property>
         <property name="text">
          <string>envoyer</string>
@@ -66,11 +74,15 @@
        <widget class="QGroupBox" name="groupBox_9">
         <property name="geometry">
          <rect>
-          <x>0</x>
-          <y>30</y>
-          <width>121</width>
-          <height>21</height>
+          <x>10</x>
+          <y>80</y>
+          <width>171</width>
+          <height>16</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(170, 255, 255);
+font: 87 10pt &quot;Arial Black&quot;;</string>
         </property>
         <property name="title">
          <string>Entrez votre numero:</string>
@@ -80,13 +92,89 @@
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>60</y>
-          <width>131</width>
-          <height>41</height>
+          <y>120</y>
+          <width>161</width>
+          <height>21</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(170, 255, 255);
+font: 87 10pt &quot;Arial Black&quot;;</string>
         </property>
         <property name="title">
          <string>Ecrire un message:</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="buzz">
+        <property name="geometry">
+         <rect>
+          <x>560</x>
+          <y>120</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 0, 255);
+font: 87 9pt &quot;Arial Black&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Buzz</string>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_17">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>231</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 87 14pt &quot;Arial Black&quot;;
+color: rgb(170, 0, 127);
+text-decoration: underline;</string>
+        </property>
+        <property name="title">
+         <string>Envoyez un sms:</string>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_18">
+        <property name="geometry">
+         <rect>
+          <x>529</x>
+          <y>10</y>
+          <width>101</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 87 14pt &quot;Arial Black&quot;;
+text-decoration: underline;
+color: rgb(85, 170, 255);
+</string>
+        </property>
+        <property name="title">
+         <string>Alarme</string>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_19">
+        <property name="geometry">
+         <rect>
+          <x>460</x>
+          <y>60</y>
+          <width>261</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 0, 127);
+font: 87 10pt &quot;Arial Black&quot;;</string>
+        </property>
+        <property name="title">
+         <string>Vous voulez declencher l'alarme?</string>
         </property>
        </widget>
       </widget>
@@ -100,16 +188,43 @@
           <item>
            <widget class="QGroupBox" name="ajout">
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(255, 190, 247);</string>
+             <string notr="true">background-color: rgb(196, 217, 255);</string>
             </property>
             <property name="title">
-             <string>Bienvenue</string>
+             <string/>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_7">
              <item>
+              <widget class="QGroupBox" name="groupBox_12">
+               <property name="styleSheet">
+                <string notr="true">font: 87 14pt &quot;Arial Black&quot;;
+color: rgb(170, 0, 127);
+text-decoration: underline;</string>
+               </property>
+               <property name="title">
+                <string>Bienvenue</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_10">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
               <widget class="QGroupBox" name="groupBox_2">
                <property name="styleSheet">
-                <string notr="true">background-color: rgb(255, 196, 153);</string>
+                <string notr="true">color: rgb(170, 0, 255);
+font: 87 10pt &quot;Arial Black&quot;;
+background-color: rgb(255, 170, 255);</string>
                </property>
                <property name="title">
                 <string>Ajouter un nouveau collaborateur:</string>
@@ -142,6 +257,10 @@
                 <layout class="QFormLayout" name="formLayout_3">
                  <item row="1" column="0">
                   <widget class="QLabel" name="label_2">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(0, 0, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+                   </property>
                    <property name="text">
                     <string>idcollaborateur</string>
                    </property>
@@ -151,12 +270,16 @@
                   <widget class="QLineEdit" name="idcollaborateur">
                    <property name="styleSheet">
                     <string notr="true">
-background-color: rgb(205, 246, 255);</string>
+background-color: rgb(222, 167, 255);</string>
                    </property>
                   </widget>
                  </item>
                  <item row="3" column="0">
                   <widget class="QLabel" name="label_6">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(0, 0, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+                   </property>
                    <property name="text">
                     <string>nom</string>
                    </property>
@@ -165,12 +288,16 @@ background-color: rgb(205, 246, 255);</string>
                  <item row="3" column="1">
                   <widget class="QLineEdit" name="nom">
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(205, 246, 255);</string>
+                    <string notr="true">background-color: rgb(222, 167, 255);</string>
                    </property>
                   </widget>
                  </item>
                  <item row="4" column="0">
                   <widget class="QLabel" name="label_5">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(0, 0, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+                   </property>
                    <property name="text">
                     <string>prenom</string>
                    </property>
@@ -179,12 +306,16 @@ background-color: rgb(205, 246, 255);</string>
                  <item row="4" column="1">
                   <widget class="QLineEdit" name="prenom">
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(205, 246, 255);</string>
+                    <string notr="true">background-color: rgb(222, 167, 255);</string>
                    </property>
                   </widget>
                  </item>
                  <item row="5" column="0">
                   <widget class="QLabel" name="label_4">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(0, 0, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+                   </property>
                    <property name="text">
                     <string>telephone</string>
                    </property>
@@ -193,12 +324,16 @@ background-color: rgb(205, 246, 255);</string>
                  <item row="5" column="1">
                   <widget class="QLineEdit" name="telephone">
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(205, 246, 255);</string>
+                    <string notr="true">background-color: rgb(222, 167, 255);</string>
                    </property>
                   </widget>
                  </item>
                  <item row="6" column="0">
                   <widget class="QLabel" name="label_3">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(0, 0, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+                   </property>
                    <property name="text">
                     <string>adresse</string>
                    </property>
@@ -207,12 +342,16 @@ background-color: rgb(205, 246, 255);</string>
                  <item row="6" column="1">
                   <widget class="QLineEdit" name="adresse">
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(205, 246, 255);</string>
+                    <string notr="true">background-color: rgb(222, 167, 255);</string>
                    </property>
                   </widget>
                  </item>
                  <item row="7" column="0">
                   <widget class="QLabel" name="label">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(0, 0, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+                   </property>
                    <property name="text">
                     <string>email</string>
                    </property>
@@ -221,7 +360,7 @@ background-color: rgb(205, 246, 255);</string>
                  <item row="7" column="1">
                   <widget class="QLineEdit" name="email">
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(205, 246, 255);</string>
+                    <string notr="true">background-color: rgb(222, 167, 255);</string>
                    </property>
                   </widget>
                  </item>
@@ -260,8 +399,9 @@ background-color: rgb(205, 246, 255);</string>
                <item>
                 <widget class="QPushButton" name="ajouter_collab_2">
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(205, 246, 255);
-</string>
+                  <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 0, 255);
+font: 87 9pt &quot;Arial Black&quot;;</string>
                  </property>
                  <property name="text">
                   <string>Ajouter</string>
@@ -271,7 +411,9 @@ background-color: rgb(205, 246, 255);</string>
                <item>
                 <widget class="QPushButton" name="reset">
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(205, 246, 255);</string>
+                  <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 0, 255);
+font: 87 9pt &quot;Arial Black&quot;;</string>
                  </property>
                  <property name="text">
                   <string>Reset</string>
@@ -290,8 +432,7 @@ background-color: rgb(205, 246, 255);</string>
           <item>
            <widget class="QGroupBox" name="affichage">
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(255, 170, 255);
-background-color: rgb(255, 189, 249);</string>
+             <string notr="true">background-color: rgb(196, 217, 255);</string>
             </property>
             <property name="title">
              <string/>
@@ -300,18 +441,23 @@ background-color: rgb(255, 189, 249);</string>
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_13">
                <item>
-                <widget class="QLabel" name="trier_collab">
+                <widget class="QGroupBox" name="groupBox_11">
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(85, 255, 127);
-background-color: rgb(170, 170, 255);</string>
+                  <string notr="true">color: rgb(170, 0, 255);
+font: 87 10pt &quot;Arial Black&quot;;
+background-color: rgb(255, 170, 255);</string>
                  </property>
-                 <property name="text">
+                 <property name="title">
                   <string>Trier selon l'ordre alphabetique:</string>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QRadioButton" name="radioButton">
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(0, 0, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+                 </property>
                  <property name="text">
                   <string>idcollaborateur</string>
                  </property>
@@ -319,6 +465,10 @@ background-color: rgb(170, 170, 255);</string>
                </item>
                <item>
                 <widget class="QRadioButton" name="radioButton_2">
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(0, 0, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+                 </property>
                  <property name="text">
                   <string>nom</string>
                  </property>
@@ -326,6 +476,10 @@ background-color: rgb(170, 170, 255);</string>
                </item>
                <item>
                 <widget class="QRadioButton" name="radioButton_3">
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(0, 0, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+                 </property>
                  <property name="text">
                   <string>prenom</string>
                  </property>
@@ -334,8 +488,9 @@ background-color: rgb(170, 170, 255);</string>
                <item>
                 <widget class="QPushButton" name="re_afficher2">
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(205, 246, 255);
-</string>
+                  <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 0, 255);
+font: 87 9pt &quot;Arial Black&quot;;</string>
                  </property>
                  <property name="text">
                   <string>affichier</string>
@@ -343,9 +498,24 @@ background-color: rgb(170, 170, 255);</string>
                 </widget>
                </item>
                <item>
+                <spacer name="horizontalSpacer_9">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
                 <widget class="QGroupBox" name="groupBox_5">
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(139, 170, 255);</string>
+                  <string notr="true">color: rgb(170, 0, 255);
+font: 87 10pt &quot;Arial Black&quot;;
+background-color: rgb(255, 170, 255);</string>
                  </property>
                  <property name="title">
                   <string>Affichage de tous nos collaborateurs</string>
@@ -355,7 +525,7 @@ background-color: rgb(170, 170, 255);</string>
                <item>
                 <widget class="QTableView" name="tab_collab">
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(255, 196, 153);</string>
+                  <string notr="true">background-color: rgb(222, 167, 255);</string>
                  </property>
                 </widget>
                </item>
@@ -379,7 +549,9 @@ background-color: rgb(170, 170, 255);</string>
                <item>
                 <widget class="QPushButton" name="supprimer_collab">
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(205, 246, 255);</string>
+                  <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 0, 255);
+font: 87 9pt &quot;Arial Black&quot;;</string>
                  </property>
                  <property name="text">
                   <string>Supprimer</string>
@@ -389,7 +561,9 @@ background-color: rgb(170, 170, 255);</string>
                <item>
                 <widget class="QPushButton" name="modifier_collab">
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(205, 246, 255);</string>
+                  <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 0, 255);
+font: 87 9pt &quot;Arial Black&quot;;</string>
                  </property>
                  <property name="text">
                   <string>Modifier</string>
@@ -418,19 +592,46 @@ background-color: rgb(170, 170, 255);</string>
           <item>
            <widget class="QGroupBox" name="groupBox_3">
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(255, 206, 162);</string>
+             <string notr="true">background-color: rgb(196, 217, 255);</string>
             </property>
             <property name="title">
-             <string>Ajout un nouveau contrat:</string>
+             <string/>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_25">
              <item>
-              <widget class="QGroupBox" name="groupBox_6">
+              <widget class="QGroupBox" name="groupBox_13">
                <property name="styleSheet">
-                <string notr="true">background-color: rgb(170, 170, 255);</string>
+                <string notr="true">color: rgb(0, 85, 127);
+font: 87 14pt &quot;Arial Black&quot;;
+text-decoration: underline;</string>
                </property>
                <property name="title">
                 <string>Bienvenue</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_11">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QGroupBox" name="groupBox_6">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(170, 0, 255);
+font: 87 10pt &quot;Arial Black&quot;;
+background-color: rgb(255, 170, 255);</string>
+               </property>
+               <property name="title">
+                <string>Ajouter un nouveau contrat:</string>
                </property>
               </widget>
              </item>
@@ -461,42 +662,56 @@ background-color: rgb(170, 170, 255);</string>
                </item>
                <item row="1" column="0">
                 <widget class="QLabel" name="label_11">
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(0, 85, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+                 </property>
                  <property name="text">
-                  <string>type</string>
+                  <string>Type</string>
                  </property>
                 </widget>
                </item>
                <item row="1" column="1">
                 <widget class="QLineEdit" name="type">
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(255, 196, 212);
-background-color: rgb(255, 255, 127);</string>
+                  <string notr="true">background-color: rgb(251, 199, 255);</string>
                  </property>
                 </widget>
                </item>
                <item row="2" column="0">
                 <widget class="QLabel" name="label_12">
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(0, 85, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+                 </property>
                  <property name="text">
-                  <string>nom</string>
+                  <string>Nom</string>
                  </property>
                 </widget>
                </item>
                <item row="2" column="1">
                 <widget class="QLineEdit" name="nom_2">
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(255, 255, 127);</string>
+                  <string notr="true">background-color: rgb(251, 199, 255);</string>
                  </property>
                 </widget>
                </item>
                <item row="3" column="0">
                 <widget class="QLabel" name="label_14">
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(0, 85, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+                 </property>
                  <property name="text">
-                  <string>durée</string>
+                  <string>Durée</string>
                  </property>
                 </widget>
                </item>
                <item row="3" column="1">
                 <widget class="QComboBox" name="duree">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 170, 255);</string>
+                 </property>
                  <item>
                   <property name="text">
                    <string>une_anneé</string>
@@ -511,30 +726,37 @@ background-color: rgb(255, 255, 127);</string>
                </item>
                <item row="5" column="0">
                 <widget class="QLabel" name="label_13">
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(0, 85, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+                 </property>
                  <property name="text">
-                  <string>tarif</string>
+                  <string>Tarif</string>
                  </property>
                 </widget>
                </item>
                <item row="5" column="1">
                 <widget class="QLineEdit" name="tarif">
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(255, 255, 127);</string>
+                  <string notr="true">background-color: rgb(251, 199, 255);</string>
                  </property>
                 </widget>
                </item>
                <item row="6" column="0">
                 <widget class="QLabel" name="label_9">
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(0, 85, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+                 </property>
                  <property name="text">
-                  <string>idcollaborateur</string>
+                  <string>Idcollaborateur</string>
                  </property>
                 </widget>
                </item>
                <item row="6" column="1">
                 <widget class="QComboBox" name="idcollaborateur_2">
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(234, 129, 255);
-background-color: rgb(255, 252, 146);</string>
+                  <string notr="true">background-color: rgb(255, 170, 255);</string>
                  </property>
                 </widget>
                </item>
@@ -561,13 +783,6 @@ background-color: rgb(255, 252, 146);</string>
               </spacer>
              </item>
              <item>
-              <widget class="QLabel" name="label_18">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item>
               <layout class="QHBoxLayout" name="horizontalLayout_10">
                <item>
                 <spacer name="horizontalSpacer_7">
@@ -585,7 +800,9 @@ background-color: rgb(255, 252, 146);</string>
                <item>
                 <widget class="QPushButton" name="ajouter_collab">
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(255, 237, 133);</string>
+                  <string notr="true">background-color: rgb(255, 255, 255);
+font: 87 9pt &quot;Arial Black&quot;;
+color: rgb(85, 170, 255);</string>
                  </property>
                  <property name="text">
                   <string>Ajouter</string>
@@ -595,7 +812,9 @@ background-color: rgb(255, 252, 146);</string>
                <item>
                 <widget class="QPushButton" name="reset_2">
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(255, 237, 133);</string>
+                  <string notr="true">background-color: rgb(255, 255, 255);
+font: 87 9pt &quot;Arial Black&quot;;
+color: rgb(85, 170, 255);</string>
                  </property>
                  <property name="text">
                   <string>Reset</string>
@@ -614,7 +833,7 @@ background-color: rgb(255, 252, 146);</string>
           <item>
            <widget class="QGroupBox" name="groupBox_4">
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(255, 217, 183);</string>
+             <string notr="true">background-color: rgb(196, 217, 255);</string>
             </property>
             <property name="title">
              <string/>
@@ -625,7 +844,9 @@ background-color: rgb(255, 252, 146);</string>
                <item>
                 <widget class="QLabel" name="label_15">
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(188, 185, 255);</string>
+                  <string notr="true">color: rgb(170, 0, 255);
+font: 87 10pt &quot;Arial Black&quot;;
+background-color: rgb(255, 170, 255);</string>
                  </property>
                  <property name="text">
                   <string>Recherche</string>
@@ -640,6 +861,10 @@ background-color: rgb(255, 252, 146);</string>
                     <layout class="QHBoxLayout" name="horizontalLayout_8">
                      <item>
                       <widget class="QCheckBox" name="checkBox_nom">
+                       <property name="styleSheet">
+                        <string notr="true">color: rgb(0, 85, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+                       </property>
                        <property name="text">
                         <string>Nom</string>
                        </property>
@@ -650,6 +875,10 @@ background-color: rgb(255, 252, 146);</string>
                      </item>
                      <item>
                       <widget class="QCheckBox" name="checkBox_type">
+                       <property name="styleSheet">
+                        <string notr="true">color: rgb(0, 85, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+                       </property>
                        <property name="text">
                         <string>Type</string>
                        </property>
@@ -657,6 +886,10 @@ background-color: rgb(255, 252, 146);</string>
                      </item>
                      <item>
                       <widget class="QCheckBox" name="checkBox_tarif">
+                       <property name="styleSheet">
+                        <string notr="true">color: rgb(0, 85, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+                       </property>
                        <property name="text">
                         <string>Tarif</string>
                        </property>
@@ -668,22 +901,19 @@ background-color: rgb(255, 252, 146);</string>
                     <layout class="QVBoxLayout" name="verticalLayout_3">
                      <item>
                       <layout class="QFormLayout" name="formLayout_2">
-                       <item row="0" column="0">
-                        <widget class="QLabel" name="label_7">
-                         <property name="text">
-                          <string>Nom</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="2" column="0">
-                        <widget class="QLabel" name="label_16">
-                         <property name="text">
-                          <string>Tarif</string>
+                       <item row="0" column="1">
+                        <widget class="QLineEdit" name="rech_nom">
+                         <property name="styleSheet">
+                          <string notr="true"/>
                          </property>
                         </widget>
                        </item>
                        <item row="1" column="0">
                         <widget class="QLabel" name="label_17">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(0, 85, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+                         </property>
                          <property name="text">
                           <string>Type</string>
                          </property>
@@ -692,21 +922,36 @@ background-color: rgb(255, 252, 146);</string>
                        <item row="1" column="1">
                         <widget class="QLineEdit" name="rech_type">
                          <property name="styleSheet">
-                          <string notr="true">background-color: rgb(210, 255, 255);</string>
+                          <string notr="true"/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="0">
+                        <widget class="QLabel" name="label_16">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(0, 85, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+                         </property>
+                         <property name="text">
+                          <string>Tarif</string>
                          </property>
                         </widget>
                        </item>
                        <item row="2" column="1">
                         <widget class="QLineEdit" name="rech_tarif">
                          <property name="styleSheet">
-                          <string notr="true">background-color: rgb(210, 255, 255);</string>
+                          <string notr="true"/>
                          </property>
                         </widget>
                        </item>
-                       <item row="0" column="1">
-                        <widget class="QLineEdit" name="rech_nom">
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="label_7">
                          <property name="styleSheet">
-                          <string notr="true">background-color: rgb(210, 255, 255);</string>
+                          <string notr="true">color: rgb(0, 85, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+                         </property>
+                         <property name="text">
+                          <string>Nom</string>
                          </property>
                         </widget>
                        </item>
@@ -721,7 +966,9 @@ background-color: rgb(255, 252, 146);</string>
                    <item>
                     <widget class="QPushButton" name="pb_recherche">
                      <property name="styleSheet">
-                      <string notr="true">background-color: rgb(255, 237, 133);</string>
+                      <string notr="true">background-color: rgb(255, 255, 255);
+font: 87 9pt &quot;Arial Black&quot;;
+color: rgb(85, 170, 255);</string>
                      </property>
                      <property name="text">
                       <string>Rechercher</string>
@@ -731,7 +978,9 @@ background-color: rgb(255, 252, 146);</string>
                    <item>
                     <widget class="QPushButton" name="re_afficher">
                      <property name="styleSheet">
-                      <string notr="true">background-color: rgb(255, 237, 133);</string>
+                      <string notr="true">background-color: rgb(255, 255, 255);
+font: 87 9pt &quot;Arial Black&quot;;
+color: rgb(85, 170, 255);</string>
                      </property>
                      <property name="text">
                       <string>Afficher</string>
@@ -746,15 +995,20 @@ background-color: rgb(255, 252, 146);</string>
              </item>
              <item>
               <widget class="QGroupBox" name="groupBox">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(170, 0, 255);
+font: 87 10pt &quot;Arial Black&quot;;
+background-color: rgb(255, 170, 255);</string>
+               </property>
                <property name="title">
-                <string>Affichage:</string>
+                <string>Affichage de tous nos contrats:</string>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QTableView" name="tableView_2">
                <property name="styleSheet">
-                <string notr="true">background-color: rgb(255, 255, 164);</string>
+                <string notr="true">background-color: rgb(255, 170, 255);</string>
                </property>
               </widget>
              </item>
@@ -762,6 +1016,11 @@ background-color: rgb(255, 252, 146);</string>
               <layout class="QHBoxLayout" name="horizontalLayout_13">
                <item>
                 <widget class="QPushButton" name="imprimer">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 255, 255);
+font: 87 9pt &quot;Arial Black&quot;;
+color: rgb(85, 170, 255);</string>
+                 </property>
                  <property name="text">
                   <string>imprimer</string>
                  </property>
@@ -783,7 +1042,9 @@ background-color: rgb(255, 252, 146);</string>
                <item>
                 <widget class="QPushButton" name="modifier_collab_2">
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(255, 237, 133);</string>
+                  <string notr="true">background-color: rgb(255, 255, 255);
+font: 87 9pt &quot;Arial Black&quot;;
+color: rgb(85, 170, 255);</string>
                  </property>
                  <property name="text">
                   <string>Modifier</string>
@@ -796,7 +1057,9 @@ background-color: rgb(255, 252, 146);</string>
                <item>
                 <widget class="QPushButton" name="supprimer_collab_2">
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(255, 237, 133);</string>
+                  <string notr="true">background-color: rgb(255, 255, 255);
+font: 87 9pt &quot;Arial Black&quot;;
+color: rgb(85, 170, 255);</string>
                  </property>
                  <property name="text">
                   <string>Supprimer</string>
@@ -808,7 +1071,9 @@ background-color: rgb(255, 252, 146);</string>
              <item>
               <widget class="QPushButton" name="le_stat">
                <property name="styleSheet">
-                <string notr="true">background-color: rgb(255, 237, 133);</string>
+                <string notr="true">background-color: rgb(255, 255, 255);
+font: 87 9pt &quot;Arial Black&quot;;
+color: rgb(85, 170, 255);</string>
                </property>
                <property name="text">
                 <string>statistique</string>
@@ -829,10 +1094,25 @@ background-color: rgb(255, 252, 146);</string>
        <layout class="QHBoxLayout" name="horizontalLayout_6">
         <item>
          <widget class="QGroupBox" name="groupBox_7">
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(196, 217, 255);</string>
+          </property>
           <property name="title">
-           <string>GroupBox</string>
+           <string/>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_6">
+           <item>
+            <widget class="QGroupBox" name="groupBox_14">
+             <property name="styleSheet">
+              <string notr="true">font: 87 14pt &quot;Arial Black&quot;;
+color: rgb(170, 0, 127);
+text-decoration: underline;</string>
+             </property>
+             <property name="title">
+              <string>Bienvenue:</string>
+             </property>
+            </widget>
+           </item>
            <item>
             <spacer name="horizontalSpacer_3">
              <property name="orientation">
@@ -845,6 +1125,18 @@ background-color: rgb(255, 252, 146);</string>
               </size>
              </property>
             </spacer>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_15">
+             <property name="styleSheet">
+              <string notr="true">color: rgb(170, 0, 255);
+font: 87 10pt &quot;Arial Black&quot;;
+background-color: rgb(255, 170, 255);</string>
+             </property>
+             <property name="title">
+              <string>Ajouter une reservation:</string>
+             </property>
+            </widget>
            </item>
            <item>
             <spacer name="horizontalSpacer_5">
@@ -860,19 +1152,44 @@ background-color: rgb(255, 252, 146);</string>
             </spacer>
            </item>
            <item>
+            <spacer name="verticalSpacer_6">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
             <layout class="QFormLayout" name="formLayout">
              <item row="0" column="0">
               <widget class="QLabel" name="label_20">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(0, 0, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+               </property>
                <property name="text">
                 <string>Numero reservation</string>
                </property>
               </widget>
              </item>
              <item row="0" column="1">
-              <widget class="QLineEdit" name="numres"/>
+              <widget class="QLineEdit" name="numres">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(222, 167, 255);</string>
+               </property>
+              </widget>
              </item>
              <item row="1" column="0">
               <widget class="QLabel" name="label_21">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(0, 0, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+               </property>
                <property name="text">
                 <string>Nom</string>
                </property>
@@ -880,6 +1197,10 @@ background-color: rgb(255, 252, 146);</string>
              </item>
              <item row="3" column="0">
               <widget class="QLabel" name="label_25">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(0, 0, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+               </property>
                <property name="text">
                 <string>Date de reservation</string>
                </property>
@@ -887,22 +1208,42 @@ background-color: rgb(255, 252, 146);</string>
              </item>
              <item row="2" column="0">
               <widget class="QLabel" name="label_26">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(0, 0, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+               </property>
                <property name="text">
                 <string>Prenom</string>
                </property>
               </widget>
              </item>
              <item row="1" column="1">
-              <widget class="QLineEdit" name="nom_3"/>
+              <widget class="QLineEdit" name="nom_3">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(222, 167, 255);</string>
+               </property>
+              </widget>
              </item>
              <item row="2" column="1">
-              <widget class="QLineEdit" name="prenom1"/>
+              <widget class="QLineEdit" name="prenom1">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(222, 167, 255);</string>
+               </property>
+              </widget>
              </item>
              <item row="3" column="1">
-              <widget class="QLineEdit" name="dateres"/>
+              <widget class="QLineEdit" name="dateres">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(222, 167, 255);</string>
+               </property>
+              </widget>
              </item>
              <item row="4" column="0">
               <widget class="QLabel" name="label_24">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(0, 0, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+               </property>
                <property name="text">
                 <string>Type de reservation</string>
                </property>
@@ -939,6 +1280,10 @@ background-color: rgb(255, 252, 146);</string>
              </item>
              <item row="5" column="0">
               <widget class="QLabel" name="label_23">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(0, 0, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+               </property>
                <property name="text">
                 <string>Nombre de tables</string>
                </property>
@@ -946,16 +1291,29 @@ background-color: rgb(255, 252, 146);</string>
              </item>
              <item row="6" column="0">
               <widget class="QLabel" name="label_22">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(0, 0, 127);
+font: 87 8pt &quot;Arial Black&quot;;</string>
+               </property>
                <property name="text">
                 <string>Nombre de chaise</string>
                </property>
               </widget>
              </item>
              <item row="6" column="1">
-              <widget class="QLineEdit" name="nbchaise"/>
+              <widget class="QLineEdit" name="nbchaise">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(222, 167, 255);
+</string>
+               </property>
+              </widget>
              </item>
              <item row="5" column="1">
-              <widget class="QLineEdit" name="nbtable"/>
+              <widget class="QLineEdit" name="nbtable">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(222, 167, 255);</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -989,6 +1347,11 @@ background-color: rgb(255, 252, 146);</string>
              </item>
              <item>
               <widget class="QPushButton" name="reset3">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 0, 255);
+font: 87 9pt &quot;Arial Black&quot;;</string>
+               </property>
                <property name="text">
                 <string>Reset</string>
                </property>
@@ -996,6 +1359,11 @@ background-color: rgb(255, 252, 146);</string>
              </item>
              <item>
               <widget class="QPushButton" name="ajouter_3">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 0, 255);
+font: 87 9pt &quot;Arial Black&quot;;</string>
+               </property>
                <property name="text">
                 <string>Ajouter</string>
                </property>
@@ -1008,15 +1376,46 @@ background-color: rgb(255, 252, 146);</string>
         </item>
         <item>
          <widget class="QGroupBox" name="groupBox_8">
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(196, 217, 255);</string>
+          </property>
           <property name="title">
-           <string>Affichage:</string>
+           <string/>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
            <item>
-            <widget class="QTableView" name="tableView"/>
+            <widget class="QGroupBox" name="groupBox_16">
+             <property name="styleSheet">
+              <string notr="true">color: rgb(170, 0, 255);
+font: 87 10pt &quot;Arial Black&quot;;
+background-color: rgb(255, 170, 255);</string>
+             </property>
+             <property name="title">
+              <string>Affichage de toutes nos reservations:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTableView" name="tableView">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(222, 167, 255);</string>
+             </property>
+            </widget>
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_14">
+             <item>
+              <widget class="QPushButton" name="pushButton">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 0, 255);
+font: 87 9pt &quot;Arial Black&quot;;</string>
+               </property>
+               <property name="text">
+                <string>MUSIQUE</string>
+               </property>
+              </widget>
+             </item>
              <item>
               <spacer name="horizontalSpacer_6">
                <property name="orientation">
@@ -1032,6 +1431,11 @@ background-color: rgb(255, 252, 146);</string>
              </item>
              <item>
               <widget class="QPushButton" name="modif3">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 0, 255);
+font: 87 9pt &quot;Arial Black&quot;;</string>
+               </property>
                <property name="text">
                 <string>Modifer</string>
                </property>
@@ -1039,6 +1443,11 @@ background-color: rgb(255, 252, 146);</string>
              </item>
              <item>
               <widget class="QPushButton" name="supprimer3">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 0, 255);
+font: 87 9pt &quot;Arial Black&quot;;</string>
+               </property>
                <property name="text">
                 <string>Supprimer</string>
                </property>
@@ -1051,30 +1460,6 @@ background-color: rgb(255, 252, 146);</string>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_3">
-       <attribute name="title">
-        <string>Animation logo</string>
-       </attribute>
-       <widget class="QLabel" name="img">
-        <property name="geometry">
-         <rect>
-          <x>-110</x>
-          <y>50</y>
-          <width>501</width>
-          <height>461</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap>../../Documents/146788205_736324337259403_782764951550482489_n.png</pixmap>
-        </property>
-        <property name="scaledContents">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </widget>
       <widget class="QWidget" name="tab_4">
        <attribute name="title">
         <string>Historique</string>
@@ -1083,14 +1468,19 @@ background-color: rgb(255, 252, 146);</string>
         <item>
          <widget class="QTableView" name="tabhis">
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(170, 255, 255);</string>
+           <string notr="true">background-color: rgb(170, 170, 255);</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QPushButton" name="pushButton_6">
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(255, 170, 127);</string>
+           <string notr="true">background-color: rgb(255, 170, 127);
+background-color: rgb(255, 170, 255);
+color: rgb(85, 0, 127);
+text-decoration: underline;
+font: 87 8pt &quot;Arial Black&quot;;
+border-top-color: rgb(255, 35, 46);</string>
           </property>
           <property name="text">
            <string>historique</string>

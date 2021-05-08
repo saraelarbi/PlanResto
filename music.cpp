@@ -10,7 +10,6 @@ music::music(QWidget *parent) :
     mMediaPlayer = new QMediaPlayer(this);
 
     connect(mMediaPlayer, &QMediaPlayer::positionChanged,[&](qint64 pos){
-        ui->avancement->setValue(pos);
     });
 }
 

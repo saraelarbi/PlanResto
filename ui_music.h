@@ -40,27 +40,40 @@ public:
         if (music->objectName().isEmpty())
             music->setObjectName(QStringLiteral("music"));
         music->resize(400, 300);
+        music->setStyleSheet(QStringLiteral("background-color: rgb(255, 170, 255);"));
         verticalLayout = new QVBoxLayout(music);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         ouvrir = new QPushButton(music);
         ouvrir->setObjectName(QStringLiteral("ouvrir"));
+        ouvrir->setStyleSheet(QLatin1String("background-color: rgb(255, 255, 255);\n"
+"color: rgb(255, 0, 255);\n"
+"font: 87 9pt \"Arial Black\";"));
 
         horizontalLayout->addWidget(ouvrir);
 
         play = new QPushButton(music);
         play->setObjectName(QStringLiteral("play"));
+        play->setStyleSheet(QLatin1String("background-color: rgb(255, 255, 255);\n"
+"color: rgb(255, 0, 255);\n"
+"font: 87 9pt \"Arial Black\";"));
 
         horizontalLayout->addWidget(play);
 
         pause = new QPushButton(music);
         pause->setObjectName(QStringLiteral("pause"));
+        pause->setStyleSheet(QLatin1String("background-color: rgb(255, 255, 255);\n"
+"color: rgb(255, 0, 255);\n"
+"font: 87 9pt \"Arial Black\";"));
 
         horizontalLayout->addWidget(pause);
 
         stop = new QPushButton(music);
         stop->setObjectName(QStringLiteral("stop"));
+        stop->setStyleSheet(QLatin1String("background-color: rgb(255, 255, 255);\n"
+"color: rgb(255, 0, 255);\n"
+"font: 87 9pt \"Arial Black\";"));
 
         horizontalLayout->addWidget(stop);
 
@@ -71,12 +84,16 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         volume = new QSlider(music);
         volume->setObjectName(QStringLiteral("volume"));
+        volume->setStyleSheet(QStringLiteral("background-color: rgb(255, 0, 127);"));
         volume->setOrientation(Qt::Horizontal);
 
         horizontalLayout_2->addWidget(volume);
 
         mute = new QPushButton(music);
         mute->setObjectName(QStringLiteral("mute"));
+        mute->setStyleSheet(QLatin1String("background-color: rgb(255, 255, 255);\n"
+"color: rgb(255, 0, 255);\n"
+"font: 87 9pt \"Arial Black\";"));
 
         horizontalLayout_2->addWidget(mute);
 

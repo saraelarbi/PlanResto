@@ -13,11 +13,19 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 170, 255);</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="ouvrir">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 0, 255);
+font: 87 9pt &quot;Arial Black&quot;;</string>
+       </property>
        <property name="text">
         <string>open music</string>
        </property>
@@ -25,6 +33,11 @@
      </item>
      <item>
       <widget class="QPushButton" name="play">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 0, 255);
+font: 87 9pt &quot;Arial Black&quot;;</string>
+       </property>
        <property name="text">
         <string>play</string>
        </property>
@@ -32,6 +45,11 @@
      </item>
      <item>
       <widget class="QPushButton" name="pause">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 0, 255);
+font: 87 9pt &quot;Arial Black&quot;;</string>
+       </property>
        <property name="text">
         <string>pause</string>
        </property>
@@ -39,6 +57,11 @@
      </item>
      <item>
       <widget class="QPushButton" name="stop">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 0, 255);
+font: 87 9pt &quot;Arial Black&quot;;</string>
+       </property>
        <property name="text">
         <string>stop</string>
        </property>
@@ -50,6 +73,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
       <widget class="QSlider" name="volume">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 0, 127);</string>
+       </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -57,6 +83,11 @@
      </item>
      <item>
       <widget class="QPushButton" name="mute">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 0, 255);
+font: 87 9pt &quot;Arial Black&quot;;</string>
+       </property>
        <property name="text">
         <string>mute</string>
        </property>

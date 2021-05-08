@@ -17,6 +17,7 @@
 #include <QMouseEvent>
 #include <QtWidgets/QMessageBox>
 #include "reservation.h"
+#include"arduino.h"
 
 
 
@@ -51,29 +52,21 @@ private slots:
     void on_re_afficher2_clicked();
     void on_imprimer_clicked();
     void on_le_stat_clicked();
-    void on_pb_ajouter_clicked();
     void on_pushButton_6_clicked();
-    void on_pushButton10_clicked();
     void on_pushButton_2_clicked();
     void replyFinished(QNetworkReply* reply);
-
-
     void on_ajouter_3_clicked();
-
     void on_supprimer3_clicked();
-
     void on_modif3_clicked();
-
     void on_reset3_clicked();
     bool verifNOM();
     bool verifPRENOM();
     bool verifNOM1();
     bool verifNOM2();
     bool verifPRENOM1();
+    void on_buzz_clicked();
 
-
-
-
+    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -84,6 +77,9 @@ private:
     QSound *son;
     QPropertyAnimation* animation;
     projeth tmph;
+    Arduino ar;
+    QPixmap *pix;
+    QMediaPlayer musicc;
 
 
 

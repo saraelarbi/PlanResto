@@ -99,7 +99,7 @@ QString projeth::get_nom(){return  nom;}
 bool projeth::ajoutehis()
 {
     QSqlQuery query;
-    query.prepare("INSERT INTO historique (NOM, DATEE, FN) "
+    query.prepare("INSERT INTO histsalma (NOM, DATEE, FN) "
                   "VALUES (:nom, :datee, :fn)");
     query.bindValue(":nom", nom);
     query.bindValue(":datee", datee);
@@ -109,7 +109,7 @@ bool projeth::ajoutehis()
 bool projeth::modifierhis()
 {
     QSqlQuery query;
-    query.prepare("UPDATE historique SET datee='"+datee+"',fn='"+fn+"' where nom='"+nom+"'  ;");
+    query.prepare("UPDATE histsalma SET datee='"+datee+"',fn='"+fn+"' where nom='"+nom+"'  ;");
     query.bindValue(":nom",nom);
     query.bindValue(":datee", datee);
     query.bindValue(":fn", fn);
@@ -118,7 +118,7 @@ bool projeth::modifierhis()
 QSqlQueryModel * projeth::afficherhis()
 {
     QSqlQueryModel * model= new QSqlQueryModel();
-    model->setQuery("select * from historique");
+    model->setQuery("select * from histsalma");
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("NOM"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("date "));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("fonction "));
